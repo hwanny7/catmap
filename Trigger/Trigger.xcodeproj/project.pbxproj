@@ -14,6 +14,7 @@
 		AE16AD192A7E7FA700CB6B81 /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE16AD182A7E7FA700CB6B81 /* AppAppearance.swift */; };
 		AE16AD1B2A7E804E00CB6B81 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE16AD1A2A7E804E00CB6B81 /* AppCoordinator.swift */; };
 		AE16AD1D2A7E80EE00CB6B81 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE16AD1C2A7E80EE00CB6B81 /* AppDIContainer.swift */; };
+		AE16AD202A7E834600CB6B81 /* DataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE16AD1F2A7E834600CB6B81 /* DataTransferService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		AE16AD182A7E7FA700CB6B81 /* AppAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
 		AE16AD1A2A7E804E00CB6B81 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		AE16AD1C2A7E80EE00CB6B81 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
+		AE16AD1F2A7E834600CB6B81 /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,9 +60,9 @@
 		AE16AD002A7E37AA00CB6B81 /* Trigger */ = {
 			isa = PBXGroup;
 			children = (
-				AE16AD1E2A7E82EB00CB6B81 /* Network */,
 				AE16AD152A7E7A4C00CB6B81 /* Application */,
 				AE16AD162A7E7A6700CB6B81 /* Resources */,
+				AE16AD1E2A7E82EB00CB6B81 /* Network */,
 			);
 			path = Trigger;
 			sourceTree = "<group>";
@@ -98,6 +100,7 @@
 		AE16AD1E2A7E82EB00CB6B81 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				AE16AD1F2A7E834600CB6B81 /* DataTransferService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -172,6 +175,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE16AD202A7E834600CB6B81 /* DataTransferService.swift in Sources */,
 				AE16AD1B2A7E804E00CB6B81 /* AppCoordinator.swift in Sources */,
 				AE16AD192A7E7FA700CB6B81 /* AppAppearance.swift in Sources */,
 				AE16AD1D2A7E80EE00CB6B81 /* AppDIContainer.swift in Sources */,
