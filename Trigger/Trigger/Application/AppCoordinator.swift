@@ -3,8 +3,14 @@ import UIKit
 
 final class AppCoordinator: Coordinator {
     
+    var parentCoordinator: ParentCoordinator?
+
+    var childCoordinators = [Coordinator]()
+    
     var navigationController: UINavigationController
+    
     private let appDIContainer: AppDIContainer
+
     
     init(
         navigationController: UINavigationController,

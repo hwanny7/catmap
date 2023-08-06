@@ -11,11 +11,11 @@ import UIKit
 // MARK: - Coordinator protocol
 
 protocol Coordinator: AnyObject {
-    var finishDelegate: CoordinatorFinishDelegate? { get set }
-    
-    var navigationController: UINavigationController { get set }
+    var parentCoordinator: ParentCoordinator? { get set }
     
     var childCoordinators: [Coordinator] { get set }
+    
+    var navigationController: UINavigationController { get set }
     
     func start()
     
@@ -26,12 +26,12 @@ protocol Coordinator: AnyObject {
 extension Coordinator {
     func finish() {
         childCoordinators.removeAll()
-        finishDelegate?.coordinatorDidFinish(childCoordinator: self)
+        parentCoordinator?.remove(childCoordinator: self)
     }
 }
 
-protocol CoordinatorFinishDelegate: AnyObject {
-    func coordinatorDidFinish(childCoordinator: Coordinator)
+protocol ParentCoordinator: AnyObject {
+    func remove(childCoordinator: Coordinator)
 }
 
 

@@ -24,7 +24,7 @@ final class HomeSceneDIContainer {
 extension HomeSceneDIContainer {
     
     func makeHomeCoordinator(navigationController: UINavigationController) -> Coordinator {
-        
+        return HomeCoordinator(navigationController: navigationController)
     }
     
 }

@@ -10,7 +10,12 @@ import UIKit
 
 final class HomeCoordinator: Coordinator {
     
-    private weak var navigationController: UINavigationController?
+    var parentCoordinator: ParentCoordinator?
+    
+    var navigationController: UINavigationController
+    
+    var childCoordinators: [Coordinator]
+    
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
