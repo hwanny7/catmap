@@ -16,7 +16,15 @@ final class HomeSceneDIContainer {
     init(apiDataTransferService: DataTransferService) {
         self.apiDataTransferService = apiDataTransferService
     }
+}
+
+
+// MARK: - Make Coordinator
+
+extension HomeSceneDIContainer {
     
-    
+    func makeHomeCoordinator(navigationController: UINavigationController) -> Coordinator {
+        
+    }
     
 }

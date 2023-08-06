@@ -15,7 +15,7 @@ final class AppCoordinator: Coordinator {
     }
     
     func start() {
-        
+        let homeDIContainer = appDIContainer.makeHomeSceneDIContainer()
     }
     
     
