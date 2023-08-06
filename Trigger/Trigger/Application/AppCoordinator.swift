@@ -1,7 +1,7 @@
 
 import UIKit
 
-final class AppFlowCoordinator: Coordinator {
+final class AppCoordinator: Coordinator {
     
     var navigationController: UINavigationController
     private let appDIContainer: AppDIContainer
@@ -23,7 +23,7 @@ final class AppFlowCoordinator: Coordinator {
 
 // MARK: - Create TabBar
 
-extension AppFlowCoordinator {
+extension AppCoordinator {
     
 }
 

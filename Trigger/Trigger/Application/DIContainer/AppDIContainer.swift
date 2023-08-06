@@ -9,7 +9,7 @@ import Foundation
 
 final class AppDIContainer {
     
-    apiDataTransferService: DataTransferService = DefaultDataTransferService()
+    private let apiDataTransferService: DataTransferService = DefaultDataTransferService()
     
     
     func makeHomeSceneDIContainer() -> HomeSceneDIContainer {
@@ -17,4 +17,14 @@ final class AppDIContainer {
     }
     
     
+    
+    
 }
+
+
+// home, friends, user DI Container, Coordinator 생성
+
+// 각 Tab을 위한 Navigation Controller 생성
+// DI Container를 생성, Di Container가 Coordinator 생성
+// Coordinator에 Nav Controller 전달
+// Coordinator.start()
