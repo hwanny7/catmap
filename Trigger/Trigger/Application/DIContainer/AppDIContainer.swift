@@ -16,6 +16,13 @@ final class AppDIContainer {
         return HomeSceneDIContainer(apiDataTransferService: apiDataTransferService)
     }
     
+    func makeTabSceneDIContainer() -> HomeSceneDIContainer {
+        return HomeSceneDIContainer(apiDataTransferService: apiDataTransferService)
+    }
+    
+    func makeLoginSceneDIContainer() -> HomeSceneDIContainer {
+        return HomeSceneDIContainer(apiDataTransferService: apiDataTransferService)
+    }
     
     
     
