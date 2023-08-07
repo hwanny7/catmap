@@ -28,3 +28,9 @@ extension HomeDIContainer {
 }
 
 // MARK: - Make Controllers
+
+extension HomeDIContainer {
+    func makeGoodgleMapViewController() -> UIViewController {
+        return GoogleMapViewController.create()
+    }
+}
