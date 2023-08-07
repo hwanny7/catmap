@@ -11,7 +11,6 @@ class GoogleMapViewController: UIViewController, StoryboardInstantiable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Map"
     }
     
     static func create(

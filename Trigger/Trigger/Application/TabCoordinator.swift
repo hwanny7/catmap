@@ -7,9 +7,9 @@
 
 import UIKit
 
-enum TabType : CaseIterable {
-    case home
-    case profile
+enum TabType : String,CaseIterable {
+    case home = "Home"
+    case profile = "Profile"
 }
 
 
@@ -45,14 +45,27 @@ extension TabCoordinator {
     
     func setupTabBarController() {
         var navControllers = [UIViewController]()
+        
         for tab in TabType.allCases {
             let navigationController = UINavigationController()
             navControllers.append(navigationController)
+            setTabBarItem(for: tab, with: navigationController)
             makeDIContainerAndCoordinator(for: tab, with: navigationController)
         }
+        
         tabBarController.setViewControllers(navControllers, animated: false)
         navigationController.viewControllers = [tabBarController]
     }
+    
+    func setTabBarItem(for tab: TabType, with navigationController: UINavigationController) {
+        switch tab {
+        case .home:
+            navigationController.tabBarItem = UITabBarItem(title: tab.rawValue, image: UIImage(systemName: "house"), tag: 0)
+        case .profile:
+            navigationController.tabBarItem = UITabBarItem(title: tab.rawValue, image: UIImage(systemName: "person"), tag: 1)
+        }
+    }
+    
     
     func makeDIContainerAndCoordinator(for tab: TabType, with navigationController: UINavigationController) {
         switch tab {
@@ -60,11 +73,13 @@ extension TabCoordinator {
             let homeDIContainer = appDIContainer.makeHomeDIContainer()
             let homeCoordinator = homeDIContainer.makeHomeCoordinator(navigationController: navigationController)
             homeCoordinator.start()
-            // return coordinator and append child
+            childCoordinators.append(homeCoordinator)
+            
         case .profile:
             let profileDIContainer = appDIContainer.makeProfileDIContainer()
             let profileCoordinator = profileDIContainer.makeProfileCoordinator(navigationController: navigationController)
             profileCoordinator.start()
+            childCoordinators.append(profileCoordinator)
         }
     }
     

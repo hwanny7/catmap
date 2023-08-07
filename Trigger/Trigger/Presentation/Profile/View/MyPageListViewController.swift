@@ -11,7 +11,6 @@ class MyPageListViewController: UITableViewController, StoryboardInstantiable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "MyPage"
     }
     
     static func create(
