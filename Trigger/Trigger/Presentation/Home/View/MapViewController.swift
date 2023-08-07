@@ -14,6 +14,7 @@ class MapViewController: UIViewController, StoryboardInstantiable {
     @IBOutlet weak var map: MKMapView!
     
     private let locationManager = CLLocationManager()
+    private var viewModel: DefaultMapViewModel!
     
     let coordinate = CLLocationCoordinate2D(latitude: 40.728, longitude: -74)
 
@@ -33,11 +34,11 @@ class MapViewController: UIViewController, StoryboardInstantiable {
     
     
     static func create(
-//        with viewModel: MoviesListViewModel,
+        with viewModel: DefaultMapViewModel
 //        posterImagesRepository: PosterImagesRepository?
     ) -> MapViewController {
         let view = MapViewController.instantiateViewController()
-//        view.viewModel = viewModel
+        view.viewModel = viewModel
 //        view.posterImagesRepository = posterImagesRepository
         return view
     }

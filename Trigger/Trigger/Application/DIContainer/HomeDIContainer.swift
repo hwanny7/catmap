@@ -31,6 +31,6 @@ extension HomeDIContainer {
 
 extension HomeDIContainer {
     func makeGoodgleMapViewController() -> UIViewController {
-        return MapViewController.create()
+        return MapViewController.create(with: DefaultMapViewModel())
     }
 }
