@@ -31,6 +31,6 @@ extension HomeDIContainer {
 
 extension HomeDIContainer {
     func makeGoodgleMapViewController() -> UIViewController {
-        return GoogleMapViewController.create()
+        return MapViewController.create()
     }
 }
