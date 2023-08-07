@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum Tab : CaseIterable {
+enum TabType : CaseIterable {
     case home
     case profile
 }
@@ -35,9 +35,41 @@ final class TabCoordinator: Coordinator {
     }
     
     func start() {
-        navigationController.pushViewController(FirstViewController(), animated: <#T##Bool#>)
+        navigationController.pushViewController(FirstViewController(), animated: false)
+
     }
 }
+
+// MARK: - Set up Tab bar with dicontainer and coordinator
+
+extension TabCoordinator {
+    
+    func setupTabBarController() {
+        var navControllers = [UIViewController]()
+        for tab in TabType.allCases {
+            let navigationController = UINavigationController()
+            navControllers.append(navigationController)
+            makeDIContainerAndCoordinator(for: tab)
+        }
+        tabBarController.setViewControllers(navControllers, animated: false)
+    }
+    
+    func makeDIContainerAndCoordinator(for tab: TabType) {
+        switch tab {
+        case .home:
+            print("home")
+        case .profile:
+            print("profile")
+            
+        }
+    }
+    
+}
+
+
+// MARK: - Delegate tab bar
+
+
 
 class FirstViewController: UIViewController {
     override func viewDidLoad() {
