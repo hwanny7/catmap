@@ -9,7 +9,7 @@ import UIKit
 
 
 
-final class HomeSceneDIContainer {
+final class HomeDIContainer {
     
     private let apiDataTransferService: DataTransferService
     
@@ -21,10 +21,10 @@ final class HomeSceneDIContainer {
 
 // MARK: - Make Coordinator
 
-extension HomeSceneDIContainer {
-    
+extension HomeDIContainer {
     func makeHomeCoordinator(navigationController: UINavigationController) -> Coordinator {
-        return HomeCoordinator(navigationController: navigationController)
+        return HomeCoordinator(navigationController: navigationController, homeDIContainer: self)
     }
-    
 }
+
+// MARK: - Make Controllers

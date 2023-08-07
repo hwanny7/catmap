@@ -12,6 +12,8 @@
 		AE1581D82A7FB8D600B79291 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581D72A7FB8D600B79291 /* HomeCoordinator.swift */; };
 		AE1581DA2A7FDF8500B79291 /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581D92A7FDF8500B79291 /* StoryboardInstantiable.swift */; };
 		AE1581DC2A80670500B79291 /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581DB2A80670500B79291 /* TabCoordinator.swift */; };
+		AE1581DF2A80A80E00B79291 /* GoogleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581DE2A80A80E00B79291 /* GoogleMapViewController.swift */; };
+		AE1581E12A80A82A00B79291 /* GoogleMapViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE1581E02A80A82A00B79291 /* GoogleMapViewController.storyboard */; };
 		AE16AD022A7E37AA00CB6B81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE16AD012A7E37AA00CB6B81 /* AppDelegate.swift */; };
 		AE16AD042A7E37AA00CB6B81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE16AD032A7E37AA00CB6B81 /* SceneDelegate.swift */; };
 		AE16AD0B2A7E37AC00CB6B81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE16AD0A2A7E37AC00CB6B81 /* Assets.xcassets */; };
@@ -29,6 +31,8 @@
 		AE1581D72A7FB8D600B79291 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		AE1581D92A7FDF8500B79291 /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
 		AE1581DB2A80670500B79291 /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
+		AE1581DE2A80A80E00B79291 /* GoogleMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapViewController.swift; sourceTree = "<group>"; };
+		AE1581E02A80A82A00B79291 /* GoogleMapViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GoogleMapViewController.storyboard; sourceTree = "<group>"; };
 		AE16ACFE2A7E37AA00CB6B81 /* Trigger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trigger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE16AD012A7E37AA00CB6B81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE16AD032A7E37AA00CB6B81 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +64,15 @@
 				AE1581D92A7FDF8500B79291 /* StoryboardInstantiable.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		AE1581DD2A80A7CA00B79291 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AE1581DE2A80A80E00B79291 /* GoogleMapViewController.swift */,
+				AE1581E02A80A82A00B79291 /* GoogleMapViewController.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		AE16ACF52A7E37AA00CB6B81 = {
@@ -143,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				AE16AD232A7E8B5300CB6B81 /* Coordinator */,
+				AE1581DD2A80A7CA00B79291 /* View */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -216,6 +230,7 @@
 				AE16AD0E2A7E37AC00CB6B81 /* LaunchScreen.storyboard in Resources */,
 				AE16AD0B2A7E37AC00CB6B81 /* Assets.xcassets in Resources */,
 				AE1581D62A7FB4F200B79291 /* Storyboard.storyboard in Resources */,
+				AE1581E12A80A82A00B79291 /* GoogleMapViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +243,7 @@
 			files = (
 				AE1581D42A7F837300B79291 /* Coordinator.swift in Sources */,
 				AE16AD202A7E834600CB6B81 /* DataTransferService.swift in Sources */,
+				AE1581DF2A80A80E00B79291 /* GoogleMapViewController.swift in Sources */,
 				AE1581DA2A7FDF8500B79291 /* StoryboardInstantiable.swift in Sources */,
 				AE1581D82A7FB8D600B79291 /* HomeCoordinator.swift in Sources */,
 				AE16AD1B2A7E804E00CB6B81 /* AppCoordinator.swift in Sources */,
