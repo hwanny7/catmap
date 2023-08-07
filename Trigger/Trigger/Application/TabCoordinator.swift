@@ -35,8 +35,7 @@ final class TabCoordinator: Coordinator {
     }
     
     func start() {
-        navigationController.pushViewController(FirstViewController(), animated: false)
-
+        setupTabBarController()
     }
 }
 
@@ -49,15 +48,19 @@ extension TabCoordinator {
         for tab in TabType.allCases {
             let navigationController = UINavigationController()
             navControllers.append(navigationController)
-            makeDIContainerAndCoordinator(for: tab)
+            makeDIContainerAndCoordinator(for: tab, with: navigationController)
         }
         tabBarController.setViewControllers(navControllers, animated: false)
+        navigationController.viewControllers = [tabBarController]
     }
     
-    func makeDIContainerAndCoordinator(for tab: TabType) {
+    func makeDIContainerAndCoordinator(for tab: TabType, with navigationController: UINavigationController) {
         switch tab {
         case .home:
-            print("home")
+            let homeDIContainer = appDIContainer.makeHomeDIContainer()
+            let homeCoordinator = homeDIContainer.makeHomeCoordinator(navigationController: navigationController)
+            homeCoordinator.start()
+            // return coordinator and append child
         case .profile:
             print("profile")
             
@@ -69,15 +72,6 @@ extension TabCoordinator {
 
 // MARK: - Delegate tab bar
 
-
-
-class FirstViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .red
-        title = "fisrt"
-    }
-}
 
 // Tab 만큼 Navigation 생성 및 Tab Bar에 삽입
 // DI, coordi 생성
