@@ -7,11 +7,20 @@
 
 import UIKit
 
-class GoogleMapViewController: UIViewController {
+class GoogleMapViewController: UIViewController, StoryboardInstantiable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
+    
+    static func create(
+//        with viewModel: MoviesListViewModel,
+//        posterImagesRepository: PosterImagesRepository?
+    ) -> GoogleMapViewController {
+        let view = GoogleMapViewController.instantiateViewController()
+//        view.viewModel = viewModel
+//        view.posterImagesRepository = posterImagesRepository
+        return view
+    }
+    
 }

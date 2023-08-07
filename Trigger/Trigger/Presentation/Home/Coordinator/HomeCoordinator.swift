@@ -16,14 +16,16 @@ final class HomeCoordinator: Coordinator {
     
     var childCoordinators = [Coordinator]()
     
+    private let homeDIContainer: HomeDIContainer
     
-    init(navigationController: UINavigationController) {
+    
+    init(navigationController: UINavigationController, homeDIContainer: HomeDIContainer) {
         self.navigationController = navigationController
+        self.homeDIContainer = homeDIContainer
     }
     
     func start() {
-        
+        let mapVC = homeDIContainer.makeGoodgleMapViewController()
+        navigationController.pushViewController(mapVC, animated: false)
     }
-    
-    
 }
