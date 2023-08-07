@@ -5,26 +5,28 @@
 //  Created by yun on 2023/08/05.
 //
 
-import Foundation
+import UIKit
 
 final class AppDIContainer {
     
     private let apiDataTransferService: DataTransferService = DefaultDataTransferService()
     
     
-    func makeHomeSceneDIContainer() -> HomeSceneDIContainer {
+    // MARK: - Make Coordinator
+    
+    func makeTabCoordinator(navigationController: UINavigationController) -> TabCoordinator {
+        return TabCoordinator(navigationController: navigationController, appDIContainer: self)
+    }
+    
+    // MARK: - Make DIContainer
+    
+    func makeHomeDIContainer() -> HomeSceneDIContainer {
         return HomeSceneDIContainer(apiDataTransferService: apiDataTransferService)
     }
     
-    func makeTabSceneDIContainer() -> HomeSceneDIContainer {
+    func makeProfileDIContainer() -> HomeSceneDIContainer {
         return HomeSceneDIContainer(apiDataTransferService: apiDataTransferService)
     }
-    
-    func makeLoginSceneDIContainer() -> HomeSceneDIContainer {
-        return HomeSceneDIContainer(apiDataTransferService: apiDataTransferService)
-    }
-    
-    
     
 }
 
