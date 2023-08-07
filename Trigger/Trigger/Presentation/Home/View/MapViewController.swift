@@ -24,9 +24,9 @@ class MapViewController: UIViewController, StoryboardInstantiable {
         map.delegate = self
         map.showsUserLocation = true
         locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
+        requestAuthorizationForCurrentLocation()
         
-        map.setRegion(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)), animated: false)
+//        map.setRegion(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)), animated: false)
         
         
         addCustomPin()
@@ -81,6 +81,7 @@ extension MapViewController: MKMapViewDelegate {
 
 extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
         guard let location = locations.last else { return }
         
         // Get the user's current location from the locations array
@@ -94,5 +95,45 @@ extension MapViewController: CLLocationManagerDelegate {
         // let annotation = MKPointAnnotation()
         // annotation.coordinate = userLocation
         // mapView.addAnnotation(annotation)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+         switch status {
+         case .authorizedAlways, .authorizedWhenInUse:
+             print("GPS 권한 설정됨")
+             locationManager.startUpdatingLocation()
+             // didUpdate 호출
+         case .restricted, .notDetermined:
+             print("GPS 권한 설정되지 않음")
+         case .denied:
+             print("GPS 권한 요청 거부됨")
+         default:
+             print("GPS: Default")
+         }
+     }
+    
+    private func requestAuthorizationForCurrentLocation() {
+        
+        let authorizationStatus: CLAuthorizationStatus
+        
+        if #available(iOS 14, *) {
+            authorizationStatus = locationManager.authorizationStatus
+        } else {
+            authorizationStatus = CLLocationManager.authorizationStatus()
+        }
+
+        switch authorizationStatus {
+        case .authorizedAlways, .authorizedWhenInUse:
+            print("이미 업데이트 했는뎁쇼?")
+            locationManager.startUpdatingLocation()
+        case .denied, .restricted:
+            print("거절했는뎁쇼?")
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+            break
+        @unknown default:
+            // Handle any future cases if required
+            break
+        }
     }
 }
