@@ -20,13 +20,13 @@ final class AppDIContainer {
     
     // MARK: - Make DIContainer
     
-    func makeHomeDIContainer() -> HomeSceneDIContainer {
-        return HomeSceneDIContainer(apiDataTransferService: apiDataTransferService)
+    func makeHomeDIContainer() -> HomeDIContainer {
+        return HomeDIContainer(apiDataTransferService: apiDataTransferService)
     }
     
-    func makeProfileDIContainer() -> HomeSceneDIContainer {
-        return HomeSceneDIContainer(apiDataTransferService: apiDataTransferService)
-    }
+//    func makeProfileDIContainer() -> HomeDIContainer {
+//        return HomeSceneDIContainer(apiDataTransferService: apiDataTransferService)
+//    }
     
 }
 
