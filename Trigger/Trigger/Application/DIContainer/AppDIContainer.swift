@@ -24,9 +24,9 @@ final class AppDIContainer {
         return HomeDIContainer(apiDataTransferService: apiDataTransferService)
     }
     
-//    func makeProfileDIContainer() -> HomeDIContainer {
-//        return HomeSceneDIContainer(apiDataTransferService: apiDataTransferService)
-//    }
+    func makeProfileDIContainer() -> ProfileDIContainer {
+        return ProfileDIContainer(apiDataTransferService: apiDataTransferService)
+    }
     
 }
 

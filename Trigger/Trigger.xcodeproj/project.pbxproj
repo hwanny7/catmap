@@ -14,6 +14,10 @@
 		AE1581DC2A80670500B79291 /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581DB2A80670500B79291 /* TabCoordinator.swift */; };
 		AE1581DF2A80A80E00B79291 /* GoogleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581DE2A80A80E00B79291 /* GoogleMapViewController.swift */; };
 		AE1581E12A80A82A00B79291 /* GoogleMapViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE1581E02A80A82A00B79291 /* GoogleMapViewController.storyboard */; };
+		AE1581E62A80C01D00B79291 /* ProfileDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581E52A80C01D00B79291 /* ProfileDIContainer.swift */; };
+		AE1581E82A80C05B00B79291 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581E72A80C05B00B79291 /* ProfileCoordinator.swift */; };
+		AE1581EA2A80C0EA00B79291 /* MyPageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581E92A80C0EA00B79291 /* MyPageListViewController.swift */; };
+		AE1581EC2A80C15400B79291 /* MyPageListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE1581EB2A80C15400B79291 /* MyPageListViewController.storyboard */; };
 		AE16AD022A7E37AA00CB6B81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE16AD012A7E37AA00CB6B81 /* AppDelegate.swift */; };
 		AE16AD042A7E37AA00CB6B81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE16AD032A7E37AA00CB6B81 /* SceneDelegate.swift */; };
 		AE16AD0B2A7E37AC00CB6B81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE16AD0A2A7E37AC00CB6B81 /* Assets.xcassets */; };
@@ -33,6 +37,10 @@
 		AE1581DB2A80670500B79291 /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
 		AE1581DE2A80A80E00B79291 /* GoogleMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapViewController.swift; sourceTree = "<group>"; };
 		AE1581E02A80A82A00B79291 /* GoogleMapViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GoogleMapViewController.storyboard; sourceTree = "<group>"; };
+		AE1581E52A80C01D00B79291 /* ProfileDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDIContainer.swift; sourceTree = "<group>"; };
+		AE1581E72A80C05B00B79291 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		AE1581E92A80C0EA00B79291 /* MyPageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageListViewController.swift; sourceTree = "<group>"; };
+		AE1581EB2A80C15400B79291 /* MyPageListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPageListViewController.storyboard; sourceTree = "<group>"; };
 		AE16ACFE2A7E37AA00CB6B81 /* Trigger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trigger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE16AD012A7E37AA00CB6B81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE16AD032A7E37AA00CB6B81 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +79,32 @@
 			children = (
 				AE1581DE2A80A80E00B79291 /* GoogleMapViewController.swift */,
 				AE1581E02A80A82A00B79291 /* GoogleMapViewController.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AE1581E22A80BF4000B79291 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				AE1581E32A80BF5E00B79291 /* Coordinator */,
+				AE1581E42A80C00600B79291 /* View */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		AE1581E32A80BF5E00B79291 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				AE1581E72A80C05B00B79291 /* ProfileCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		AE1581E42A80C00600B79291 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AE1581E92A80C0EA00B79291 /* MyPageListViewController.swift */,
+				AE1581EB2A80C15400B79291 /* MyPageListViewController.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -132,6 +166,7 @@
 			children = (
 				AE16AD1C2A7E80EE00CB6B81 /* AppDIContainer.swift */,
 				AE16AD262A7E8B9200CB6B81 /* HomeDIContainer.swift */,
+				AE1581E52A80C01D00B79291 /* ProfileDIContainer.swift */,
 			);
 			path = DIContainer;
 			sourceTree = "<group>";
@@ -147,6 +182,7 @@
 		AE16AD212A7E8B2200CB6B81 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				AE1581E22A80BF4000B79291 /* Profile */,
 				AE16AD222A7E8B4400CB6B81 /* Home */,
 			);
 			path = Presentation;
@@ -228,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE16AD0E2A7E37AC00CB6B81 /* LaunchScreen.storyboard in Resources */,
+				AE1581EC2A80C15400B79291 /* MyPageListViewController.storyboard in Resources */,
 				AE16AD0B2A7E37AC00CB6B81 /* Assets.xcassets in Resources */,
 				AE1581D62A7FB4F200B79291 /* Storyboard.storyboard in Resources */,
 				AE1581E12A80A82A00B79291 /* GoogleMapViewController.storyboard in Resources */,
@@ -243,11 +280,14 @@
 			files = (
 				AE1581D42A7F837300B79291 /* Coordinator.swift in Sources */,
 				AE16AD202A7E834600CB6B81 /* DataTransferService.swift in Sources */,
+				AE1581EA2A80C0EA00B79291 /* MyPageListViewController.swift in Sources */,
 				AE1581DF2A80A80E00B79291 /* GoogleMapViewController.swift in Sources */,
 				AE1581DA2A7FDF8500B79291 /* StoryboardInstantiable.swift in Sources */,
 				AE1581D82A7FB8D600B79291 /* HomeCoordinator.swift in Sources */,
+				AE1581E62A80C01D00B79291 /* ProfileDIContainer.swift in Sources */,
 				AE16AD1B2A7E804E00CB6B81 /* AppCoordinator.swift in Sources */,
 				AE16AD192A7E7FA700CB6B81 /* AppAppearance.swift in Sources */,
+				AE1581E82A80C05B00B79291 /* ProfileCoordinator.swift in Sources */,
 				AE16AD1D2A7E80EE00CB6B81 /* AppDIContainer.swift in Sources */,
 				AE1581DC2A80670500B79291 /* TabCoordinator.swift in Sources */,
 				AE16AD272A7E8B9200CB6B81 /* HomeDIContainer.swift in Sources */,

@@ -62,8 +62,9 @@ extension TabCoordinator {
             homeCoordinator.start()
             // return coordinator and append child
         case .profile:
-            print("profile")
-            
+            let profileDIContainer = appDIContainer.makeProfileDIContainer()
+            let profileCoordinator = profileDIContainer.makeProfileCoordinator(navigationController: navigationController)
+            profileCoordinator.start()
         }
     }
     
