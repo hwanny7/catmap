@@ -20,6 +20,7 @@
 		AE1581EC2A80C15400B79291 /* MyPageListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE1581EB2A80C15400B79291 /* MyPageListViewController.storyboard */; };
 		AE1581EF2A81A5DF00B79291 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581EE2A81A5DF00B79291 /* MapViewModel.swift */; };
 		AE1581F12A81CFA500B79291 /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581F02A81CFA500B79291 /* Alertable.swift */; };
+		AE1581F32A81E11F00B79291 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581F22A81E11F00B79291 /* FloatingButton.swift */; };
 		AE16AD022A7E37AA00CB6B81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE16AD012A7E37AA00CB6B81 /* AppDelegate.swift */; };
 		AE16AD042A7E37AA00CB6B81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE16AD032A7E37AA00CB6B81 /* SceneDelegate.swift */; };
 		AE16AD0B2A7E37AC00CB6B81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE16AD0A2A7E37AC00CB6B81 /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 		AE1581EB2A80C15400B79291 /* MyPageListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPageListViewController.storyboard; sourceTree = "<group>"; };
 		AE1581EE2A81A5DF00B79291 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		AE1581F02A81CFA500B79291 /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
+		AE1581F22A81E11F00B79291 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 		AE16ACFE2A7E37AA00CB6B81 /* Trigger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trigger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE16AD012A7E37AA00CB6B81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE16AD032A7E37AA00CB6B81 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				AE1581DE2A80A80E00B79291 /* MapViewController.swift */,
+				AE1581F22A81E11F00B79291 /* FloatingButton.swift */,
 				AE1581E02A80A82A00B79291 /* MapViewController.storyboard */,
 			);
 			path = View;
@@ -303,6 +306,7 @@
 				AE16AD1B2A7E804E00CB6B81 /* AppCoordinator.swift in Sources */,
 				AE16AD192A7E7FA700CB6B81 /* AppAppearance.swift in Sources */,
 				AE1581E82A80C05B00B79291 /* ProfileCoordinator.swift in Sources */,
+				AE1581F32A81E11F00B79291 /* FloatingButton.swift in Sources */,
 				AE16AD1D2A7E80EE00CB6B81 /* AppDIContainer.swift in Sources */,
 				AE1581F12A81CFA500B79291 /* Alertable.swift in Sources */,
 				AE1581DC2A80670500B79291 /* TabCoordinator.swift in Sources */,
@@ -447,6 +451,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YYZ32L49X6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Trigger/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -475,6 +480,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YYZ32L49X6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Trigger/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
