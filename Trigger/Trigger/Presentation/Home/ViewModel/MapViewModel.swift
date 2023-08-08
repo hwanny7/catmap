@@ -7,10 +7,16 @@
 
 import Foundation
 
+
+
 struct MapViewModelActions {
     let showCreatePost: () -> Void
 }
 
+
+protocol MapViewModelInput {
+    func didTakePicture()
+}
 
 
 final class DefaultMapViewModel {
@@ -20,5 +26,10 @@ final class DefaultMapViewModel {
         actions: MapViewModelActions
     ) {
         self.actions = actions
+    }
+}
+extension DefaultMapViewModel: MapViewModelInput {
+    func didTakePicture() {
+        actions.showCreatePost()
     }
 }

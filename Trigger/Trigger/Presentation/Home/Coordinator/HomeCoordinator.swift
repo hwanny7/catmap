@@ -27,12 +27,14 @@ final class HomeCoordinator: Coordinator {
     }
     
     func start() {
-        let mapVC = homeDIContainer.makeGoodgleMapViewController()
+        let actions = MapViewModelActions(showCreatePost: showCreatePost)
+        let mapVC = homeDIContainer.makeGoodgleMapViewController(actions: actions)
         navigationController.pushViewController(mapVC, animated: false)
     }
     
     private func showCreatePost() {
         let postVC = homeDIContainer.makeCreatePostViewViewController()
+        postVC.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(postVC, animated: true)
     }
     

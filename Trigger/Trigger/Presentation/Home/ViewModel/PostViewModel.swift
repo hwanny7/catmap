@@ -14,11 +14,11 @@ struct PostViewModelActions {
 
 final class DefaultPostViewModel {
     
-    private let actions: PostViewModelActions
-    
-    init(
-        actions: PostViewModelActions
-    ) {
-        self.actions = actions
-    }
+//    private let actions: PostViewModelActions
+//    
+//    init(
+//        actions: PostViewModelActions
+//    ) {
+//        self.actions = actions
+//    }
 }

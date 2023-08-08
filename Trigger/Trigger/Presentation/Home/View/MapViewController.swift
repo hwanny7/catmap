@@ -78,7 +78,7 @@ class MapViewController: UIViewController, StoryboardInstantiable, Alertable {
     
     @objc private func didTapFloatingButton() {
         let picker = UIImagePickerController()
-        picker.sourceType = .camera
+        picker.sourceType = .photoLibrary
         picker.allowsEditing = true
         picker.delegate = self
         present(picker, animated: true)
@@ -192,7 +192,7 @@ extension MapViewController: UIImagePickerControllerDelegate & UINavigationContr
         
         guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
         // edit image는 크기가 작아지니까 orginal이랑 크기 차이가 얼마나 나는지 확인하기
-        
+        viewModel.didTakePicture()
     }
 }
 
