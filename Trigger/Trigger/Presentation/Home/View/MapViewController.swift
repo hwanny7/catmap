@@ -24,6 +24,8 @@ class MapViewController: UIViewController, StoryboardInstantiable, Alertable {
     private let locationManager = CLLocationManager()
     private var viewModel: DefaultMapViewModel!
     
+    private var isRegionSet = false
+    
     let coordinate = CLLocationCoordinate2D(latitude: 40.728, longitude: -74)
 
     override func viewDidLoad() {
@@ -35,7 +37,7 @@ class MapViewController: UIViewController, StoryboardInstantiable, Alertable {
         map.showsUserLocation = true
         locationManager.delegate = self
         requestAuthorizationForCurrentLocation()
-        
+
 //        addCustomPin()
 //        사용자 위치 확인했을 때 Pin 가져와서 수행하기
     }
@@ -59,13 +61,17 @@ class MapViewController: UIViewController, StoryboardInstantiable, Alertable {
 //        view.posterImagesRepository = posterImagesRepository
         return view
     }
-    
+
     private func addCustomPin() {
         let pin = MKPointAnnotation()
         pin.coordinate = coordinate
         pin.title = "Bug"
         pin.subtitle = "Go and catch them all"
         map.addAnnotation(pin)
+    }
+    
+    private func setRegion() {
+        
     }
     
 // MARK: - Tab Floating Button
@@ -75,7 +81,7 @@ class MapViewController: UIViewController, StoryboardInstantiable, Alertable {
         picker.sourceType = .camera
         picker.allowsEditing = true
         picker.delegate = self
-        present(picker, animated:  true)
+        present(picker, animated: true)
     }
     
 }
@@ -111,22 +117,23 @@ extension MapViewController: MKMapViewDelegate {
 extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        guard let location = locations.last else { return }
-        
+        guard !isRegionSet, let location = locations.last else { return }
+
         // Get the user's current location from the locations array
         let userLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        
+
         // Set the region for the map to center on the user's location
-        let region = MKCoordinateRegion(center: userLocation, latitudinalMeters: 1000, longitudinalMeters: 1000)
+        let region = MKCoordinateRegion(center: userLocation, latitudinalMeters: 500, longitudinalMeters: 500)
         map.setRegion(region, animated: true)
-        
+
+        isRegionSet = true
+
         // You can also add a custom annotation (e.g., a marker) for the user's location on the map if needed
         // let annotation = MKPointAnnotation()
         // annotation.coordinate = userLocation
         // mapView.addAnnotation(annotation)
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
          switch status {
@@ -184,7 +191,9 @@ extension MapViewController: UIImagePickerControllerDelegate & UINavigationContr
         picker.dismiss(animated: true)
         
         guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
+        // edit image는 크기가 작아지니까 orginal이랑 크기 차이가 얼마나 나는지 확인하기
+        
     }
-    
-    
 }
+
+

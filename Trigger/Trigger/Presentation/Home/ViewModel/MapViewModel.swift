@@ -7,7 +7,18 @@
 
 import Foundation
 
+struct MapViewModelActions {
+    let showCreatePost: () -> Void
+}
+
+
 
 final class DefaultMapViewModel {
+    private let actions: MapViewModelActions
     
+    init(
+        actions: MapViewModelActions
+    ) {
+        self.actions = actions
+    }
 }

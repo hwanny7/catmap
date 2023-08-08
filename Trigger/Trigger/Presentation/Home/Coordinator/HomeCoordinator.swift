@@ -7,6 +7,8 @@
 
 import UIKit
 
+// controller 만드는 함수 Protocol 생성, HomeDIContainer가 그걸 준수하도록 만든다.
+
 
 final class HomeCoordinator: Coordinator {
     
@@ -28,4 +30,10 @@ final class HomeCoordinator: Coordinator {
         let mapVC = homeDIContainer.makeGoodgleMapViewController()
         navigationController.pushViewController(mapVC, animated: false)
     }
+    
+    private func showCreatePost() {
+        let postVC = homeDIContainer.makeCreatePostViewViewController()
+        navigationController.pushViewController(postVC, animated: true)
+    }
+    
 }

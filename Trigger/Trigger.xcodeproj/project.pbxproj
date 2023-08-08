@@ -21,6 +21,10 @@
 		AE1581EF2A81A5DF00B79291 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581EE2A81A5DF00B79291 /* MapViewModel.swift */; };
 		AE1581F12A81CFA500B79291 /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581F02A81CFA500B79291 /* Alertable.swift */; };
 		AE1581F32A81E11F00B79291 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581F22A81E11F00B79291 /* FloatingButton.swift */; };
+		AE1581F52A82347E00B79291 /* PickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581F42A82347E00B79291 /* PickerController.swift */; };
+		AE1581F72A826A2700B79291 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581F62A826A2700B79291 /* CreatePostViewController.swift */; };
+		AE1581F92A826AE000B79291 /* CreatePostViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE1581F82A826AE000B79291 /* CreatePostViewController.storyboard */; };
+		AE1581FB2A82836A00B79291 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581FA2A82836A00B79291 /* PostViewModel.swift */; };
 		AE16AD022A7E37AA00CB6B81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE16AD012A7E37AA00CB6B81 /* AppDelegate.swift */; };
 		AE16AD042A7E37AA00CB6B81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE16AD032A7E37AA00CB6B81 /* SceneDelegate.swift */; };
 		AE16AD0B2A7E37AC00CB6B81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE16AD0A2A7E37AC00CB6B81 /* Assets.xcassets */; };
@@ -47,6 +51,10 @@
 		AE1581EE2A81A5DF00B79291 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		AE1581F02A81CFA500B79291 /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
 		AE1581F22A81E11F00B79291 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
+		AE1581F42A82347E00B79291 /* PickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerController.swift; sourceTree = "<group>"; };
+		AE1581F62A826A2700B79291 /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
+		AE1581F82A826AE000B79291 /* CreatePostViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreatePostViewController.storyboard; sourceTree = "<group>"; };
+		AE1581FA2A82836A00B79291 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		AE16ACFE2A7E37AA00CB6B81 /* Trigger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trigger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE16AD012A7E37AA00CB6B81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE16AD032A7E37AA00CB6B81 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,9 +92,12 @@
 		AE1581DD2A80A7CA00B79291 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AE1581DE2A80A80E00B79291 /* MapViewController.swift */,
 				AE1581F22A81E11F00B79291 /* FloatingButton.swift */,
+				AE1581F42A82347E00B79291 /* PickerController.swift */,
+				AE1581DE2A80A80E00B79291 /* MapViewController.swift */,
 				AE1581E02A80A82A00B79291 /* MapViewController.storyboard */,
+				AE1581F62A826A2700B79291 /* CreatePostViewController.swift */,
+				AE1581F82A826AE000B79291 /* CreatePostViewController.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -121,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				AE1581EE2A81A5DF00B79291 /* MapViewModel.swift */,
+				AE1581FA2A82836A00B79291 /* PostViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -283,6 +295,7 @@
 				AE16AD0E2A7E37AC00CB6B81 /* LaunchScreen.storyboard in Resources */,
 				AE1581EC2A80C15400B79291 /* MyPageListViewController.storyboard in Resources */,
 				AE16AD0B2A7E37AC00CB6B81 /* Assets.xcassets in Resources */,
+				AE1581F92A826AE000B79291 /* CreatePostViewController.storyboard in Resources */,
 				AE1581D62A7FB4F200B79291 /* Storyboard.storyboard in Resources */,
 				AE1581E12A80A82A00B79291 /* MapViewController.storyboard in Resources */,
 			);
@@ -298,16 +311,19 @@
 				AE1581D42A7F837300B79291 /* Coordinator.swift in Sources */,
 				AE16AD202A7E834600CB6B81 /* DataTransferService.swift in Sources */,
 				AE1581EA2A80C0EA00B79291 /* MyPageListViewController.swift in Sources */,
+				AE1581F52A82347E00B79291 /* PickerController.swift in Sources */,
 				AE1581DF2A80A80E00B79291 /* MapViewController.swift in Sources */,
 				AE1581DA2A7FDF8500B79291 /* StoryboardInstantiable.swift in Sources */,
 				AE1581D82A7FB8D600B79291 /* HomeCoordinator.swift in Sources */,
 				AE1581E62A80C01D00B79291 /* ProfileDIContainer.swift in Sources */,
 				AE1581EF2A81A5DF00B79291 /* MapViewModel.swift in Sources */,
 				AE16AD1B2A7E804E00CB6B81 /* AppCoordinator.swift in Sources */,
+				AE1581F72A826A2700B79291 /* CreatePostViewController.swift in Sources */,
 				AE16AD192A7E7FA700CB6B81 /* AppAppearance.swift in Sources */,
 				AE1581E82A80C05B00B79291 /* ProfileCoordinator.swift in Sources */,
 				AE1581F32A81E11F00B79291 /* FloatingButton.swift in Sources */,
 				AE16AD1D2A7E80EE00CB6B81 /* AppDIContainer.swift in Sources */,
+				AE1581FB2A82836A00B79291 /* PostViewModel.swift in Sources */,
 				AE1581F12A81CFA500B79291 /* Alertable.swift in Sources */,
 				AE1581DC2A80670500B79291 /* TabCoordinator.swift in Sources */,
 				AE16AD272A7E8B9200CB6B81 /* HomeDIContainer.swift in Sources */,
