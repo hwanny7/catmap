@@ -26,9 +26,6 @@ class MapViewController: UIViewController, StoryboardInstantiable {
         locationManager.delegate = self
         requestAuthorizationForCurrentLocation()
         
-//        map.setRegion(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)), animated: false)
-        
-        
         addCustomPin()
     }
     
@@ -80,6 +77,7 @@ extension MapViewController: MKMapViewDelegate {
 // MARK: - Delegate CLLocationManager
 
 extension MapViewController: CLLocationManagerDelegate {
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         guard let location = locations.last else { return }
@@ -98,6 +96,7 @@ extension MapViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
          switch status {
          case .authorizedAlways, .authorizedWhenInUse:
              print("GPS 권한 설정됨")
@@ -124,15 +123,13 @@ extension MapViewController: CLLocationManagerDelegate {
 
         switch authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
-            print("이미 업데이트 했는뎁쇼?")
             locationManager.startUpdatingLocation()
         case .denied, .restricted:
-            print("거절했는뎁쇼?")
+            print("거절인데요!")
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
             break
         @unknown default:
-            // Handle any future cases if required
             break
         }
     }
