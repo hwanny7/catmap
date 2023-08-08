@@ -9,6 +9,14 @@ import UIKit
 import MapKit
 import CoreLocation
 
+//func sendBoundingBoxToBackend(topLeft: CLLocationCoordinate2D, bottomRight: CLLocationCoordinate2D) {
+//    // Send the bounding box coordinates to the backend
+//    // You can make an API request here with the bounding box information
+//    print("Top Left Coordinate:", topLeft)
+//    print("Bottom Right Coordinate:", bottomRight)
+//}
+// 백엔드에 바운더리 보내는 방법
+
 class MapViewController: UIViewController, StoryboardInstantiable, Alertable {
     
     @IBOutlet weak var map: MKMapView!
@@ -20,13 +28,25 @@ class MapViewController: UIViewController, StoryboardInstantiable, Alertable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(floatingButton)
+        floatingButton.addTarget(self, action: #selector(didTapFloatingButton), for: .touchUpInside)
         
         map.delegate = self
         map.showsUserLocation = true
         locationManager.delegate = self
         requestAuthorizationForCurrentLocation()
         
-        addCustomPin()
+//        addCustomPin()
+//        사용자 위치 확인했을 때 Pin 가져와서 수행하기
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let frameWidth = view.frame.width
+        let frameHeight = view.frame.height
+        let tabBarHeight = tabBarController!.tabBar.frame.height
+        floatingButton.frame = CGRect(x: frameWidth - 80, y: frameHeight - tabBarHeight - 80, width: 60, height: 60)
+        // margin 20
     }
     
     
@@ -48,7 +68,19 @@ class MapViewController: UIViewController, StoryboardInstantiable, Alertable {
         map.addAnnotation(pin)
     }
     
+// MARK: - Tab Floating Button
+    
+    @objc private func didTapFloatingButton() {
+        let picker = UIImagePickerController()
+        picker.sourceType = .camera
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated:  true)
+    }
+    
 }
+
+// MARK: - MKMapViewDelegate
 
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -138,4 +170,21 @@ extension MapViewController: CLLocationManagerDelegate {
             break
         }
     }
+}
+
+// MARK: - UIImagePickerControllerDelegate
+
+extension MapViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+        
+        guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
+    }
+    
+    
 }
