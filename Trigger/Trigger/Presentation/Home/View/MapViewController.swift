@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController, StoryboardInstantiable {
+class MapViewController: UIViewController, StoryboardInstantiable, Alertable {
     
     @IBOutlet weak var map: MKMapView!
     
@@ -125,7 +125,14 @@ extension MapViewController: CLLocationManagerDelegate {
         case .authorizedAlways, .authorizedWhenInUse:
             locationManager.startUpdatingLocation()
         case .denied, .restricted:
-            print("거절인데요!")
+            let title = "Location Access Denied"
+            let message = "To use this app, please enable location access in Settings."
+            let action = UIAlertAction(title: "Settings", style: .default) { _ in
+                if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+                }
+            }
+            showAlert(title: title, message: message, action: action)
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
             break
