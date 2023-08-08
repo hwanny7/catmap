@@ -99,9 +99,7 @@ extension MapViewController: CLLocationManagerDelegate {
         
          switch status {
          case .authorizedAlways, .authorizedWhenInUse:
-             print("GPS 권한 설정됨")
              locationManager.startUpdatingLocation()
-             // didUpdate 호출
          case .restricted, .notDetermined:
              print("GPS 권한 설정되지 않음")
          case .denied:
@@ -127,7 +125,7 @@ extension MapViewController: CLLocationManagerDelegate {
         case .denied, .restricted:
             let title = "Location Access Denied"
             let message = "To use this app, please enable location access in Settings."
-            let action = UIAlertAction(title: "Settings", style: .default) { _ in
+            let action = UIAlertAction(title: "설정", style: .default) { _ in
                 if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
                     UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
                 }

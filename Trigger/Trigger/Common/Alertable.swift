@@ -19,7 +19,7 @@ extension Alertable where Self: UIViewController {
     ) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(action)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
     }
