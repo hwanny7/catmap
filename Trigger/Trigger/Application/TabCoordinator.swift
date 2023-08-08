@@ -45,7 +45,6 @@ extension TabCoordinator {
     
     func setupTabBarController() {
         var navControllers = [UIViewController]()
-        
         for tab in TabType.allCases {
             let navigationController = UINavigationController()
             navControllers.append(navigationController)
@@ -55,6 +54,11 @@ extension TabCoordinator {
         
         tabBarController.setViewControllers(navControllers, animated: false)
         navigationController.viewControllers = [tabBarController]
+        
+        // MARK: - style setting
+        
+        tabBarController.tabBar.backgroundColor = .white
+        
     }
     
     func setTabBarItem(for tab: TabType, with navigationController: UINavigationController) {
