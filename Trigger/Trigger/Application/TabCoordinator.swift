@@ -37,6 +37,11 @@ final class TabCoordinator: Coordinator {
     func start() {
         setupTabBarController()
     }
+    
+    func toggleRootNavigationBar(hidden: Bool) {
+        navigationController.setNavigationBarHidden(hidden, animated: true)
+    }
+    
 }
 
 // MARK: - Set up Tab bar with dicontainer and coordinator
@@ -54,6 +59,9 @@ extension TabCoordinator {
         
         tabBarController.setViewControllers(navControllers, animated: false)
         navigationController.viewControllers = [tabBarController]
+        
+        toggleRootNavigationBar(hidden: true)
+        // 하위 navigation bar랑 이중으로 나오는 거 방지
         
         // MARK: - style setting
         
