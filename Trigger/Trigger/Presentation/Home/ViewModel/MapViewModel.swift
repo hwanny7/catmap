@@ -19,7 +19,7 @@ struct MapViewModelActions {
 // Controller를 위한 Interface 및 추상화
 
 protocol MapViewModelInput {
-    func didTakePicture()
+    func didTapFloatingButton()
 }
 
 
@@ -33,7 +33,7 @@ final class DefaultMapViewModel {
     }
 }
 extension DefaultMapViewModel: MapViewModelInput {
-    func didTakePicture() {
+    func didTapFloatingButton() {
         actions.showCreatePost()
     }
 }
