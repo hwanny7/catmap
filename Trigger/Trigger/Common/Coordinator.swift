@@ -34,6 +34,12 @@ protocol ParentCoordinator: AnyObject {
     func remove(childCoordinator: Coordinator)
 }
 
+extension ParentCoordinator {
+    func remove(childCoordinator: Coordinator) {
+        print(childCoordinator)
+    }
+}
+
 
 
 

@@ -36,6 +36,9 @@ final class HomeCoordinator: Coordinator {
         let postVC = homeDIContainer.makeCreatePostViewViewController()
         postVC.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(postVC, animated: true)
+        if let tabCoordinator = parentCoordinator as? TabNavigationControllable {
+            tabCoordinator.changeTab(to: 1)
+        }
     }
     
 }

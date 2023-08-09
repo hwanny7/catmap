@@ -7,13 +7,19 @@
 
 import UIKit
 
+
+protocol TabNavigationControllable {
+    func changeTab(to index: Int)
+}
+
+
 enum TabType : String,CaseIterable {
     case home = "Home"
     case profile = "Profile"
 }
 
 
-final class TabCoordinator: Coordinator {
+final class TabCoordinator: Coordinator & ParentCoordinator {
     var parentCoordinator: ParentCoordinator?
     
     var childCoordinators = [Coordinator]()
@@ -41,7 +47,6 @@ final class TabCoordinator: Coordinator {
     func toggleRootNavigationBar(hidden: Bool) {
         navigationController.setNavigationBarHidden(hidden, animated: true)
     }
-    
 }
 
 // MARK: - Set up Tab bar with dicontainer and coordinator
@@ -84,17 +89,24 @@ extension TabCoordinator {
         case .home:
             let homeDIContainer = appDIContainer.makeHomeDIContainer()
             let homeCoordinator = homeDIContainer.makeHomeCoordinator(navigationController: navigationController)
+            homeCoordinator.parentCoordinator = self
             homeCoordinator.start()
             childCoordinators.append(homeCoordinator)
             
         case .profile:
             let profileDIContainer = appDIContainer.makeProfileDIContainer()
             let profileCoordinator = profileDIContainer.makeProfileCoordinator(navigationController: navigationController)
+            profileCoordinator.parentCoordinator = self
             profileCoordinator.start()
             childCoordinators.append(profileCoordinator)
         }
     }
-    
+}
+
+extension TabCoordinator: TabNavigationControllable{
+    func changeTab(to index: Int) {
+        tabBarController.selectedIndex = index
+    }
 }
 
 
