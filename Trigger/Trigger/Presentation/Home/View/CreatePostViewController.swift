@@ -8,13 +8,15 @@
 import UIKit
 
 class CreatePostViewController: UIViewController, StoryboardInstantiable {
-
+    
+    @IBOutlet weak var cameraButton: UIView!
+    
     private var viewModel: DefaultPostViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapCameraButton))
+        cameraButton.addGestureRecognizer(tapGesture)
     }
     
 
@@ -24,6 +26,10 @@ class CreatePostViewController: UIViewController, StoryboardInstantiable {
         let view = CreatePostViewController.instantiateViewController()
         view.viewModel = viewModel
         return view
+    }
+    
+    @objc func didTapCameraButton() {
+        print("Tap!")
     }
 
 }

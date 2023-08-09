@@ -40,6 +40,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="vMn-pJ-TIh" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="dda-qE-VUV"/>
                             <constraint firstItem="vMn-pJ-TIh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="zEj-MD-LFA"/>
@@ -55,6 +56,9 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="cameraButton" destination="vMn-pJ-TIh" id="osr-aP-iXb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

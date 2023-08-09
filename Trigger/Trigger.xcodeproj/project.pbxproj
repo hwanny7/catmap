@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		AE1581D42A7F837300B79291 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581D32A7F837300B79291 /* Coordinator.swift */; };
-		AE1581D62A7FB4F200B79291 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE1581D52A7FB4F200B79291 /* Storyboard.storyboard */; };
 		AE1581D82A7FB8D600B79291 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581D72A7FB8D600B79291 /* HomeCoordinator.swift */; };
 		AE1581DA2A7FDF8500B79291 /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581D92A7FDF8500B79291 /* StoryboardInstantiable.swift */; };
 		AE1581DC2A80670500B79291 /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581DB2A80670500B79291 /* TabCoordinator.swift */; };
@@ -38,7 +37,6 @@
 
 /* Begin PBXFileReference section */
 		AE1581D32A7F837300B79291 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		AE1581D52A7FB4F200B79291 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		AE1581D72A7FB8D600B79291 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		AE1581D92A7FDF8500B79291 /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
 		AE1581DB2A80670500B79291 /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
@@ -156,7 +154,6 @@
 		AE16AD002A7E37AA00CB6B81 /* Trigger */ = {
 			isa = PBXGroup;
 			children = (
-				AE1581D52A7FB4F200B79291 /* Storyboard.storyboard */,
 				AE16AD152A7E7A4C00CB6B81 /* Application */,
 				AE16AD212A7E8B2200CB6B81 /* Presentation */,
 				AE16AD1E2A7E82EB00CB6B81 /* Network */,
@@ -296,7 +293,6 @@
 				AE1581EC2A80C15400B79291 /* MyPageListViewController.storyboard in Resources */,
 				AE16AD0B2A7E37AC00CB6B81 /* Assets.xcassets in Resources */,
 				AE1581FD2A82ECCC00B79291 /* CreatePostViewController.storyboard in Resources */,
-				AE1581D62A7FB4F200B79291 /* Storyboard.storyboard in Resources */,
 				AE1581E12A80A82A00B79291 /* MapViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
