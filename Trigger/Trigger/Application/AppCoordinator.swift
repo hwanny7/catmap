@@ -3,7 +3,7 @@ import UIKit
 
 final class AppCoordinator: Coordinator {
     
-    var parentCoordinator: ParentCoordinator?
+    var parentCoordinator: Coordinator?
 
     var childCoordinators = [Coordinator]()
     
@@ -25,15 +25,5 @@ final class AppCoordinator: Coordinator {
         tabCoordinator.parentCoordinator = self
         childCoordinators.append(tabCoordinator)
         tabCoordinator.start()
-    }
-}
-
-
-
-// MARK: - Parent Coordinator
-
-extension AppCoordinator: ParentCoordinator {
-    func remove(childCoordinator: Coordinator) {
-        
     }
 }

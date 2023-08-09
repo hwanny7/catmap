@@ -19,8 +19,8 @@ enum TabType : String,CaseIterable {
 }
 
 
-final class TabCoordinator: Coordinator & ParentCoordinator {
-    var parentCoordinator: ParentCoordinator?
+final class TabCoordinator: Coordinator {
+    var parentCoordinator: Coordinator?
     
     var childCoordinators = [Coordinator]()
     

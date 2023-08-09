@@ -10,7 +10,7 @@ import UIKit
 
 final class ProfileCoordinator: Coordinator {
     
-    var parentCoordinator: ParentCoordinator?
+    var parentCoordinator: Coordinator?
     
     var navigationController: UINavigationController
     

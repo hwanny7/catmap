@@ -12,7 +12,7 @@ import UIKit
 
 final class HomeCoordinator: Coordinator {
     
-    var parentCoordinator: ParentCoordinator?
+    var parentCoordinator: Coordinator?
     
     var navigationController: UINavigationController
     
