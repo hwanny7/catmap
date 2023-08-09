@@ -35,6 +35,6 @@ extension HomeDIContainer {
     }
     
     func makeCreatePostViewViewController() -> UIViewController {
-        return CreatePostViewController.create(with: DefaultPostViewModel())
+        return CreatePostViewController(with: DefaultPostViewModel())
     }
 }
