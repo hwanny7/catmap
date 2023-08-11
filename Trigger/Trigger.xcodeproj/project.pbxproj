@@ -32,6 +32,7 @@
 		AE16AD1D2A7E80EE00CB6B81 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE16AD1C2A7E80EE00CB6B81 /* AppDIContainer.swift */; };
 		AE16AD202A7E834600CB6B81 /* DataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE16AD1F2A7E834600CB6B81 /* DataTransferService.swift */; };
 		AE16AD272A7E8B9200CB6B81 /* HomeDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE16AD262A7E8B9200CB6B81 /* HomeDIContainer.swift */; };
+		AED3ABEC2A85C70D00585683 /* ImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED3ABEB2A85C70D00585683 /* ImageCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		AE16AD1C2A7E80EE00CB6B81 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
 		AE16AD1F2A7E834600CB6B81 /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
 		AE16AD262A7E8B9200CB6B81 /* HomeDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDIContainer.swift; sourceTree = "<group>"; };
+		AED3ABEB2A85C70D00585683 /* ImageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 				AE1581DE2A80A80E00B79291 /* MapViewController.swift */,
 				AE1581E02A80A82A00B79291 /* MapViewController.storyboard */,
 				AE1581F62A826A2700B79291 /* CreatePostViewController.swift */,
+				AED3ABEB2A85C70D00585683 /* ImageCollectionViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				AE1581F32A81E11F00B79291 /* FloatingButton.swift in Sources */,
 				AE16AD1D2A7E80EE00CB6B81 /* AppDIContainer.swift in Sources */,
 				AE1581FB2A82836A00B79291 /* PostViewModel.swift in Sources */,
+				AED3ABEC2A85C70D00585683 /* ImageCollectionViewController.swift in Sources */,
 				AE1581F12A81CFA500B79291 /* Alertable.swift in Sources */,
 				AE1581DC2A80670500B79291 /* TabCoordinator.swift in Sources */,
 				AE16AD272A7E8B9200CB6B81 /* HomeDIContainer.swift in Sources */,
