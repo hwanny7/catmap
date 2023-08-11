@@ -15,28 +15,30 @@ class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate,
     init(frame: CGRect) {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: frame.size.width/2.5, height: frame.size.width/2.5)
-        
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        layout.minimumLineSpacing = 0
         super.init(frame: frame, collectionViewLayout: layout)
-        setup()
+        setupView()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup() {
+    func setupView() {
+        translatesAutoresizingMaskIntoConstraints = false
         register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         delegate = self
         dataSource = self
-        backgroundColor = .black
+        backgroundColor = .white
         
         let gesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture))
         addGestureRecognizer(gesture)
+        
     }
     
     @objc func handleLongPressGesture(_ gesture: UILongPressGestureRecognizer) {
-
+        
         switch gesture.state {
         case .began:
             guard let targetIndexPath = indexPathForItem(at: gesture.location(in: self)) else { return }
@@ -44,6 +46,10 @@ class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate,
         case .changed:
             updateInteractiveMovementTargetPosition(gesture.location(in: self))
         case .ended:
+            guard let targetIndexPath = indexPathForItem(at: gesture.location(in: self)) else {
+                cancelInteractiveMovement()
+                return
+            }
             endInteractiveMovement()
         default:
             cancelInteractiveMovement()
@@ -64,15 +70,24 @@ extension ImageCollectionViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: frame.size.width/3.2,
-                      height: collectionView.bounds.size.height)
+        return CGSize(width: frame.size.width/4,
+                      height: frame.size.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
-        return true
+        let index = indexPath.row
+        
+        if index == 0 {
+            return false
+        } else {
+            return true
+        }
     }
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
         let item = colors.remove(at: sourceIndexPath.row)
         colors.insert(item, at: destinationIndexPath.row)
 
