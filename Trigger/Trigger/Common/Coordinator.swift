@@ -11,7 +11,7 @@ import UIKit
 // MARK: - Coordinator protocol
 
 protocol Coordinator: AnyObject {
-    var parentCoordinator: ParentCoordinator? { get set }
+    var parentCoordinator: Coordinator? { get set }
     
     var childCoordinators: [Coordinator] { get set }
     
@@ -21,6 +21,7 @@ protocol Coordinator: AnyObject {
     
     func finish()
     
+    func remove(childCoordinator: Coordinator)
 }
 
 extension Coordinator {
@@ -28,12 +29,12 @@ extension Coordinator {
         childCoordinators.removeAll()
         parentCoordinator?.remove(childCoordinator: self)
     }
+    
+    func remove(childCoordinator: Coordinator) {
+        childCoordinators = childCoordinators.filter { $0 !== childCoordinator }
+    }
+    
 }
-
-protocol ParentCoordinator: AnyObject {
-    func remove(childCoordinator: Coordinator)
-}
-
 
 
 

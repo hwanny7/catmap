@@ -7,10 +7,12 @@
 
 import UIKit
 
+// controller 만드는 함수 Protocol 생성, HomeDIContainer가 그걸 준수하도록 만든다.
+
 
 final class HomeCoordinator: Coordinator {
     
-    var parentCoordinator: ParentCoordinator?
+    var parentCoordinator: Coordinator?
     
     var navigationController: UINavigationController
     
@@ -25,7 +27,20 @@ final class HomeCoordinator: Coordinator {
     }
     
     func start() {
-        let mapVC = homeDIContainer.makeGoodgleMapViewController()
+        let actions = MapViewModelActions(showCreatePost: showCreatePost)
+        let mapVC = homeDIContainer.makeGoodgleMapViewController(actions: actions)
         navigationController.pushViewController(mapVC, animated: false)
     }
+    
+    private func showCreatePost() {
+        let postVC = homeDIContainer.makeCreatePostViewViewController()
+        postVC.hidesBottomBarWhenPushed = true
+        navigationController.pushViewController(postVC, animated: true)
+    }
+    
 }
+
+
+//if let tabCoordinator = parentCoordinator as? TabNavigationControllable {
+//    tabCoordinator.changeTab(to: 1)
+//}

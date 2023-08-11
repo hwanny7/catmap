@@ -30,7 +30,11 @@ extension HomeDIContainer {
 // MARK: - Make Controllers
 
 extension HomeDIContainer {
-    func makeGoodgleMapViewController() -> UIViewController {
-        return MapViewController.create(with: DefaultMapViewModel())
+    func makeGoodgleMapViewController(actions: MapViewModelActions) -> UIViewController {
+        return MapViewController.create(with: DefaultMapViewModel(actions: actions))
+    }
+    
+    func makeCreatePostViewViewController() -> UIViewController {
+        return CreatePostViewController(with: DefaultPostViewModel())
     }
 }

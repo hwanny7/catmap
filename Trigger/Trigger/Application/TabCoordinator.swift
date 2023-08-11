@@ -7,6 +7,12 @@
 
 import UIKit
 
+
+protocol TabNavigationControllable {
+    func changeTab(to index: Int)
+}
+
+
 enum TabType : String,CaseIterable {
     case home = "Home"
     case profile = "Profile"
@@ -14,7 +20,7 @@ enum TabType : String,CaseIterable {
 
 
 final class TabCoordinator: Coordinator {
-    var parentCoordinator: ParentCoordinator?
+    var parentCoordinator: Coordinator?
     
     var childCoordinators = [Coordinator]()
     
@@ -37,6 +43,10 @@ final class TabCoordinator: Coordinator {
     func start() {
         setupTabBarController()
     }
+    
+    func toggleRootNavigationBar(hidden: Bool) {
+        navigationController.setNavigationBarHidden(hidden, animated: true)
+    }
 }
 
 // MARK: - Set up Tab bar with dicontainer and coordinator
@@ -45,7 +55,6 @@ extension TabCoordinator {
     
     func setupTabBarController() {
         var navControllers = [UIViewController]()
-        
         for tab in TabType.allCases {
             let navigationController = UINavigationController()
             navControllers.append(navigationController)
@@ -55,6 +64,14 @@ extension TabCoordinator {
         
         tabBarController.setViewControllers(navControllers, animated: false)
         navigationController.viewControllers = [tabBarController]
+        
+        toggleRootNavigationBar(hidden: true)
+        // 하위 navigation bar랑 이중으로 나오는 거 방지
+        
+        // MARK: - style setting
+        
+        tabBarController.tabBar.backgroundColor = .white
+        
     }
     
     func setTabBarItem(for tab: TabType, with navigationController: UINavigationController) {
@@ -72,17 +89,24 @@ extension TabCoordinator {
         case .home:
             let homeDIContainer = appDIContainer.makeHomeDIContainer()
             let homeCoordinator = homeDIContainer.makeHomeCoordinator(navigationController: navigationController)
+            homeCoordinator.parentCoordinator = self
             homeCoordinator.start()
             childCoordinators.append(homeCoordinator)
             
         case .profile:
             let profileDIContainer = appDIContainer.makeProfileDIContainer()
             let profileCoordinator = profileDIContainer.makeProfileCoordinator(navigationController: navigationController)
+            profileCoordinator.parentCoordinator = self
             profileCoordinator.start()
             childCoordinators.append(profileCoordinator)
         }
     }
-    
+}
+
+extension TabCoordinator: TabNavigationControllable{
+    func changeTab(to index: Int) {
+        tabBarController.selectedIndex = index
+    }
 }
 
 

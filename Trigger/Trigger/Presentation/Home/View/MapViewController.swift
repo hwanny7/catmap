@@ -9,24 +9,46 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController, StoryboardInstantiable {
+//func sendBoundingBoxToBackend(topLeft: CLLocationCoordinate2D, bottomRight: CLLocationCoordinate2D) {
+//    // Send the bounding box coordinates to the backend
+//    // You can make an API request here with the bounding box information
+//    print("Top Left Coordinate:", topLeft)
+//    print("Bottom Right Coordinate:", bottomRight)
+//}
+// 백엔드에 바운더리 보내는 방법
+
+class MapViewController: UIViewController, StoryboardInstantiable, Alertable {
     
     @IBOutlet weak var map: MKMapView!
     
     private let locationManager = CLLocationManager()
     private var viewModel: DefaultMapViewModel!
     
+    private var isRegionSet = false
+    
     let coordinate = CLLocationCoordinate2D(latitude: 40.728, longitude: -74)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(floatingButton)
+        floatingButton.addTarget(self, action: #selector(didTapFloatingButton), for: .touchUpInside)
         
         map.delegate = self
         map.showsUserLocation = true
         locationManager.delegate = self
         requestAuthorizationForCurrentLocation()
-        
-        addCustomPin()
+
+//        addCustomPin()
+//        사용자 위치 확인했을 때 Pin 가져와서 수행하기
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let frameWidth = view.frame.width
+        let frameHeight = view.frame.height
+        let tabBarHeight = tabBarController!.tabBar.frame.height
+        floatingButton.frame = CGRect(x: frameWidth - 80, y: frameHeight - tabBarHeight - 80, width: 60, height: 60)
+        // margin 20
     }
     
     
@@ -39,7 +61,7 @@ class MapViewController: UIViewController, StoryboardInstantiable {
 //        view.posterImagesRepository = posterImagesRepository
         return view
     }
-    
+
     private func addCustomPin() {
         let pin = MKPointAnnotation()
         pin.coordinate = coordinate
@@ -48,7 +70,19 @@ class MapViewController: UIViewController, StoryboardInstantiable {
         map.addAnnotation(pin)
     }
     
+    private func setRegion() {
+        
+    }
+    
+// MARK: - Tab Floating Button
+    
+    @objc private func didTapFloatingButton() {
+        viewModel.didTapFloatingButton()
+    }
+    
 }
+
+// MARK: - MKMapViewDelegate
 
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -79,29 +113,28 @@ extension MapViewController: MKMapViewDelegate {
 extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        guard let location = locations.last else { return }
-        
+        guard !isRegionSet, let location = locations.last else { return }
+
         // Get the user's current location from the locations array
         let userLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        
+
         // Set the region for the map to center on the user's location
-        let region = MKCoordinateRegion(center: userLocation, latitudinalMeters: 1000, longitudinalMeters: 1000)
+        let region = MKCoordinateRegion(center: userLocation, latitudinalMeters: 500, longitudinalMeters: 500)
         map.setRegion(region, animated: true)
-        
+
+        isRegionSet = true
+
         // You can also add a custom annotation (e.g., a marker) for the user's location on the map if needed
         // let annotation = MKPointAnnotation()
         // annotation.coordinate = userLocation
         // mapView.addAnnotation(annotation)
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
          switch status {
          case .authorizedAlways, .authorizedWhenInUse:
-             print("GPS 권한 설정됨")
              locationManager.startUpdatingLocation()
-             // didUpdate 호출
          case .restricted, .notDetermined:
              print("GPS 권한 설정되지 않음")
          case .denied:
@@ -125,7 +158,14 @@ extension MapViewController: CLLocationManagerDelegate {
         case .authorizedAlways, .authorizedWhenInUse:
             locationManager.startUpdatingLocation()
         case .denied, .restricted:
-            print("거절인데요!")
+            let title = "Location Access Denied"
+            let message = "To use this app, please enable location access in Settings."
+            let action = UIAlertAction(title: "설정", style: .default) { _ in
+                if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+                }
+            }
+            showAlert(title: title, message: message, action: action)
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
             break
@@ -134,3 +174,22 @@ extension MapViewController: CLLocationManagerDelegate {
         }
     }
 }
+
+extension MapViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+        
+        guard let _ = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
+        // edit image는 크기가 작아지니까 orginal이랑 크기 차이가 얼마나 나는지 확인하기
+    }
+}
+
+
+
+
+
