@@ -38,15 +38,20 @@ class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate,
     }
     
     @objc func handleLongPressGesture(_ gesture: UILongPressGestureRecognizer) {
-        
+        print(gesture.location(in: self))
         switch gesture.state {
         case .began:
-            guard let targetIndexPath = indexPathForItem(at: gesture.location(in: self)) else { return }
+            guard let targetIndexPath = indexPathForItem(at: gesture.location(in: self)), targetIndexPath.row != 0 else { return }
             beginInteractiveMovementForItem(at: targetIndexPath)
         case .changed:
-            updateInteractiveMovementTargetPosition(gesture.location(in: self))
+            if let targetIndexPath = indexPathForItem(at: gesture.location(in: self)), targetIndexPath.row == 0 {
+                cancelInteractiveMovement()
+                // 옮기고자 하는 곳의 인덱스가 0인 경우에 이동 취소
+            } else {
+                updateInteractiveMovementTargetPosition(gesture.location(in: self))
+            }
         case .ended:
-            guard let targetIndexPath = indexPathForItem(at: gesture.location(in: self)) else {
+            guard let _ = indexPathForItem(at: gesture.location(in: self)) else {
                 cancelInteractiveMovement()
                 return
             }
@@ -74,17 +79,18 @@ extension ImageCollectionViewController: UICollectionViewDataSource {
                       height: frame.size.height)
     }
     
-    func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
-        let index = indexPath.row
-        
-        if index == 0 {
-            return false
-        } else {
-            return true
-        }
-    }
+    // MARK: - Method for moving
     
-    
+//    func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+//        let index = indexPath.row
+//
+//        if index == 0 {
+//            return false
+//        } else {
+//            return true
+//        }
+//    }
+
     
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         
