@@ -15,8 +15,6 @@ class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate,
     init(frame: CGRect) {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        layout.minimumLineSpacing = 0
         super.init(frame: frame, collectionViewLayout: layout)
         setupView()
     }
@@ -46,7 +44,8 @@ class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate,
         case .changed:
             if let targetIndexPath = indexPathForItem(at: gesture.location(in: self)), targetIndexPath.row == 0 {
                 cancelInteractiveMovement()
-                // 옮기고자 하는 곳의 인덱스가 0인 경우에 이동 취소
+                // 마지막 범위 못 벗어나도록 다시 설정하기
+                // nil 값일 때도 막도록 설정해야함
             } else {
                 updateInteractiveMovementTargetPosition(gesture.location(in: self))
             }
@@ -60,6 +59,10 @@ class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate,
             cancelInteractiveMovement()
         }
     }
+    
+    @objc func imageTapped(_ sender: UITapGestureRecognizer) {
+        
+    }
 }
 
 extension ImageCollectionViewController: UICollectionViewDataSource {
@@ -71,11 +74,32 @@ extension ImageCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         cell.backgroundColor = colors[indexPath.row]
+        
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleToFill
+        let image = UIImage(systemName: "camera")
+        imageView.image = image
+        
+        cell.addSubview(imageView)
+        
+        if indexPath.row == 0 {
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped(_:)))
+            imageView.addGestureRecognizer(tapGesture)
+            imageView.isUserInteractionEnabled = true
+        }
+        
+        
+        NSLayoutConstraint.activate([
+            imageView.centerXAnchor.constraint(equalTo: cell.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: cell.centerYAnchor),
+        ])
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: frame.size.width/4,
+        return CGSize(width: frame.size.width/5,
                       height: frame.size.height)
     }
     
@@ -96,7 +120,6 @@ extension ImageCollectionViewController: UICollectionViewDataSource {
         
         let item = colors.remove(at: sourceIndexPath.row)
         colors.insert(item, at: destinationIndexPath.row)
-
         // 실제 아이템의 위치도 변경해줘야 그 자리를 유지한다.
     }
 }

@@ -35,33 +35,16 @@ class CreatePostViewController: UIViewController {
     
     func setupView() {
         view.backgroundColor = .white
-//        let scrollView = UIScrollView()
-//        scrollView.translatesAutoresizingMaskIntoConstraints = false
-//        scrollView.backgroundColor = .black
-
-//        let imageView = UIImageView()
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-//        imageView.backgroundColor = .lightGray
-//        imageView.isUserInteractionEnabled = true
-        
+   
         let imageCollectionView = ImageCollectionViewController(frame: view.frame)
-        
-//        scrollView.addSubview(imageView)
-//        scrollView.addSubview(imageCollectionView)
         view.addSubview(imageCollectionView)
-        
-//        NSLayoutConstraint.activate([
-//            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            scrollView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-//            scrollView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-//            scrollView.heightAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 3/4)
-//        ])
+
 
         NSLayoutConstraint.activate([
             imageCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             imageCollectionView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             imageCollectionView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            imageCollectionView.heightAnchor.constraint(equalTo: imageCollectionView.widthAnchor, multiplier: 1/4)
+            imageCollectionView.heightAnchor.constraint(equalTo: imageCollectionView.widthAnchor, multiplier: 1/5)
         ])
     }
     

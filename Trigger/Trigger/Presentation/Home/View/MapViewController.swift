@@ -165,7 +165,7 @@ extension MapViewController: CLLocationManagerDelegate {
                     UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
                 }
             }
-            showAlert(title: title, message: message, action: action)
+            showAlert(actions: [action], title: title, message: message)
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
             break
