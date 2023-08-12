@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol Alertable {}
-extension Alertable where Self: UIViewController {
+extension Alertable where Self: UIViewController{
     
     func showAlert(
         actions: [UIAlertAction],
@@ -25,7 +25,5 @@ extension Alertable where Self: UIViewController {
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
     }
-    
-    
-    
+
 }

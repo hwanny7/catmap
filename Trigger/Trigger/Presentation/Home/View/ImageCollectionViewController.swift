@@ -11,8 +11,12 @@ class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate,
         .systemBlue,
         .systemGray,
     ]
+    
+    let openCameraOption: () -> ()
+    
 
-    init(frame: CGRect) {
+    init(frame: CGRect, openCameraOption: @escaping () -> ()) {
+        self.openCameraOption = openCameraOption
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         super.init(frame: frame, collectionViewLayout: layout)
@@ -60,8 +64,8 @@ class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate,
         }
     }
     
-    @objc func imageTapped(_ sender: UITapGestureRecognizer) {
-        
+    @objc func didTapCameraButton() {
+        openCameraOption()
     }
 }
 
@@ -84,7 +88,7 @@ extension ImageCollectionViewController: UICollectionViewDataSource {
         cell.addSubview(imageView)
         
         if indexPath.row == 0 {
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped(_:)))
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapCameraButton))
             imageView.addGestureRecognizer(tapGesture)
             imageView.isUserInteractionEnabled = true
         }
