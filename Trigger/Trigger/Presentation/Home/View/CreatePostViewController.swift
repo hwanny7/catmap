@@ -109,8 +109,18 @@ extension CreatePostViewController: UIImagePickerControllerDelegate & UINavigati
 extension CreatePostViewController: PHPickerViewControllerDelegate {
 
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
         
+        let itemProvider = results.first?.itemProvider
+        
+        if let itemProvider = itemProvider,
+           itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { (image, error) in
+                DispatchQueue.main.async {
+                }
+            }
+        } else {
+            // TODO: Handle empty results or item provider not being able load UIImage
+        }
     }
-    
-    
 }
