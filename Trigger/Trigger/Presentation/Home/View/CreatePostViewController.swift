@@ -12,15 +12,26 @@ import PhotosUI
 @IBDesignable
 class CreatePostViewController: UIViewController, Alertable {
 
-    private lazy var picker: UIViewController = {
+
+    private lazy var phPicker: UIViewController? = {
         if #available(iOS 14.0, *) {
             var configuration = PHPickerConfiguration()
             configuration.filter = .images
-            return PHPickerViewController(configuration: configuration)
+            configuration.selectionLimit = 0
+            let phpPicker = PHPickerViewController(configuration: configuration)
+            phpPicker.delegate = self
+            return phpPicker
         } else {
-            return UIImagePickerController()
+            return nil
         }
     }()
+    
+    private lazy var imagePicker: UIImagePickerController = {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        return imagePicker
+    }()
+    
     
     
     private var viewModel: DefaultPostViewModel
@@ -68,28 +79,22 @@ class CreatePostViewController: UIViewController, Alertable {
             imageCollectionView.heightAnchor.constraint(equalTo: imageCollectionView.widthAnchor, multiplier: 1/5)
         ])
     }
-    
-    
-    
 }
 
 extension CreatePostViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
-    func openLibrary() {
-        if #unavailable(iOS 14.0) {
-            let imagePicker = picker as! UIImagePickerController
+    private func openLibrary() {
+        if #available(iOS 14.0, *) {
+            present(phPicker!, animated: true)
+        } else {
             imagePicker.sourceType = .photoLibrary
+            present(imagePicker, animated: true)
         }
-        present(picker, animated: true)
     }
     
-    func openCamera() {
-        if #unavailable(iOS 14.0) {
-            let imagePicker = picker as! UIImagePickerController
-            imagePicker.sourceType = .camera
-            print("카메라 타입인데요?")
-        }
-        present(picker, animated: true)
+    private func openCamera() {
+        imagePicker.sourceType = .camera
+        present(imagePicker, animated: true)
     }
     
     
@@ -110,13 +115,14 @@ extension CreatePostViewController: PHPickerViewControllerDelegate {
 
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
-        
+
         let itemProvider = results.first?.itemProvider
         
         if let itemProvider = itemProvider,
            itemProvider.canLoadObject(ofClass: UIImage.self) {
             itemProvider.loadObject(ofClass: UIImage.self) { (image, error) in
                 DispatchQueue.main.async {
+                    
                 }
             }
         } else {
