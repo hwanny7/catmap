@@ -12,7 +12,7 @@ import PhotosUI
 @IBDesignable
 class CreatePostViewController: UIViewController, Alertable {
 
-    private lazy var picker: Any? = {
+    private lazy var picker: UIViewController = {
         if #available(iOS 14.0, *) {
             var configuration = PHPickerConfiguration()
             configuration.filter = .images
@@ -21,6 +21,7 @@ class CreatePostViewController: UIViewController, Alertable {
             return UIImagePickerController()
         }
     }()
+    
     
     private var viewModel: DefaultPostViewModel
     
@@ -75,19 +76,20 @@ class CreatePostViewController: UIViewController, Alertable {
 extension CreatePostViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     func openLibrary() {
-        if #available(iOS 14.0, *) {
-            let phpPicker = picker as! PHPickerViewController
-            present(phpPicker, animated: true)
-        } else {
+        if #unavailable(iOS 14.0) {
             let imagePicker = picker as! UIImagePickerController
             imagePicker.sourceType = .photoLibrary
-            present(imagePicker, animated: true)
         }
+        present(picker, animated: true)
     }
     
     func openCamera() {
-//        picker.sourceType = .camera
-//        present(picker, animated: true)
+        if #unavailable(iOS 14.0) {
+            let imagePicker = picker as! UIImagePickerController
+            imagePicker.sourceType = .camera
+            print("카메라 타입인데요?")
+        }
+        present(picker, animated: true)
     }
     
     
@@ -105,12 +107,9 @@ extension CreatePostViewController: UIImagePickerControllerDelegate & UINavigati
 
 @available(iOS 14, *)
 extension CreatePostViewController: PHPickerViewControllerDelegate {
-    
-    
-    
-    
+
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        <#code#>
+        
     }
     
     
