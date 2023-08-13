@@ -107,10 +107,15 @@ extension ImageCollectionViewController: UICollectionViewDataSource {
 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        // cell 스타일 설정
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = .gray
+        cell.layer.borderWidth = 1.0
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.cornerRadius = 10.0
+        cell.clipsToBounds = true
         cell.subviews.forEach { $0.removeFromSuperview() }
         
+        // 이미지뷰 생성
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleToFill
@@ -118,7 +123,7 @@ extension ImageCollectionViewController: UICollectionViewDataSource {
         imageView.image = image
         
         cell.addSubview(imageView)
-        print("index는 \(indexPath.row)입니다.")
+
         if indexPath.row == 0 {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapCameraButton))
             imageView.addGestureRecognizer(tapGesture)
