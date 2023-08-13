@@ -37,6 +37,9 @@ final class DefaultPostViewModel: PostViewModel {
     var maxPhotoUploadCount: Int {
         return 11 - imageList.count
     }
+    var canUploadImage: Bool {
+        return imageList.count != 11 ? true : false
+    }
     
 //    private let actions: PostViewModelActions
 //    

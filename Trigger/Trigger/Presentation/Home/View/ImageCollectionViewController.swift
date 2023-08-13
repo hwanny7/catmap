@@ -83,13 +83,17 @@ class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate,
     @objc func didTapCameraButton() {
         guard let viewController = parentViewController else { return }
         
-        let libraryAction = UIAlertAction(title: "사진앨범", style: .default) { _ in
-            self.openLibrary()
+        if viewModel.canUploadImage {
+            let libraryAction = UIAlertAction(title: "사진앨범", style: .default) { _ in
+                self.openLibrary()
+            }
+            let cameraAction = UIAlertAction(title: "카메라", style: .default) { _ in
+                self.openCamera()
+            }
+            viewController.showAlert(actions: [libraryAction, cameraAction], preferredStyle: .actionSheet)
+        } else {
+            viewController.showAlert(title: "알림", message: "이미지는 최대 10장까지 첨부할 수 있어요.")
         }
-        let cameraAction = UIAlertAction(title: "카메라", style: .default) { _ in
-            self.openCamera()
-        }
-        viewController.showAlert(actions: [libraryAction, cameraAction])
     }
     // alert action title도 view model에 저장해두는 게 좋을 듯
 }
