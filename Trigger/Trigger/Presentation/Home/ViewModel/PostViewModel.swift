@@ -35,7 +35,7 @@ final class DefaultPostViewModel: PostViewModel {
     var isPublic: Bool = true
     var imageList: [UIImage] = [UIImage(systemName: "camera")!]
     
-    private let photoUploadLimit: Int = 10
+    let photoUploadLimit: Int = 10
     
     var numberOfPhotos: Int {
         return imageList.count - 1

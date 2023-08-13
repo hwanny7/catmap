@@ -124,8 +124,6 @@ extension ImageCollectionViewController: UICollectionViewDataSource {
         imageView.image = image
         
         // 라벨 생성
-//        let countLabel = UILabel()
-//        countLabel.text = 
         
         cell.addSubview(imageView)
 
@@ -134,10 +132,30 @@ extension ImageCollectionViewController: UICollectionViewDataSource {
             imageView.addGestureRecognizer(tapGesture)
             imageView.isUserInteractionEnabled = true
             
+            let countLabel = UILabel()
+            countLabel.translatesAutoresizingMaskIntoConstraints = false
+            countLabel.text = "\(viewModel.numberOfPhotos)/\(viewModel.photoUploadLimit)"
+            countLabel.textColor = .black
+            countLabel.font = UIFont.systemFont(ofSize: 10)
+            
+            let stackView = UIStackView(arrangedSubviews: [imageView, countLabel])
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            stackView.axis = .vertical
+            stackView.alignment = .center
+            
+            cell.addSubview(stackView)
+            
             NSLayoutConstraint.activate([
-                imageView.centerXAnchor.constraint(equalTo: cell.centerXAnchor),
-                imageView.centerYAnchor.constraint(equalTo: cell.centerYAnchor),
+                stackView.centerXAnchor.constraint(equalTo: cell.centerXAnchor),
+                stackView.centerYAnchor.constraint(equalTo: cell.centerYAnchor),
             ])
+            
+            
+//            NSLayoutConstraint.activate([
+//                countLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor),
+//                countLabel.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
+//            ])
+            
         } else {
             NSLayoutConstraint.activate([
                 imageView.topAnchor.constraint(equalTo: cell.topAnchor),
