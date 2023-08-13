@@ -2,18 +2,19 @@ import UIKit
 import PhotosUI
 
 class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
-    private lazy var phPicker: UIViewController? = {
-        if #available(iOS 14.0, *) {
-            var configuration = PHPickerConfiguration()
-            configuration.filter = .images
-            let phpPicker = PHPickerViewController(configuration: configuration)
-            phpPicker.delegate = self
-            return phpPicker
-        } else {
-            return nil
-        }
-    }()
+//
+//    private lazy var phPicker: UIViewController? = {
+//        if #available(iOS 14.0, *) {
+//            var configuration = PHPickerConfiguration()
+//            configuration.filter = .images
+//            configuration.selectionLimit = 10
+//            let phpPicker = PHPickerViewController(configuration: configuration)
+//            phpPicker.delegate = self
+//            return phpPicker
+//        } else {
+//            return nil
+//        }
+//    }()
     
     private lazy var imagePicker: UIImagePickerController = {
         let imagePicker = UIImagePickerController()
@@ -104,6 +105,7 @@ extension ImageCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         cell.backgroundColor = .gray
+        cell.subviews.forEach { $0.removeFromSuperview() }
         
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -112,7 +114,7 @@ extension ImageCollectionViewController: UICollectionViewDataSource {
         imageView.image = image
         
         cell.addSubview(imageView)
-        
+        print("index는 \(indexPath.row)입니다.")
         if indexPath.row == 0 {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapCameraButton))
             imageView.addGestureRecognizer(tapGesture)
@@ -162,14 +164,19 @@ extension ImageCollectionViewController: UICollectionViewDataSource {
 
 // MARK: - Image picker delegate
 
+
 extension ImageCollectionViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     private func openLibrary() {
         guard let viewController = parentViewController else { return }
         
         if #available(iOS 14.0, *) {
-            viewController.present(phPicker!, animated: true)
-            // 이미지 삽입 가능 갯수에 따라서 configuration 재설정해서 넣기
+            var configuration = PHPickerConfiguration()
+            configuration.filter = .images
+            configuration.selectionLimit = viewModel.maxPhotoUploadCount
+            let phpPicker = PHPickerViewController(configuration: configuration)
+            phpPicker.delegate = self
+            viewController.present(phpPicker, animated: true)
         } else {
             imagePicker.sourceType = .photoLibrary
             viewController.present(imagePicker, animated: true)
@@ -210,9 +217,9 @@ extension ImageCollectionViewController: PHPickerViewControllerDelegate {
                 itemProvider.itemProvider.loadObject(ofClass: UIImage.self) { (image, error) in
                     guard let image = image as? UIImage else { return}
                     self.viewModel.appendImage(image)
-
                     DispatchQueue.main.async {
-                        self.reloadData()
+                        let indexPath = IndexPath(item: self.viewModel.imageList.count - 1, section: 0)
+                        self.reloadItems(at: [indexPath] )
                     }
                 }
             } else {
