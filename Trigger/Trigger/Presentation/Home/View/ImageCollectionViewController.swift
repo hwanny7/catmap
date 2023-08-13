@@ -7,7 +7,6 @@ class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate,
         if #available(iOS 14.0, *) {
             var configuration = PHPickerConfiguration()
             configuration.filter = .images
-            configuration.selectionLimit = 0
             let phpPicker = PHPickerViewController(configuration: configuration)
             phpPicker.delegate = self
             return phpPicker
@@ -91,7 +90,10 @@ class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate,
         }
         viewController.showAlert(actions: [libraryAction, cameraAction])
     }
+    // alert action title도 view model에 저장해두는 게 좋을 듯
 }
+
+// MARK: - Data source
 
 extension ImageCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -115,13 +117,19 @@ extension ImageCollectionViewController: UICollectionViewDataSource {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapCameraButton))
             imageView.addGestureRecognizer(tapGesture)
             imageView.isUserInteractionEnabled = true
+            
+            NSLayoutConstraint.activate([
+                imageView.centerXAnchor.constraint(equalTo: cell.centerXAnchor),
+                imageView.centerYAnchor.constraint(equalTo: cell.centerYAnchor),
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                imageView.topAnchor.constraint(equalTo: cell.topAnchor),
+                imageView.bottomAnchor.constraint(equalTo: cell.bottomAnchor),
+                imageView.leadingAnchor.constraint(equalTo: cell.leadingAnchor),
+                imageView.trailingAnchor.constraint(equalTo: cell.trailingAnchor),
+            ])
         }
-        
-        
-        NSLayoutConstraint.activate([
-            imageView.centerXAnchor.constraint(equalTo: cell.centerXAnchor),
-            imageView.centerYAnchor.constraint(equalTo: cell.centerYAnchor),
-        ])
         
         return cell
     }
@@ -152,6 +160,8 @@ extension ImageCollectionViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - Image picker delegate
+
 extension ImageCollectionViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     private func openLibrary() {
@@ -159,6 +169,7 @@ extension ImageCollectionViewController: UIImagePickerControllerDelegate & UINav
         
         if #available(iOS 14.0, *) {
             viewController.present(phPicker!, animated: true)
+            // 이미지 삽입 가능 갯수에 따라서 configuration 재설정해서 넣기
         } else {
             imagePicker.sourceType = .photoLibrary
             viewController.present(imagePicker, animated: true)
@@ -193,17 +204,20 @@ extension ImageCollectionViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
 
-        let itemProvider = results.first?.itemProvider
-        
-        if let itemProvider = itemProvider,
-           itemProvider.canLoadObject(ofClass: UIImage.self) {
-            itemProvider.loadObject(ofClass: UIImage.self) { (image, error) in
-                DispatchQueue.main.async {
-                    
+        results.forEach { itemProvider in
+            let isLoadPossible = itemProvider.itemProvider.canLoadObject(ofClass: UIImage.self)
+            if isLoadPossible {
+                itemProvider.itemProvider.loadObject(ofClass: UIImage.self) { (image, error) in
+                    guard let image = image as? UIImage else { return}
+                    self.viewModel.appendImage(image)
+
+                    DispatchQueue.main.async {
+                        self.reloadData()
+                    }
                 }
+            } else {
+                print("load가 불가능합니다.")
             }
-        } else {
-            // TODO: Handle empty results or item provider not being able load UIImage
         }
     }
 }

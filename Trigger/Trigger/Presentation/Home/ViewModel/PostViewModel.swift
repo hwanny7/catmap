@@ -21,6 +21,7 @@ protocol postViewModelOutput {
     var content: String { get }
     var isPublic: Bool { get }
     var imageList: [UIImage] { get }
+    var maxPhotoUploadCount: Int { get }
 }
 
 
@@ -33,6 +34,9 @@ final class DefaultPostViewModel: PostViewModel {
     var content: String = ""
     var isPublic: Bool = true
     var imageList: [UIImage] = [UIImage(systemName: "camera")!]
+    var maxPhotoUploadCount: Int {
+        return imageList.count - 1
+    }
     
 //    private let actions: PostViewModelActions
 //    
