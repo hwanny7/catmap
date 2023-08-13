@@ -11,6 +11,6 @@ import UIKit
 struct Post {
     var title: String
     var content: String
-    var isPublic: Bool = true
-    var imageList: [UIImage] = [UIImage(systemName: "camera")!]
+    var isPublic: Bool
+    var imageList: [UIImage]
 }
