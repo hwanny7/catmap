@@ -36,7 +36,7 @@ class CreatePostViewController: UIViewController, Alertable {
     func setupView() {
         view.backgroundColor = .white
 
-        let imageCollectionView = ImageCollectionViewController(frame: view.frame, parentViewController: self)
+        let imageCollectionView = ImageCollectionViewController(frame: view.frame, parentViewController: self, viewModel: viewModel)
         view.addSubview(imageCollectionView)
         NSLayoutConstraint.activate([
             imageCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),

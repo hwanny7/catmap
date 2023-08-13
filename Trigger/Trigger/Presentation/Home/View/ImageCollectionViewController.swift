@@ -24,19 +24,12 @@ class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate,
     
     weak var parentViewController: (UIViewController & Alertable)?
     
-    var colors: [UIColor] = [
-        .link,
-        .red,
-        .systemPink,
-        .systemBlue,
-        .systemGray,
-        .systemBlue,
-        .systemGray,
-    ]
+    private var viewModel: DefaultPostViewModel
+    
 
-
-    init(frame: CGRect, parentViewController: (UIViewController & Alertable)?) {
+    init(frame: CGRect, parentViewController: (UIViewController & Alertable)?, viewModel: DefaultPostViewModel) {
         self.parentViewController = parentViewController
+        self.viewModel = viewModel
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -102,18 +95,18 @@ class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate,
 
 extension ImageCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return colors.count
+        return viewModel.imageList.count
     }
 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = colors[indexPath.row]
+        cell.backgroundColor = .gray
         
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleToFill
-        let image = UIImage(systemName: "camera")
+        let image = viewModel.imageList[indexPath.row]
         imageView.image = image
         
         cell.addSubview(imageView)
@@ -153,8 +146,8 @@ extension ImageCollectionViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         
-        let item = colors.remove(at: sourceIndexPath.row)
-        colors.insert(item, at: destinationIndexPath.row)
+        let item = viewModel.imageList.remove(at: sourceIndexPath.row)
+        viewModel.imageList.insert(item, at: destinationIndexPath.row)
         // 실제 아이템의 위치도 변경해줘야 그 자리를 유지한다.
     }
 }

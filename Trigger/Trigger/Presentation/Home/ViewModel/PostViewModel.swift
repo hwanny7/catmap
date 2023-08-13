@@ -13,6 +13,7 @@ struct PostViewModelActions {
 
 protocol postViewModelInput {
 //    func didSubmit()
+    func appendImage(_ image: UIImage)
 }
 
 protocol postViewModelOutput {
@@ -40,4 +41,8 @@ final class DefaultPostViewModel: PostViewModel {
 //    ) {
 //        self.actions = actions
 //    }
+    
+    func appendImage(_ image: UIImage) {
+        imageList.append(image)
+    }
 }
