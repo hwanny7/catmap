@@ -1,6 +1,28 @@
 import UIKit
+import PhotosUI
 
 class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    private lazy var phPicker: UIViewController? = {
+        if #available(iOS 14.0, *) {
+            var configuration = PHPickerConfiguration()
+            configuration.filter = .images
+            configuration.selectionLimit = 0
+            let phpPicker = PHPickerViewController(configuration: configuration)
+            phpPicker.delegate = self
+            return phpPicker
+        } else {
+            return nil
+        }
+    }()
+    
+    private lazy var imagePicker: UIImagePickerController = {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        return imagePicker
+    }()
+    
+    weak var parentViewController: (UIViewController & Alertable)?
     
     var colors: [UIColor] = [
         .link,
@@ -11,23 +33,24 @@ class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate,
         .systemBlue,
         .systemGray,
     ]
-    
-    let openCameraOption: () -> ()
-    
 
-    init(frame: CGRect, openCameraOption: @escaping () -> ()) {
-        self.openCameraOption = openCameraOption
+
+    init(frame: CGRect, parentViewController: (UIViewController & Alertable)?) {
+        self.parentViewController = parentViewController
+        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        
         super.init(frame: frame, collectionViewLayout: layout)
-        setupView()
+        setupViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupView() {
+    
+    func setupViews() {
         translatesAutoresizingMaskIntoConstraints = false
         register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         delegate = self
@@ -65,7 +88,15 @@ class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate,
     }
     
     @objc func didTapCameraButton() {
-        openCameraOption()
+        guard let viewController = parentViewController else { return }
+        
+        let libraryAction = UIAlertAction(title: "사진앨범", style: .default) { _ in
+            self.openLibrary()
+        }
+        let cameraAction = UIAlertAction(title: "카메라", style: .default) { _ in
+            self.openCamera()
+        }
+        viewController.showAlert(actions: [libraryAction, cameraAction])
     }
 }
 
@@ -125,5 +156,61 @@ extension ImageCollectionViewController: UICollectionViewDataSource {
         let item = colors.remove(at: sourceIndexPath.row)
         colors.insert(item, at: destinationIndexPath.row)
         // 실제 아이템의 위치도 변경해줘야 그 자리를 유지한다.
+    }
+}
+
+extension ImageCollectionViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    
+    private func openLibrary() {
+        guard let viewController = parentViewController else { return }
+        
+        if #available(iOS 14.0, *) {
+            viewController.present(phPicker!, animated: true)
+        } else {
+            imagePicker.sourceType = .photoLibrary
+            viewController.present(imagePicker, animated: true)
+        }
+    }
+    
+    private func openCamera() {
+        guard let viewController = parentViewController else { return }
+        
+        imagePicker.sourceType = .camera
+        viewController.present(imagePicker, animated: true)
+    }
+    
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+        
+        guard let _ = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
+        // edit image는 크기가 작아지니까 orginal이랑 크기 차이가 얼마나 나는지 확인하기
+    }
+}
+
+// MARK: - PHPicker delegate
+
+@available(iOS 14, *)
+extension ImageCollectionViewController: PHPickerViewControllerDelegate {
+
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+
+        let itemProvider = results.first?.itemProvider
+        
+        if let itemProvider = itemProvider,
+           itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { (image, error) in
+                DispatchQueue.main.async {
+                    
+                }
+            }
+        } else {
+            // TODO: Handle empty results or item provider not being able load UIImage
+        }
     }
 }
