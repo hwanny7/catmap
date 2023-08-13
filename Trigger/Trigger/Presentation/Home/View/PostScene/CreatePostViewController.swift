@@ -39,7 +39,7 @@ class CreatePostViewController: UIViewController, Alertable {
         let imageCollectionView = ImageCollectionViewController(frame: view.frame, parentViewController: self, viewModel: viewModel)
         view.addSubview(imageCollectionView)
         NSLayoutConstraint.activate([
-            imageCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            imageCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             imageCollectionView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             imageCollectionView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
             imageCollectionView.heightAnchor.constraint(equalTo: imageCollectionView.widthAnchor, multiplier: 1/5)

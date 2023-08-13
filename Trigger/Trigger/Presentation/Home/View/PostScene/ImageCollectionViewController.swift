@@ -57,7 +57,7 @@ class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate,
     }
     
     @objc func handleLongPressGesture(_ gesture: UILongPressGestureRecognizer) {
-        print(gesture.location(in: self))
+
         switch gesture.state {
         case .began:
             guard let targetIndexPath = indexPathForItem(at: gesture.location(in: self)), targetIndexPath.row != 0 else { return }
@@ -81,6 +81,9 @@ class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate,
         }
     }
     
+    
+    // MARK: - Handling tap event
+    
     @objc func didTapCameraButton() {
         guard let viewController = parentViewController else { return }
         
@@ -96,7 +99,15 @@ class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate,
             viewController.showAlert(title: "알림", message: "이미지는 최대 10장까지 첨부할 수 있어요.")
         }
     }
-    // alert action title도 view model에 저장해두는 게 좋을 듯
+    
+    @objc func didTapXButton(_ sender: UIButton) {
+        print("눌렸나요!!?")
+        guard let cell = sender.superview as? UICollectionViewCell,
+              let indexPath = indexPath(for: cell) else { return }
+        print(indexPath)
+    
+    }
+    
 }
 
 // MARK: - Data source
@@ -115,6 +126,8 @@ extension ImageCollectionViewController: UICollectionViewDataSource {
         cell.layer.cornerRadius = 10.0
         cell.clipsToBounds = true
         cell.subviews.forEach { $0.removeFromSuperview() }
+        cell.gestureRecognizers?.forEach { cell.removeGestureRecognizer($0) }
+        cell.isUserInteractionEnabled = true
         
         // 이미지뷰 생성
         let imageView = UIImageView()
@@ -123,14 +136,13 @@ extension ImageCollectionViewController: UICollectionViewDataSource {
         let image = viewModel.imageList[indexPath.row]
         imageView.image = image
         
-        // 라벨 생성
+        // X 버튼 생성
         
         cell.addSubview(imageView)
 
         if indexPath.row == 0 {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapCameraButton))
-            imageView.addGestureRecognizer(tapGesture)
-            imageView.isUserInteractionEnabled = true
+            cell.addGestureRecognizer(tapGesture)
             
             let countLabel = UILabel()
             countLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -150,18 +162,23 @@ extension ImageCollectionViewController: UICollectionViewDataSource {
                 stackView.centerYAnchor.constraint(equalTo: cell.centerYAnchor),
             ])
             
-            
-//            NSLayoutConstraint.activate([
-//                countLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor),
-//                countLabel.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
-//            ])
-            
         } else {
+            let cancelButton = UIButton(type: .custom)
+            cancelButton.translatesAutoresizingMaskIntoConstraints = false
+            cancelButton.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+            cancelButton.tintColor = .red
+            cancelButton.addTarget(self, action: #selector(didTapXButton(_:)), for: .touchUpInside)
+            
+            cell.addSubview(cancelButton)
+            
             NSLayoutConstraint.activate([
                 imageView.topAnchor.constraint(equalTo: cell.topAnchor),
                 imageView.bottomAnchor.constraint(equalTo: cell.bottomAnchor),
                 imageView.leadingAnchor.constraint(equalTo: cell.leadingAnchor),
                 imageView.trailingAnchor.constraint(equalTo: cell.trailingAnchor),
+                
+                cancelButton.trailingAnchor.constraint(equalTo: cell.trailingAnchor),
+                cancelButton.topAnchor.constraint(equalTo: cell.topAnchor),
             ])
         }
         
@@ -187,10 +204,8 @@ extension ImageCollectionViewController: UICollectionViewDataSource {
 
     
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        
         let item = viewModel.imageList.remove(at: sourceIndexPath.row)
         viewModel.imageList.insert(item, at: destinationIndexPath.row)
-        // 실제 아이템의 위치도 변경해줘야 그 자리를 유지한다.
     }
 }
 
@@ -250,8 +265,7 @@ extension ImageCollectionViewController: PHPickerViewControllerDelegate {
                     guard let image = image as? UIImage else { return}
                     self.viewModel.appendImage(image)
                     DispatchQueue.main.async {
-                        let indexPath = IndexPath(item: self.viewModel.imageList.count - 1, section: 0)
-                        self.reloadItems(at: [indexPath] )
+                        self.reloadData()
                     }
                 }
             } else {
