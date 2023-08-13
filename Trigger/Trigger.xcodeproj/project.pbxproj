@@ -156,6 +156,7 @@
 			children = (
 				AE16AD152A7E7A4C00CB6B81 /* Application */,
 				AE16AD212A7E8B2200CB6B81 /* Presentation */,
+				AE94CE202A885765009F195E /* Domain */,
 				AE16AD1E2A7E82EB00CB6B81 /* Network */,
 				AE1581D22A7F833700B79291 /* Common */,
 				AE16AD162A7E7A6700CB6B81 /* Resources */,
@@ -229,6 +230,37 @@
 				AE1581D72A7FB8D600B79291 /* HomeCoordinator.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		AE94CE202A885765009F195E /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				AE94CE212A885783009F195E /* Entities */,
+				AE94CE222A885794009F195E /* UseCases */,
+				AE94CE232A88579C009F195E /* Interfaces */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		AE94CE212A885783009F195E /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		AE94CE222A885794009F195E /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		AE94CE232A88579C009F195E /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interfaces;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

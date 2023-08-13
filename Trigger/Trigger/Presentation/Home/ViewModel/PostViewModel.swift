@@ -11,6 +11,15 @@ struct PostViewModelActions {
     
 }
 
+protocol postViewModelInput {
+    
+}
+
+protocol postViewModelOutput {
+    
+}
+
+
 
 final class DefaultPostViewModel {
     

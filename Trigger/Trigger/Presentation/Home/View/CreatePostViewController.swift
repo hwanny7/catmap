@@ -110,6 +110,8 @@ extension CreatePostViewController: UIImagePickerControllerDelegate & UINavigati
     }
 }
 
+// MARK: - PHPicker delegate
+
 @available(iOS 14, *)
 extension CreatePostViewController: PHPickerViewControllerDelegate {
 
