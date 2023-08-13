@@ -100,12 +100,14 @@ class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate,
         }
     }
     
-    @objc func didTapXButton(_ sender: UIButton) {
-        print("눌렸나요!!?")
+    @objc func didTapCancleButton(_ sender: UIButton) {
         guard let cell = sender.superview as? UICollectionViewCell,
               let indexPath = indexPath(for: cell) else { return }
-        print(indexPath)
-    
+        let index = indexPath.row
+        viewModel.removeImage(index)
+        DispatchQueue.main.async {
+            self.reloadData()
+        }
     }
     
 }
@@ -127,7 +129,7 @@ extension ImageCollectionViewController: UICollectionViewDataSource {
         cell.clipsToBounds = true
         cell.subviews.forEach { $0.removeFromSuperview() }
         cell.gestureRecognizers?.forEach { cell.removeGestureRecognizer($0) }
-        cell.isUserInteractionEnabled = true
+        // 이전 셀에 추가되었던 이미지와 제스쳐 삭제
         
         // 이미지뷰 생성
         let imageView = UIImageView()
@@ -166,8 +168,8 @@ extension ImageCollectionViewController: UICollectionViewDataSource {
             let cancelButton = UIButton(type: .custom)
             cancelButton.translatesAutoresizingMaskIntoConstraints = false
             cancelButton.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
-            cancelButton.tintColor = .red
-            cancelButton.addTarget(self, action: #selector(didTapXButton(_:)), for: .touchUpInside)
+            cancelButton.tintColor = .white
+            cancelButton.addTarget(self, action: #selector(didTapCancleButton(_:)), for: .touchUpInside)
             
             cell.addSubview(cancelButton)
             
