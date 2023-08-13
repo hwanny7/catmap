@@ -44,6 +44,7 @@ class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate,
     
     
     func setupViews() {
+        showsHorizontalScrollIndicator = false
         translatesAutoresizingMaskIntoConstraints = false
         register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         delegate = self
@@ -121,6 +122,10 @@ extension ImageCollectionViewController: UICollectionViewDataSource {
         imageView.contentMode = .scaleToFill
         let image = viewModel.imageList[indexPath.row]
         imageView.image = image
+        
+        // 라벨 생성
+//        let countLabel = UILabel()
+//        countLabel.text = 
         
         cell.addSubview(imageView)
 

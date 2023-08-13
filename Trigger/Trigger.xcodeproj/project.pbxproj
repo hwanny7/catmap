@@ -95,12 +95,8 @@
 		AE1581DD2A80A7CA00B79291 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AE1581F22A81E11F00B79291 /* FloatingButton.swift */,
-				AE1581F42A82347E00B79291 /* PickerController.swift */,
-				AE1581DE2A80A80E00B79291 /* MapViewController.swift */,
-				AE1581E02A80A82A00B79291 /* MapViewController.storyboard */,
-				AE1581F62A826A2700B79291 /* CreatePostViewController.swift */,
-				AED3ABEB2A85C70D00585683 /* ImageCollectionViewController.swift */,
+				AE94CE292A88C314009F195E /* MapScene */,
+				AE94CE282A88C2F6009F195E /* PostScene */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -267,6 +263,26 @@
 			children = (
 			);
 			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		AE94CE282A88C2F6009F195E /* PostScene */ = {
+			isa = PBXGroup;
+			children = (
+				AE1581F62A826A2700B79291 /* CreatePostViewController.swift */,
+				AED3ABEB2A85C70D00585683 /* ImageCollectionViewController.swift */,
+			);
+			path = PostScene;
+			sourceTree = "<group>";
+		};
+		AE94CE292A88C314009F195E /* MapScene */ = {
+			isa = PBXGroup;
+			children = (
+				AE1581F22A81E11F00B79291 /* FloatingButton.swift */,
+				AE1581F42A82347E00B79291 /* PickerController.swift */,
+				AE1581DE2A80A80E00B79291 /* MapViewController.swift */,
+				AE1581E02A80A82A00B79291 /* MapViewController.storyboard */,
+			);
+			path = MapScene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

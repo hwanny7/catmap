@@ -22,6 +22,7 @@ protocol postViewModelOutput {
     var isPublic: Bool { get }
     var imageList: [UIImage] { get }
     var maxPhotoUploadCount: Int { get }
+    var canUploadImage: Bool { get }
 }
 
 
@@ -29,16 +30,21 @@ typealias PostViewModel = postViewModelInput & postViewModelOutput
 
 
 final class DefaultPostViewModel: PostViewModel {
-    
     var title: String = ""
     var content: String = ""
     var isPublic: Bool = true
     var imageList: [UIImage] = [UIImage(systemName: "camera")!]
+    
+    private let photoUploadLimit: Int = 10
+    
+    var numberOfPhotos: Int {
+        return imageList.count - 1
+    }
     var maxPhotoUploadCount: Int {
-        return 11 - imageList.count
+        return photoUploadLimit - numberOfPhotos
     }
     var canUploadImage: Bool {
-        return imageList.count != 11 ? true : false
+        return numberOfPhotos != photoUploadLimit ? true : false
     }
     
 //    private let actions: PostViewModelActions
