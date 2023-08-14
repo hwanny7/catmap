@@ -1,7 +1,7 @@
 import UIKit
 import PhotosUI
 
-class ImageCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+final class ImageCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     private lazy var imagePicker: UIImagePickerController = {
         let imagePicker = UIImagePickerController()

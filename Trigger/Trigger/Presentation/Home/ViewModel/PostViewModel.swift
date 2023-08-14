@@ -8,7 +8,7 @@
 import UIKit
 
 struct PostViewModelActions {
-    
+    let showMap: () -> Void
 }
 
 protocol postViewModelInput {
@@ -48,13 +48,13 @@ final class DefaultPostViewModel: PostViewModel {
         return numberOfPhotos != photoUploadLimit ? true : false
     }
     
-//    private let actions: PostViewModelActions
-//    
-//    init(
-//        actions: PostViewModelActions
-//    ) {
-//        self.actions = actions
-//    }
+    private let actions: PostViewModelActions
+    
+    init(
+        actions: PostViewModelActions
+    ) {
+        self.actions = actions
+    }
     
     func appendImage(_ image: UIImage) {
         imageList.append(image)

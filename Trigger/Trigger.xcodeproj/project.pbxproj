@@ -33,6 +33,7 @@
 		AE16AD202A7E834600CB6B81 /* DataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE16AD1F2A7E834600CB6B81 /* DataTransferService.swift */; };
 		AE16AD272A7E8B9200CB6B81 /* HomeDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE16AD262A7E8B9200CB6B81 /* HomeDIContainer.swift */; };
 		AE18FD5D2A8A664A007251A4 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AE18FD5C2A8A664A007251A4 /* IQKeyboardManagerSwift */; };
+		AE18FD5F2A8A70C4007251A4 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18FD5E2A8A70C4007251A4 /* CustomButton.swift */; };
 		AE94CE252A8857E2009F195E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE94CE242A8857E2009F195E /* Post.swift */; };
 		AE94CE272A887B00009F195E /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE94CE262A887B00009F195E /* Observable.swift */; };
 		AE94CE2C2A899056009F195E /* TextFieldWithLabelStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE94CE2B2A899056009F195E /* TextFieldWithLabelStackView.swift */; };
@@ -67,6 +68,7 @@
 		AE16AD1C2A7E80EE00CB6B81 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
 		AE16AD1F2A7E834600CB6B81 /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
 		AE16AD262A7E8B9200CB6B81 /* HomeDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDIContainer.swift; sourceTree = "<group>"; };
+		AE18FD5E2A8A70C4007251A4 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		AE94CE242A8857E2009F195E /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		AE94CE262A887B00009F195E /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		AE94CE2B2A899056009F195E /* TextFieldWithLabelStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithLabelStackView.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				AE1581F62A826A2700B79291 /* CreatePostViewController.swift */,
 				AE94CE2B2A899056009F195E /* TextFieldWithLabelStackView.swift */,
 				AED3ABEB2A85C70D00585683 /* ImageCollectionView.swift */,
+				AE18FD5E2A8A70C4007251A4 /* CustomButton.swift */,
 			);
 			path = PostScene;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE18FD5F2A8A70C4007251A4 /* CustomButton.swift in Sources */,
 				AE1581D42A7F837300B79291 /* Coordinator.swift in Sources */,
 				AE16AD202A7E834600CB6B81 /* DataTransferService.swift in Sources */,
 				AE1581EA2A80C0EA00B79291 /* MyPageListViewController.swift in Sources */,

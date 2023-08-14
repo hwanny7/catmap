@@ -33,9 +33,14 @@ final class HomeCoordinator: Coordinator {
     }
     
     private func showCreatePost() {
-        let postVC = homeDIContainer.makeCreatePostViewViewController()
+        let actions = PostViewModelActions(showMap: showMap)
+        let postVC = homeDIContainer.makeCreatePostViewViewController(actions: actions)
         postVC.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(postVC, animated: true)
+    }
+    
+    private func showMap() {
+//        let MapVC = 
     }
     
 }

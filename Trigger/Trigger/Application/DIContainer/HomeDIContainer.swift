@@ -34,7 +34,12 @@ extension HomeDIContainer {
         return MapViewController.create(with: DefaultMapViewModel(actions: actions))
     }
     
-    func makeCreatePostViewViewController() -> UIViewController {
-        return CreatePostViewController(with: DefaultPostViewModel())
+    func makeCreatePostViewViewController(actions: PostViewModelActions) -> UIViewController {
+        return CreatePostViewController(with: DefaultPostViewModel(actions: actions))
     }
+    
+//    func createMapViewControllerForCoordinate() -> UIViewController {
+//        return MapCoordinateViewController(with: DefaultMapCoordinateViewModel())
+//    }
+    
 }

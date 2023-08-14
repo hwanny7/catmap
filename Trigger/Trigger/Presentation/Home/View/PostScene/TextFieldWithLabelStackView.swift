@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TextFieldWithLabelStackView: UIStackView {
+final class TextFieldWithLabelStackView: UIStackView {
     
     private let title: String
     private let placeholderText: String
@@ -55,6 +55,17 @@ class TextFieldWithLabelStackView: UIStackView {
         addArrangedSubview(descriptionLabel)
         addArrangedSubview(descriptionTextField)
         descriptionTextField.setContentHuggingPriority(UILayoutPriority(249), for: .vertical)
+    }
+    
+    func addImageViewOnRightSide(imageName: String) {
+        descriptionTextField.isEnabled = false
+        let image = UIImageView(image: UIImage(systemName: imageName))
+        image.translatesAutoresizingMaskIntoConstraints = false
+        descriptionTextField.addSubview(image)
+        NSLayoutConstraint.activate([
+            image.trailingAnchor.constraint(equalTo: descriptionTextField.trailingAnchor, constant: -8),
+            image.centerYAnchor.constraint(equalTo: descriptionTextField.centerYAnchor),
+        ])
     }
     
 }
