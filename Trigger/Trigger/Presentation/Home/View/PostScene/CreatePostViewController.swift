@@ -42,11 +42,11 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, Alertable
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         let imageCollectionView = ImageCollectionViewController(parentViewController: self, viewModel: viewModel)
-        let descriptionTextField = TextFieldWithLabel(title: "자세한 설명")
-        let descriptionTextField2 = TextFieldWithLabel(title: "자세한 설명")
+        let descriptionTextField = TextFieldWithLabelStackView(title: "자세한 설명", placeholderText: "게시글 내용을 작성해 주세요.")
+
         let bottomButton = UIButton()
         bottomButton.translatesAutoresizingMaskIntoConstraints = false
-        bottomButton.setTitle("하단 버튼", for: .normal)
+        bottomButton.setTitle("등록", for: .normal)
         bottomButton.backgroundColor = .blue
         
         
@@ -55,7 +55,6 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, Alertable
         scrollView.addSubview(stackView)
         stackView.addArrangedSubview(imageCollectionView)
         stackView.addArrangedSubview(descriptionTextField)
-        stackView.addArrangedSubview(descriptionTextField2)
         
 
         
@@ -63,47 +62,22 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, Alertable
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomButton.topAnchor, constant: -8),
             
-            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 16),
-//            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-//            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            stackView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor, constant: 16),
+            stackView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
+            stackView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
             
-            imageCollectionView.heightAnchor.constraint(equalTo: imageCollectionView.widthAnchor, multiplier: 1/5),
-            
+            imageCollectionView.heightAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 1/5),
+           
             descriptionTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 2/5),
-            descriptionTextField2.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1),
             
             bottomButton.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             bottomButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            bottomButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)
+            bottomButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8),
+            bottomButton.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 1/15),
         ])
-
-
-//        NSLayoutConstraint.activate([
-//            bottomButton.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-//            bottomButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-//            bottomButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-//            bottomButton.heightAnchor.constraint(equalToConstant: 50)
-//        ])
-        
     }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor.blue.cgColor
-        textField.layer.borderWidth = 1.0
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor.clear.cgColor
-        textField.layer.borderWidth = 0.0
-    }
-    
-    // 키보드 외부 터치 시 키보드 숨기기
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-    }
-    
 }
