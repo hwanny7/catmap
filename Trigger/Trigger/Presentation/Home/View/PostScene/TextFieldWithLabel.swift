@@ -13,6 +13,7 @@ class TextFieldWithLabel: UIStackView, UITextFieldDelegate {
     
     lazy var descriptionLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = title
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 16)
@@ -31,12 +32,11 @@ class TextFieldWithLabel: UIStackView, UITextFieldDelegate {
         return textField
     }()
     
-//    let descriptionTextField = UITextField =
     
-    
-    init(frame: CGRect,title: String) {
+    init(title: String) {
         self.title = title
-        super.init(frame: frame)
+        super.init(frame: .zero)
+        setupViews()
     }
     
     required init(coder: NSCoder) {
@@ -53,8 +53,16 @@ class TextFieldWithLabel: UIStackView, UITextFieldDelegate {
         addSubview(descriptionTextField)
         
         NSLayoutConstraint.activate([
-            descriptionLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/6),
-            descriptionTextField.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 5/6),
+            
+//            descriptionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+//            descriptionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+//            descriptionLabel.topAnchor.constraint(equalTo: self.topAnchor),
+//            descriptionLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/6),
+//            
+//            descriptionTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+//            descriptionTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+//            descriptionTextField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor),
+//            descriptionTextField.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 5/6),
         ])
         
     }

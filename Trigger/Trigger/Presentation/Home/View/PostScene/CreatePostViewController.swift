@@ -36,7 +36,13 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, Alertable
     func setupView() {
         view.backgroundColor = .white
         
-        let imageCollectionView = ImageCollectionViewController(frame: view.frame, parentViewController: self, viewModel: viewModel)
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.spacing = 8
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let imageCollectionView = ImageCollectionViewController(parentViewController: self, viewModel: viewModel)
         view.addSubview(imageCollectionView)
         NSLayoutConstraint.activate([
             imageCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
@@ -45,48 +51,18 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, Alertable
             imageCollectionView.heightAnchor.constraint(equalTo: imageCollectionView.widthAnchor, multiplier: 1/5)
         ])
         
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.alignment = .fill
         
-        stackView.spacing = 8
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(stackView)
-        
-        let descriptionLabel = UILabel()
-        descriptionLabel.text = "자세한 설명:"
-        descriptionLabel.textColor = .black
-        descriptionLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        stackView.addArrangedSubview(descriptionLabel)
-        
-        
-        let descriptionTextField = UITextField()
-        descriptionTextField.translatesAutoresizingMaskIntoConstraints = false
-        descriptionTextField.backgroundColor = .white
-        descriptionTextField.borderStyle = .roundedRect
-        descriptionTextField.placeholder = "게시글 내용을 작성해 주세요."
-        descriptionTextField.layer.borderColor = UIColor.gray.cgColor
-        descriptionTextField.layer.cornerRadius = 10.0
-        descriptionTextField.delegate = self
-        
-        
-        
-        //        let stackView = TextFieldWithLabel(frame: view.frame, title: "안뇨세욤?")
-        stackView.addArrangedSubview(descriptionLabel)
-        stackView.addArrangedSubview(descriptionTextField)
-        
-        view.addSubview(stackView)
-        
+        let descriptionTextField = TextFieldWithLabel(title: "자세한 설명")
+        view.addSubview(descriptionTextField)
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: imageCollectionView.bottomAnchor),
-            stackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            stackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 2/5),
-            
-            descriptionLabel.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 1/6),
-            descriptionTextField.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 5/6),
-            
+            descriptionTextField.topAnchor.constraint(equalTo: imageCollectionView.bottomAnchor, constant: 16),
+            descriptionTextField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            descriptionTextField.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            descriptionTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 2/5),
         ])
+        
+        
+        
         
         let bottomButton = UIButton()
         bottomButton.translatesAutoresizingMaskIntoConstraints = false

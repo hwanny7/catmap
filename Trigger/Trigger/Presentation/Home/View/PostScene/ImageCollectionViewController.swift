@@ -14,14 +14,14 @@ class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate,
     private var viewModel: DefaultPostViewModel
     
 
-    init(frame: CGRect, parentViewController: (UIViewController & Alertable)?, viewModel: DefaultPostViewModel) {
+    init(parentViewController: (UIViewController & Alertable)?, viewModel: DefaultPostViewModel) {
         self.parentViewController = parentViewController
         self.viewModel = viewModel
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         
-        super.init(frame: frame, collectionViewLayout: layout)
+        super.init(frame: .zero, collectionViewLayout: layout)
         setupViews()
     }
     
