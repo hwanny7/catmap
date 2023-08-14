@@ -13,11 +13,6 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, Alertable
 
     private var viewModel: DefaultPostViewModel
     
-    private var scrollView: UIScrollView!
-    
-    private var collectionView: UICollectionView!
-    
-    
     init(with viewModel: DefaultPostViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -43,39 +38,39 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, Alertable
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         let imageCollectionView = ImageCollectionViewController(parentViewController: self, viewModel: viewModel)
-        view.addSubview(imageCollectionView)
-        NSLayoutConstraint.activate([
-            imageCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            imageCollectionView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            imageCollectionView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            imageCollectionView.heightAnchor.constraint(equalTo: imageCollectionView.widthAnchor, multiplier: 1/5)
-        ])
-        
-        
         let descriptionTextField = TextFieldWithLabel(title: "자세한 설명")
-        view.addSubview(descriptionTextField)
+        
+        stackView.addArrangedSubview(imageCollectionView)
+        stackView.addArrangedSubview(descriptionTextField)
+        
+        view.addSubview(stackView)
+        
         NSLayoutConstraint.activate([
-            descriptionTextField.topAnchor.constraint(equalTo: imageCollectionView.bottomAnchor, constant: 16),
-            descriptionTextField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            descriptionTextField.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            stackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            
+            imageCollectionView.heightAnchor.constraint(equalTo: imageCollectionView.widthAnchor, multiplier: 1/5),
+            
             descriptionTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 2/5),
+            
         ])
-        
-        
-        
-        
-        let bottomButton = UIButton()
-        bottomButton.translatesAutoresizingMaskIntoConstraints = false
-        bottomButton.setTitle("하단 버튼", for: .normal)
-        bottomButton.backgroundColor = .blue
-        view.addSubview(bottomButton)
-        
-        NSLayoutConstraint.activate([
-            bottomButton.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            bottomButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            bottomButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            bottomButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
+//
+//
+//
+//
+//        let bottomButton = UIButton()
+//        bottomButton.translatesAutoresizingMaskIntoConstraints = false
+//        bottomButton.setTitle("하단 버튼", for: .normal)
+//        bottomButton.backgroundColor = .blue
+//        view.addSubview(bottomButton)
+//
+//        NSLayoutConstraint.activate([
+//            bottomButton.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+//            bottomButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+//            bottomButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+//            bottomButton.heightAnchor.constraint(equalToConstant: 50)
+//        ])
         
     }
     

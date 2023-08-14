@@ -49,21 +49,8 @@ class TextFieldWithLabel: UIStackView, UITextFieldDelegate {
         alignment = .fill
         spacing = 8
         translatesAutoresizingMaskIntoConstraints = false
-        addSubview(descriptionLabel)
-        addSubview(descriptionTextField)
-        
-        NSLayoutConstraint.activate([
-            
-//            descriptionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-//            descriptionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-//            descriptionLabel.topAnchor.constraint(equalTo: self.topAnchor),
-//            descriptionLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/6),
-//            
-//            descriptionTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-//            descriptionTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-//            descriptionTextField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor),
-//            descriptionTextField.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 5/6),
-        ])
-        
+        addArrangedSubview(descriptionLabel)
+        addArrangedSubview(descriptionTextField)
+        descriptionTextField.setContentHuggingPriority(UILayoutPriority(249), for: .vertical)
     }
 }
