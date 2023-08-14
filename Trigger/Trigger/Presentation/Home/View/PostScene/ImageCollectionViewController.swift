@@ -2,20 +2,7 @@ import UIKit
 import PhotosUI
 
 class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-//
-//    private lazy var phPicker: UIViewController? = {
-//        if #available(iOS 14.0, *) {
-//            var configuration = PHPickerConfiguration()
-//            configuration.filter = .images
-//            configuration.selectionLimit = 10
-//            let phpPicker = PHPickerViewController(configuration: configuration)
-//            phpPicker.delegate = self
-//            return phpPicker
-//        } else {
-//            return nil
-//        }
-//    }()
-    
+
     private lazy var imagePicker: UIImagePickerController = {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self

@@ -34,6 +34,7 @@
 		AE16AD272A7E8B9200CB6B81 /* HomeDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE16AD262A7E8B9200CB6B81 /* HomeDIContainer.swift */; };
 		AE94CE252A8857E2009F195E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE94CE242A8857E2009F195E /* Post.swift */; };
 		AE94CE272A887B00009F195E /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE94CE262A887B00009F195E /* Observable.swift */; };
+		AE94CE2C2A899056009F195E /* TextFieldWithLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE94CE2B2A899056009F195E /* TextFieldWithLabel.swift */; };
 		AED3ABEC2A85C70D00585683 /* ImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED3ABEB2A85C70D00585683 /* ImageCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		AE16AD262A7E8B9200CB6B81 /* HomeDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDIContainer.swift; sourceTree = "<group>"; };
 		AE94CE242A8857E2009F195E /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		AE94CE262A887B00009F195E /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		AE94CE2B2A899056009F195E /* TextFieldWithLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithLabel.swift; sourceTree = "<group>"; };
 		AED3ABEB2A85C70D00585683 /* ImageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -268,6 +270,7 @@
 		AE94CE282A88C2F6009F195E /* PostScene */ = {
 			isa = PBXGroup;
 			children = (
+				AE94CE2B2A899056009F195E /* TextFieldWithLabel.swift */,
 				AE1581F62A826A2700B79291 /* CreatePostViewController.swift */,
 				AED3ABEB2A85C70D00585683 /* ImageCollectionViewController.swift */,
 			);
@@ -366,6 +369,7 @@
 				AE1581D82A7FB8D600B79291 /* HomeCoordinator.swift in Sources */,
 				AE1581E62A80C01D00B79291 /* ProfileDIContainer.swift in Sources */,
 				AE1581EF2A81A5DF00B79291 /* MapViewModel.swift in Sources */,
+				AE94CE2C2A899056009F195E /* TextFieldWithLabel.swift in Sources */,
 				AE16AD1B2A7E804E00CB6B81 /* AppCoordinator.swift in Sources */,
 				AE1581F72A826A2700B79291 /* CreatePostViewController.swift in Sources */,
 				AE16AD192A7E7FA700CB6B81 /* AppAppearance.swift in Sources */,
