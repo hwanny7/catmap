@@ -1,7 +1,7 @@
 import UIKit
 import PhotosUI
 
-class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class ImageCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     private lazy var imagePicker: UIImagePickerController = {
         let imagePicker = UIImagePickerController()
@@ -101,7 +101,7 @@ class ImageCollectionViewController: UICollectionView, UICollectionViewDelegate,
 
 // MARK: - Data source
 
-extension ImageCollectionViewController: UICollectionViewDataSource {
+extension ImageCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.imageList.count
     }
@@ -201,7 +201,7 @@ extension ImageCollectionViewController: UICollectionViewDataSource {
 // MARK: - Image picker delegate
 
 
-extension ImageCollectionViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+extension ImageCollectionView: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     private func openLibrary() {
         guard let viewController = parentViewController else { return }
@@ -242,7 +242,7 @@ extension ImageCollectionViewController: UIImagePickerControllerDelegate & UINav
 // MARK: - PHPicker delegate
 
 @available(iOS 14, *)
-extension ImageCollectionViewController: PHPickerViewControllerDelegate {
+extension ImageCollectionView: PHPickerViewControllerDelegate {
 
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)

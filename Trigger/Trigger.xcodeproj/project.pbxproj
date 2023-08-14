@@ -35,7 +35,7 @@
 		AE94CE252A8857E2009F195E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE94CE242A8857E2009F195E /* Post.swift */; };
 		AE94CE272A887B00009F195E /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE94CE262A887B00009F195E /* Observable.swift */; };
 		AE94CE2C2A899056009F195E /* TextFieldWithLabelStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE94CE2B2A899056009F195E /* TextFieldWithLabelStackView.swift */; };
-		AED3ABEC2A85C70D00585683 /* ImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED3ABEB2A85C70D00585683 /* ImageCollectionViewController.swift */; };
+		AED3ABEC2A85C70D00585683 /* ImageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED3ABEB2A85C70D00585683 /* ImageCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,7 +69,7 @@
 		AE94CE242A8857E2009F195E /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		AE94CE262A887B00009F195E /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		AE94CE2B2A899056009F195E /* TextFieldWithLabelStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithLabelStackView.swift; sourceTree = "<group>"; };
-		AED3ABEB2A85C70D00585683 /* ImageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewController.swift; sourceTree = "<group>"; };
+		AED3ABEB2A85C70D00585683 /* ImageCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,9 +270,9 @@
 		AE94CE282A88C2F6009F195E /* PostScene */ = {
 			isa = PBXGroup;
 			children = (
-				AE94CE2B2A899056009F195E /* TextFieldWithLabelStackView.swift */,
 				AE1581F62A826A2700B79291 /* CreatePostViewController.swift */,
-				AED3ABEB2A85C70D00585683 /* ImageCollectionViewController.swift */,
+				AE94CE2B2A899056009F195E /* TextFieldWithLabelStackView.swift */,
+				AED3ABEB2A85C70D00585683 /* ImageCollectionView.swift */,
 			);
 			path = PostScene;
 			sourceTree = "<group>";
@@ -379,7 +379,7 @@
 				AE16AD1D2A7E80EE00CB6B81 /* AppDIContainer.swift in Sources */,
 				AE94CE272A887B00009F195E /* Observable.swift in Sources */,
 				AE1581FB2A82836A00B79291 /* PostViewModel.swift in Sources */,
-				AED3ABEC2A85C70D00585683 /* ImageCollectionViewController.swift in Sources */,
+				AED3ABEC2A85C70D00585683 /* ImageCollectionView.swift in Sources */,
 				AE1581F12A81CFA500B79291 /* Alertable.swift in Sources */,
 				AE1581DC2A80670500B79291 /* TabCoordinator.swift in Sources */,
 				AE16AD272A7E8B9200CB6B81 /* HomeDIContainer.swift in Sources */,

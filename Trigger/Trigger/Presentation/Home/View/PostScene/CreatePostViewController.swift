@@ -9,7 +9,7 @@ import UIKit
 
 
 @IBDesignable
-class CreatePostViewController: UIViewController, UITextFieldDelegate, Alertable {
+class CreatePostViewController: UIViewController, Alertable {
 
     private var viewModel: DefaultPostViewModel
     
@@ -41,7 +41,7 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, Alertable
         stackView.spacing = 8
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
-        let imageCollectionView = ImageCollectionViewController(parentViewController: self, viewModel: viewModel)
+        let imageCollectionView = ImageCollectionView(parentViewController: self, viewModel: viewModel)
         let descriptionTextField = TextFieldWithLabelStackView(title: "자세한 설명", placeholderText: "게시글 내용을 작성해 주세요.")
 
         let bottomButton = UIButton()
@@ -55,8 +55,6 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, Alertable
         scrollView.addSubview(stackView)
         stackView.addArrangedSubview(imageCollectionView)
         stackView.addArrangedSubview(descriptionTextField)
-        
-
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -81,3 +79,20 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, Alertable
         ])
     }
 }
+
+//extension CreatePostViewController: UITextFieldDelegate {
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        textField.layer.borderColor = UIColor.blue.cgColor
+//        textField.layer.borderWidth = 1.0
+//    }
+//
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        textField.layer.borderColor = UIColor.clear.cgColor
+//        textField.layer.borderWidth = 0.0
+//    }
+//
+//    // 키보드 외부 터치 시 키보드 숨기기
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        view.endEditing(true)
+//    }
+//}

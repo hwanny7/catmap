@@ -29,7 +29,7 @@ class TextFieldWithLabelStackView: UIStackView {
         textField.placeholder = placeholderText
         textField.layer.borderColor = UIColor.gray.cgColor
         textField.layer.cornerRadius = 10.0
-        textField.delegate = self
+//        textField.delegate = self
         return textField
     }()
     
@@ -57,19 +57,3 @@ class TextFieldWithLabelStackView: UIStackView {
     }
 }
 
-extension TextFieldWithLabelStackView: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor.blue.cgColor
-        textField.layer.borderWidth = 1.0
-    }
-
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor.clear.cgColor
-        textField.layer.borderWidth = 0.0
-    }
-
-    // 키보드 외부 터치 시 키보드 숨기기
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        endEditing(true)
-    }
-}
