@@ -30,10 +30,11 @@ class CreatePostViewController: UIViewController, Alertable {
     
     func setupView() {
         view.backgroundColor = .white
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+//        view.addGestureRecognizer(tapGesture)
         
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-
         
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -43,6 +44,7 @@ class CreatePostViewController: UIViewController, Alertable {
         
         let imageCollectionView = ImageCollectionView(parentViewController: self, viewModel: viewModel)
         let descriptionTextField = TextFieldWithLabelStackView(title: "자세한 설명", placeholderText: "게시글 내용을 작성해 주세요.")
+        let locationField = TextFieldWithLabelStackView(title: "발견 장소", placeholderText: "위치 추가")
 
         let bottomButton = UIButton()
         bottomButton.translatesAutoresizingMaskIntoConstraints = false
@@ -55,6 +57,7 @@ class CreatePostViewController: UIViewController, Alertable {
         scrollView.addSubview(stackView)
         stackView.addArrangedSubview(imageCollectionView)
         stackView.addArrangedSubview(descriptionTextField)
+        stackView.addArrangedSubview(locationField)
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -69,8 +72,8 @@ class CreatePostViewController: UIViewController, Alertable {
             stackView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
             
             imageCollectionView.heightAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 1/5),
-           
-            descriptionTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 2/5),
+            descriptionTextField.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 2/5),
+            locationField.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 1/5),
             
             bottomButton.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             bottomButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
@@ -78,21 +81,10 @@ class CreatePostViewController: UIViewController, Alertable {
             bottomButton.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 1/15),
         ])
     }
-}
-
-//extension CreatePostViewController: UITextFieldDelegate {
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        textField.layer.borderColor = UIColor.blue.cgColor
-//        textField.layer.borderWidth = 1.0
-//    }
-//
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        textField.layer.borderColor = UIColor.clear.cgColor
-//        textField.layer.borderWidth = 0.0
-//    }
-//
-//    // 키보드 외부 터치 시 키보드 숨기기
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    
+//    @objc func dismissKeyboard() {
 //        view.endEditing(true)
 //    }
-//}
+}
+
+

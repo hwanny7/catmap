@@ -6,24 +6,18 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-//    var window: UIWindow?
-//    let appDIContainer = AppDIContainer()
-//    var appCoordinator: AppCoordinator?
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-//        let navigationController = UINavigationController()
-//
-//        window = UIWindow(frame: UIScreen.main.bounds)
-//        window?.rootViewController = navigationController
-//
-//        appCoordinator = AppCoordinator(navigationController: navigationController, appDIContainer: appDIContainer)
-//        appCoordinator?.start()
-//
-//        window?.makeKeyAndVisible()
+        
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "종료"
 
         return true
     }

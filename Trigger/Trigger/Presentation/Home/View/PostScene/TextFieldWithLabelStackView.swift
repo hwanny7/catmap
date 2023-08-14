@@ -29,7 +29,8 @@ class TextFieldWithLabelStackView: UIStackView {
         textField.placeholder = placeholderText
         textField.layer.borderColor = UIColor.gray.cgColor
         textField.layer.cornerRadius = 10.0
-//        textField.delegate = self
+        textField.returnKeyType = .done
+        textField.delegate = self
         return textField
     }()
     
@@ -55,5 +56,17 @@ class TextFieldWithLabelStackView: UIStackView {
         addArrangedSubview(descriptionTextField)
         descriptionTextField.setContentHuggingPriority(UILayoutPriority(249), for: .vertical)
     }
+    
 }
 
+extension TextFieldWithLabelStackView: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.layer.borderColor = UIColor.blue.cgColor
+        textField.layer.borderWidth = 1.0
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.layer.borderColor = UIColor.clear.cgColor
+        textField.layer.borderWidth = 0.0
+    }
+}
