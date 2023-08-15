@@ -18,6 +18,15 @@ final class HomeCoordinator: Coordinator {
     
     var childCoordinators = [Coordinator]()
     
+    private lazy var animationFromBottomToTop: CATransition = {
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.type = .moveIn
+        transition.subtype = .fromTop
+        transition.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        return transition
+    }()
+    
     private let homeDIContainer: HomeDIContainer
     
     
@@ -27,21 +36,31 @@ final class HomeCoordinator: Coordinator {
     }
     
     func start() {
+        setupNavigationBar()
         let actions = MapViewModelActions(showCreatePost: showCreatePost)
         let mapVC = homeDIContainer.makeGoodgleMapViewController(actions: actions)
         navigationController.pushViewController(mapVC, animated: false)
     }
     
+    private func setupNavigationBar() {
+        let backButtonImage = UIImage(systemName: "xmark")
+        navigationController.navigationBar.backIndicatorImage = backButtonImage
+        self.navigationController.navigationBar.backIndicatorTransitionMaskImage = backButtonImage
+        self.navigationController.navigationBar.backItem?.title = "Custom"
+    }
+    
     private func showCreatePost() {
         let actions = PostViewModelActions(showMap: showMap)
         let postVC = homeDIContainer.makeCreatePostViewViewController(actions: actions)
+        navigationController.view.layer.add(animationFromBottomToTop, forKey: nil)
         postVC.hidesBottomBarWhenPushed = true
-        navigationController.pushViewController(postVC, animated: true)
+        navigationController.pushViewController(postVC, animated: false)
     }
     
     private func showMap() {
         let MapVC = homeDIContainer.createMapCoordinateViewController()
-        navigationController.pushViewController(MapVC, animated: true)
+        navigationController.view.layer.add(animationFromBottomToTop, forKey: nil)
+        navigationController.pushViewController(MapVC, animated: false)
     }
 }
 
