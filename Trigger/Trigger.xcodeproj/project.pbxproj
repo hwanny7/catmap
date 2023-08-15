@@ -36,6 +36,7 @@
 		AE18FD5F2A8A70C4007251A4 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18FD5E2A8A70C4007251A4 /* CustomButton.swift */; };
 		AE18FD612A8AFB7D007251A4 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18FD602A8AFB7D007251A4 /* Coordinate.swift */; };
 		AE18FD632A8B0EAC007251A4 /* MapCoordinateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18FD622A8B0EAC007251A4 /* MapCoordinateViewController.swift */; };
+		AE18FD652A8B0FEE007251A4 /* CoordinateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18FD642A8B0FEE007251A4 /* CoordinateViewModel.swift */; };
 		AE94CE252A8857E2009F195E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE94CE242A8857E2009F195E /* Post.swift */; };
 		AE94CE272A887B00009F195E /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE94CE262A887B00009F195E /* Observable.swift */; };
 		AE94CE2C2A899056009F195E /* TextFieldWithLabelStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE94CE2B2A899056009F195E /* TextFieldWithLabelStackView.swift */; };
@@ -73,6 +74,7 @@
 		AE18FD5E2A8A70C4007251A4 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		AE18FD602A8AFB7D007251A4 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		AE18FD622A8B0EAC007251A4 /* MapCoordinateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinateViewController.swift; sourceTree = "<group>"; };
+		AE18FD642A8B0FEE007251A4 /* CoordinateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateViewModel.swift; sourceTree = "<group>"; };
 		AE94CE242A8857E2009F195E /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		AE94CE262A887B00009F195E /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		AE94CE2B2A899056009F195E /* TextFieldWithLabelStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithLabelStackView.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			children = (
 				AE1581EE2A81A5DF00B79291 /* MapViewModel.swift */,
 				AE1581FA2A82836A00B79291 /* PostViewModel.swift */,
+				AE18FD642A8B0FEE007251A4 /* CoordinateViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				AE1581F52A82347E00B79291 /* PickerController.swift in Sources */,
 				AE1581DF2A80A80E00B79291 /* MapViewController.swift in Sources */,
 				AE1581DA2A7FDF8500B79291 /* StoryboardInstantiable.swift in Sources */,
+				AE18FD652A8B0FEE007251A4 /* CoordinateViewModel.swift in Sources */,
 				AE1581D82A7FB8D600B79291 /* HomeCoordinator.swift in Sources */,
 				AE1581E62A80C01D00B79291 /* ProfileDIContainer.swift in Sources */,
 				AE1581EF2A81A5DF00B79291 /* MapViewModel.swift in Sources */,

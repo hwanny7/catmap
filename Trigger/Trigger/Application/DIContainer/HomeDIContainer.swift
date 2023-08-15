@@ -38,8 +38,8 @@ extension HomeDIContainer {
         return CreatePostViewController(with: DefaultPostViewModel(actions: actions))
     }
     
-//    func createMapViewControllerForCoordinate() -> UIViewController {
-//        return MapCoordinateViewController(with: DefaultMapCoordinateViewModel())
-//    }
+    func createMapCoordinateViewController() -> UIViewController {
+        return MapCoordinateViewController(with: DefaultCoordinateViewModel())
+    }
     
 }
