@@ -10,23 +10,23 @@ import MapKit
 import CoreLocation
 
 class CustomMapViewController: UIViewController, Alertable {
-    private let locationManager = CLLocationManager()
-    private let map = MKMapView()
+    let locationManager = CLLocationManager()
+    let map = MKMapView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
-    private func setupViews() {
+    func setupViews() {
+        view.backgroundColor = .white
         map.translatesAutoresizingMaskIntoConstraints = false
         map.showsUserLocation = true
         view.addSubview(map)
         locationManager.delegate = self
+        requestAuthorizationForCurrentLocation()
     }
     
-    private func requestAuthorizationForCurrentLocation() {
+    func requestAuthorizationForCurrentLocation() {
         
         let authorizationStatus: CLAuthorizationStatus
         
@@ -56,7 +56,7 @@ class CustomMapViewController: UIViewController, Alertable {
         }
     }
     
-    private func stopUpdatingLocation() {
+    func stopUpdatingLocation() {
         locationManager.stopUpdatingLocation()
     }
 }
