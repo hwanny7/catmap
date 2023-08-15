@@ -60,8 +60,8 @@ final class DefaultPostViewModel {
     }
     
     private func didSetCoordinate(coordinate: Coordinate) {
-        self.coordinate = coordinate
         actions.dismissMap()
+        self.coordinate = coordinate
     }
 }
 

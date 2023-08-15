@@ -89,7 +89,6 @@ class CreatePostViewController: UIViewController, Alertable {
         IQKeyboardManager.shared.resignFirstResponder()
         viewModel.didTapLocationButton()
     }
-    
 }
 
 

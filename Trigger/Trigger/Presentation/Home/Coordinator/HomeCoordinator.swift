@@ -52,15 +52,15 @@ final class HomeCoordinator: Coordinator {
     private func showCreatePost() {
         let actions = PostViewModelActions(showMap: showMap, dismissMap: dismissMap)
         let postVC = homeDIContainer.makeCreatePostViewViewController(actions: actions)
-        navigationController.view.layer.add(animationFromBottomToTop, forKey: nil)
+//        navigationController.view.layer.add(animationFromBottomToTop, forKey: nil)
         postVC.hidesBottomBarWhenPushed = true
-        navigationController.pushViewController(postVC, animated: false)
+        navigationController.pushViewController(postVC, animated: true)
     }
     
     private func showMap(didSelect: @escaping (Coordinate) -> Void) {
         let MapVC = homeDIContainer.createMapCoordinateViewController(action: didSelect)
-        navigationController.view.layer.add(animationFromBottomToTop, forKey: nil)
-        navigationController.pushViewController(MapVC, animated: false)
+//        navigationController.view.layer.add(animationFromBottomToTop, forKey: nil)
+        navigationController.pushViewController(MapVC, animated: true)
     }
     
     private func dismissMap() {

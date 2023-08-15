@@ -31,13 +31,30 @@ class MapCoordinateViewController: UIViewController, Alertable {
     }
     
     private func setupViews() {
-        view.addSubview(map)
+        view.backgroundColor = .white
+        
+        
+        let textLabel = UILabel()
+        textLabel.numberOfLines = 0
+        textLabel.textAlignment = .left
+        textLabel.text = "어디서 만난 고양이인가요? \n이웃들과 공유해주세요. 🐈‍⬛"
+        textLabel.textColor = .black
+        textLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        textLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(textLabel)
+        
+        NSLayoutConstraint.activate([
+            textLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            textLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+        ])
+        
         map.translatesAutoresizingMaskIntoConstraints = false
         map.showsUserLocation = true
+        view.addSubview(map)
         locationManager.delegate = self
         
         NSLayoutConstraint.activate([
-            map.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            map.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 16),
             map.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             map.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             map.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -68,7 +85,7 @@ class MapCoordinateViewController: UIViewController, Alertable {
             squareButton.heightAnchor.constraint(equalTo: map.heightAnchor, multiplier: 1/14)
         ])
         
-        
+
         requestAuthorizationForCurrentLocation()
     }
     

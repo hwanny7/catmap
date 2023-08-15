@@ -21,15 +21,12 @@ protocol CoordinateViewModelOutput {
 typealias CoordinateViewModel = CoordinateViewModelInput & CoordinateViewModelOutput
 
 final class DefaultCoordinateViewModel {
-//    private let actions: MapViewModelActions
-    
+
     private let didSelectCoordinate: didSelectCoordinateAction
     
     init(
-//        actions: MapViewModelActions
         didSelectCoordinate: @escaping didSelectCoordinateAction
     ) {
-//        self.actions = actions
         self.didSelectCoordinate = didSelectCoordinate
     }
 }
