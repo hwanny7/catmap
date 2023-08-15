@@ -120,7 +120,7 @@ extension MapViewController: CLLocationManagerDelegate {
 
         // Set the region for the map to center on the user's location
         let region = MKCoordinateRegion(center: userLocation, latitudinalMeters: 500, longitudinalMeters: 500)
-        map.setRegion(region, animated: true)
+        map.setRegion(region, animated: false)
 
         isRegionSet = true
 
@@ -174,21 +174,6 @@ extension MapViewController: CLLocationManagerDelegate {
         }
     }
 }
-
-extension MapViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true)
-        
-        guard let _ = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
-        // edit image는 크기가 작아지니까 orginal이랑 크기 차이가 얼마나 나는지 확인하기
-    }
-}
-
 
 
 
