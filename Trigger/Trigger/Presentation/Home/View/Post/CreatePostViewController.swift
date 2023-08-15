@@ -28,6 +28,7 @@ class CreatePostViewController: UIViewController, Alertable {
         setupView()
     }
     
+    
     private func setupView() {
         view.backgroundColor = .white
         

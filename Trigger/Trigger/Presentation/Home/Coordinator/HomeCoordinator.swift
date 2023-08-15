@@ -45,8 +45,8 @@ final class HomeCoordinator: Coordinator {
     private func setupNavigationBar() {
         let backButtonImage = UIImage(systemName: "xmark")
         navigationController.navigationBar.backIndicatorImage = backButtonImage
-        self.navigationController.navigationBar.backIndicatorTransitionMaskImage = backButtonImage
-        self.navigationController.navigationBar.backItem?.title = "Custom"
+        navigationController.navigationBar.backIndicatorTransitionMaskImage = backButtonImage
+        navigationController.navigationBar.tintColor = .systemIndigo
     }
     
     private func showCreatePost() {
