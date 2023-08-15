@@ -44,7 +44,7 @@ class CreatePostViewController: UIViewController, Alertable {
         let imageCollectionView = ImageCollectionView(parentViewController: self, viewModel: viewModel)
         let descriptionTextField = TextFieldWithLabelStackView(title: "내용", placeholderText: "게시글 내용을 작성해 주세요.")
         let locationButton = TextFieldWithLabelStackView(title: "장소", placeholderText: "위치 추가")
-        locationButton.addImageViewOnRightSide(imageName: "chevron.right")
+        locationButton.addImageViewOnRightSide(imageName: "chevron.right", didTapButton: didTapCoordinateButton)
 
         let bottomButton = UIButton()
         bottomButton.translatesAutoresizingMaskIntoConstraints = false
@@ -81,6 +81,11 @@ class CreatePostViewController: UIViewController, Alertable {
             bottomButton.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 1/15),
         ])
     }
+    
+    private func didTapCoordinateButton() {
+//        viewModel.actions
+    }
+    
 }
 
 

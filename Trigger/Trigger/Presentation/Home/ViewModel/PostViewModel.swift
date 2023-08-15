@@ -15,7 +15,7 @@ protocol postViewModelInput {
 //    func didSubmit()
     func appendImage(_ image: UIImage)
     func removeImage(_ index: Int)
-    func setCoordinate(coordinate: Coordinate)
+    func didTapLocationButton()
 }
 
 protocol postViewModelOutput {
@@ -57,15 +57,16 @@ final class DefaultPostViewModel: PostViewModel {
         self.actions = actions
     }
     
+    
+    // MARK: - Coordinator actions
     func appendImage(_ image: UIImage) {
         imageList.append(image)
     }
     func removeImage(_ index: Int) {
         imageList.remove(at: index)
     }
-    
-    func setCoordinate(coordinate: Coordinate) {
-        
+    func didTapLocationButton() {
+        actions.showMap()
     }
     
 }
