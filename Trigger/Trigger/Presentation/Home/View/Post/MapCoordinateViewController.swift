@@ -123,6 +123,10 @@ class MapCoordinateViewController: UIViewController, Alertable {
         let centerCoordinate = map.centerCoordinate
         viewModel.didSelect(coordinate: centerCoordinate)
     }
+    
+    private func stopUpdatingLocation() {
+        locationManager.stopUpdatingLocation()
+    }
 }
 
 extension MapCoordinateViewController: CLLocationManagerDelegate {
@@ -136,7 +140,7 @@ extension MapCoordinateViewController: CLLocationManagerDelegate {
         // Set the region for the map to center on the user's location
         let region = MKCoordinateRegion(center: userLocation, latitudinalMeters: 500, longitudinalMeters: 500)
         map.setRegion(region, animated: false)
-        
+        stopUpdatingLocation()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
