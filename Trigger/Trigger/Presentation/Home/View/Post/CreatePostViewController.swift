@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import IQKeyboardManagerSwift
 
 @IBDesignable
 class CreatePostViewController: UIViewController, Alertable {
@@ -44,7 +44,9 @@ class CreatePostViewController: UIViewController, Alertable {
         let imageCollectionView = ImageCollectionView(parentViewController: self, viewModel: viewModel)
         let descriptionTextField = TextFieldWithLabelStackView(title: "내용", placeholderText: "게시글 내용을 작성해 주세요.")
         let locationButton = TextFieldWithLabelStackView(title: "장소", placeholderText: "위치 추가")
-        locationButton.addImageViewOnRightSide(imageName: "chevron.right", didTapButton: didTapCoordinateButton)
+        locationButton.addImageViewOnRightSide(imageName: "chevron.right")
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCoordinateButton))
+        locationButton.addGestureRecognizer(tap)
 
         let bottomButton = UIButton()
         bottomButton.translatesAutoresizingMaskIntoConstraints = false
@@ -82,8 +84,9 @@ class CreatePostViewController: UIViewController, Alertable {
         ])
     }
     
-    private func didTapCoordinateButton() {
-//        viewModel.actions
+    @objc private func didTapCoordinateButton() {
+        IQKeyboardManager.shared.resignFirstResponder()
+        viewModel.didTapLocationButton()
     }
     
 }

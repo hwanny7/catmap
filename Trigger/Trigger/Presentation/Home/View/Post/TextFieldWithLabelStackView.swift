@@ -11,7 +11,6 @@ final class TextFieldWithLabelStackView: UIStackView {
     
     private let title: String
     private let placeholderText: String
-    private var didTapTextField: (() -> Void)?
     
     lazy var descriptionLabel: UILabel = {
         let label = UILabel()
@@ -58,8 +57,8 @@ final class TextFieldWithLabelStackView: UIStackView {
         descriptionTextField.setContentHuggingPriority(UILayoutPriority(249), for: .vertical)
     }
     
-    func addImageViewOnRightSide(imageName: String, didTapButton: @escaping (() -> Void)) {
-        self.didTapTextField = didTapButton
+    func addImageViewOnRightSide(imageName: String) {
+        descriptionTextField.isEnabled = false
         let image = UIImageView(image: UIImage(systemName: imageName))
         image.translatesAutoresizingMaskIntoConstraints = false
         descriptionTextField.addSubview(image)
@@ -71,17 +70,12 @@ final class TextFieldWithLabelStackView: UIStackView {
     
 }
 
-// MARK: - UITextFieldDelegate
+// MARK: - <#Section Heading#>
 
 extension TextFieldWithLabelStackView: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if let didTapTextField = didTapTextField {
-            textField.resignFirstResponder()
-            didTapTextField()
-        } else {
-            textField.layer.borderColor = UIColor.blue.cgColor
-            textField.layer.borderWidth = 1.0
-        }
+        textField.layer.borderColor = UIColor.blue.cgColor
+        textField.layer.borderWidth = 1.0
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

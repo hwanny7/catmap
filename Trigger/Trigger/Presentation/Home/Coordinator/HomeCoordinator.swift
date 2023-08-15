@@ -43,7 +43,6 @@ final class HomeCoordinator: Coordinator {
         let MapVC = homeDIContainer.createMapCoordinateViewController()
         navigationController.pushViewController(MapVC, animated: true)
     }
-    
 }
 
 
