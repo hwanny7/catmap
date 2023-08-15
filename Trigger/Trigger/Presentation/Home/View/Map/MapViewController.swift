@@ -53,9 +53,9 @@ class MapViewController: BaseMapViewController {
             map.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             floatingButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            floatingButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -36),
-            floatingButton.widthAnchor.constraint(equalToConstant: 80),
-            floatingButton.heightAnchor.constraint(equalToConstant: 80),
+            floatingButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -24),
+            floatingButton.widthAnchor.constraint(equalToConstant: 60),
+            floatingButton.heightAnchor.constraint(equalToConstant: 60),
         ])
 
 //        addCustomPin()
