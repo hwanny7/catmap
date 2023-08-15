@@ -15,6 +15,7 @@ protocol postViewModelInput {
 //    func didSubmit()
     func appendImage(_ image: UIImage)
     func removeImage(_ index: Int)
+    func setCoordinate(coordinate: Coordinate)
 }
 
 protocol postViewModelOutput {
@@ -62,4 +63,9 @@ final class DefaultPostViewModel: PostViewModel {
     func removeImage(_ index: Int) {
         imageList.remove(at: index)
     }
+    
+    func setCoordinate(coordinate: Coordinate) {
+        
+    }
+    
 }

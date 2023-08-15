@@ -34,6 +34,8 @@
 		AE16AD272A7E8B9200CB6B81 /* HomeDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE16AD262A7E8B9200CB6B81 /* HomeDIContainer.swift */; };
 		AE18FD5D2A8A664A007251A4 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AE18FD5C2A8A664A007251A4 /* IQKeyboardManagerSwift */; };
 		AE18FD5F2A8A70C4007251A4 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18FD5E2A8A70C4007251A4 /* CustomButton.swift */; };
+		AE18FD612A8AFB7D007251A4 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18FD602A8AFB7D007251A4 /* Coordinate.swift */; };
+		AE18FD632A8B0EAC007251A4 /* MapCoordinateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18FD622A8B0EAC007251A4 /* MapCoordinateViewController.swift */; };
 		AE94CE252A8857E2009F195E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE94CE242A8857E2009F195E /* Post.swift */; };
 		AE94CE272A887B00009F195E /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE94CE262A887B00009F195E /* Observable.swift */; };
 		AE94CE2C2A899056009F195E /* TextFieldWithLabelStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE94CE2B2A899056009F195E /* TextFieldWithLabelStackView.swift */; };
@@ -69,6 +71,8 @@
 		AE16AD1F2A7E834600CB6B81 /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
 		AE16AD262A7E8B9200CB6B81 /* HomeDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDIContainer.swift; sourceTree = "<group>"; };
 		AE18FD5E2A8A70C4007251A4 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		AE18FD602A8AFB7D007251A4 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		AE18FD622A8B0EAC007251A4 /* MapCoordinateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinateViewController.swift; sourceTree = "<group>"; };
 		AE94CE242A8857E2009F195E /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		AE94CE262A887B00009F195E /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		AE94CE2B2A899056009F195E /* TextFieldWithLabelStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithLabelStackView.swift; sourceTree = "<group>"; };
@@ -101,8 +105,8 @@
 		AE1581DD2A80A7CA00B79291 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AE94CE292A88C314009F195E /* MapScene */,
-				AE94CE282A88C2F6009F195E /* PostScene */,
+				AE94CE292A88C314009F195E /* Map */,
+				AE94CE282A88C2F6009F195E /* Post */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -253,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				AE94CE242A8857E2009F195E /* Post.swift */,
+				AE18FD602A8AFB7D007251A4 /* Coordinate.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -271,18 +276,19 @@
 			path = Interfaces;
 			sourceTree = "<group>";
 		};
-		AE94CE282A88C2F6009F195E /* PostScene */ = {
+		AE94CE282A88C2F6009F195E /* Post */ = {
 			isa = PBXGroup;
 			children = (
 				AE1581F62A826A2700B79291 /* CreatePostViewController.swift */,
+				AE18FD622A8B0EAC007251A4 /* MapCoordinateViewController.swift */,
 				AE94CE2B2A899056009F195E /* TextFieldWithLabelStackView.swift */,
 				AED3ABEB2A85C70D00585683 /* ImageCollectionView.swift */,
 				AE18FD5E2A8A70C4007251A4 /* CustomButton.swift */,
 			);
-			path = PostScene;
+			path = Post;
 			sourceTree = "<group>";
 		};
-		AE94CE292A88C314009F195E /* MapScene */ = {
+		AE94CE292A88C314009F195E /* Map */ = {
 			isa = PBXGroup;
 			children = (
 				AE1581F22A81E11F00B79291 /* FloatingButton.swift */,
@@ -290,7 +296,7 @@
 				AE1581DE2A80A80E00B79291 /* MapViewController.swift */,
 				AE1581E02A80A82A00B79291 /* MapViewController.storyboard */,
 			);
-			path = MapScene;
+			path = Map;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -385,6 +391,7 @@
 				AE16AD1B2A7E804E00CB6B81 /* AppCoordinator.swift in Sources */,
 				AE1581F72A826A2700B79291 /* CreatePostViewController.swift in Sources */,
 				AE16AD192A7E7FA700CB6B81 /* AppAppearance.swift in Sources */,
+				AE18FD612A8AFB7D007251A4 /* Coordinate.swift in Sources */,
 				AE94CE252A8857E2009F195E /* Post.swift in Sources */,
 				AE1581E82A80C05B00B79291 /* ProfileCoordinator.swift in Sources */,
 				AE1581F32A81E11F00B79291 /* FloatingButton.swift in Sources */,
@@ -397,6 +404,7 @@
 				AE16AD272A7E8B9200CB6B81 /* HomeDIContainer.swift in Sources */,
 				AE16AD022A7E37AA00CB6B81 /* AppDelegate.swift in Sources */,
 				AE16AD042A7E37AA00CB6B81 /* SceneDelegate.swift in Sources */,
+				AE18FD632A8B0EAC007251A4 /* MapCoordinateViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

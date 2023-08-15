@@ -47,7 +47,7 @@ final class TextFieldWithLabelStackView: UIStackView {
     }
     
     
-    func setupViews() {
+    private func setupViews() {
         axis = .vertical
         alignment = .fill
         spacing = 8

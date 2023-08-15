@@ -28,7 +28,7 @@ class CreatePostViewController: UIViewController, Alertable {
         setupView()
     }
     
-    func setupView() {
+    private func setupView() {
         view.backgroundColor = .white
         
         let scrollView = UIScrollView()

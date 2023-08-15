@@ -30,7 +30,7 @@ final class ImageCollectionView: UICollectionView, UICollectionViewDelegate, UIC
     }
     
     
-    func setupViews() {
+    private func setupViews() {
         showsHorizontalScrollIndicator = false
         translatesAutoresizingMaskIntoConstraints = false
         register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
