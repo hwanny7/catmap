@@ -52,7 +52,59 @@ class MapCoordinateViewController: UIViewController, Alertable {
             markerImageView.centerYAnchor.constraint(equalTo: map.centerYAnchor)
         ])
         
+        let squareButton = UIButton(type: .system)
+        squareButton.translatesAutoresizingMaskIntoConstraints = false
+        squareButton.setTitle("선택 완료", for: .normal)
+        squareButton.backgroundColor = .blue
+        squareButton.layer.cornerRadius = 10.0
+        squareButton.tintColor = .white
+        map.addSubview(squareButton)
+        squareButton.addTarget(self, action: #selector(getCenterCoordinate), for: .touchUpInside)
+        
+        NSLayoutConstraint.activate([
+            squareButton.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            squareButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            squareButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            squareButton.heightAnchor.constraint(equalTo: map.heightAnchor, multiplier: 1/14)
+        ])
+        
+        
         requestAuthorizationForCurrentLocation()
+    }
+    
+    private func requestAuthorizationForCurrentLocation() {
+        
+        let authorizationStatus: CLAuthorizationStatus
+        
+        if #available(iOS 14, *) {
+            authorizationStatus = locationManager.authorizationStatus
+        } else {
+            authorizationStatus = CLLocationManager.authorizationStatus()
+        }
+
+        switch authorizationStatus {
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManager.startUpdatingLocation()
+        case .denied, .restricted:
+            let title = "Location Access Denied"
+            let message = "To use this app, please enable location access in Settings."
+            let action = UIAlertAction(title: "설정", style: .default) { _ in
+                if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+                }
+            }
+            showAlert(actions: [action], title: title, message: message)
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+            break
+        @unknown default:
+            break
+        }
+    }
+    
+    @objc private func getCenterCoordinate() {
+        let centerCoordinate = map.centerCoordinate
+        viewModel.didSelect(coordinate: centerCoordinate)
     }
 }
 
@@ -79,7 +131,7 @@ extension MapCoordinateViewController: CLLocationManagerDelegate {
         
          switch status {
          case .authorizedAlways, .authorizedWhenInUse:
-             locationManager.requestLocation()
+             locationManager.startUpdatingLocation()
          case .restricted, .notDetermined:
              print("GPS 권한 설정되지 않음")
          case .denied:
@@ -90,37 +142,6 @@ extension MapCoordinateViewController: CLLocationManagerDelegate {
      }
     
     // MARK: - Custom function
-    
-    
-    private func requestAuthorizationForCurrentLocation() {
-        
-        let authorizationStatus: CLAuthorizationStatus
-        
-        if #available(iOS 14, *) {
-            authorizationStatus = locationManager.authorizationStatus
-        } else {
-            authorizationStatus = CLLocationManager.authorizationStatus()
-        }
-
-        switch authorizationStatus {
-        case .authorizedAlways, .authorizedWhenInUse:
-            locationManager.requestLocation()
-        case .denied, .restricted:
-            let title = "Location Access Denied"
-            let message = "To use this app, please enable location access in Settings."
-            let action = UIAlertAction(title: "설정", style: .default) { _ in
-                if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
-                    UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
-                }
-            }
-            showAlert(actions: [action], title: title, message: message)
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-            break
-        @unknown default:
-            break
-        }
-    }
 }
 
 

@@ -8,11 +8,11 @@
 import UIKit
 
 struct PostViewModelActions {
-    let showMap: () -> Void
+    let showMap: (@escaping (Coordinate) -> Void) -> Void
+    let dismissMap: () -> Void
 }
 
 protocol postViewModelInput {
-//    func didSubmit()
     func appendImage(_ image: UIImage)
     func removeImage(_ index: Int)
     func didTapLocationButton()
@@ -31,7 +31,7 @@ protocol postViewModelOutput {
 typealias PostViewModel = postViewModelInput & postViewModelOutput
 
 
-final class DefaultPostViewModel: PostViewModel {
+final class DefaultPostViewModel {
     var title: String = ""
     var content: String = ""
     var isPublic: Bool = true
@@ -49,6 +49,8 @@ final class DefaultPostViewModel: PostViewModel {
         return numberOfPhotos != photoUploadLimit ? true : false
     }
     
+    private var coordinate: Coordinate?
+    
     private let actions: PostViewModelActions
     
     init(
@@ -57,8 +59,15 @@ final class DefaultPostViewModel: PostViewModel {
         self.actions = actions
     }
     
-    
-    // MARK: - Coordinator actions
+    private func didSetCoordinate(coordinate: Coordinate) {
+        self.coordinate = coordinate
+        actions.dismissMap()
+    }
+}
+
+// MARK: - Output
+
+extension DefaultPostViewModel: PostViewModel {
     func appendImage(_ image: UIImage) {
         imageList.append(image)
     }
@@ -66,7 +75,6 @@ final class DefaultPostViewModel: PostViewModel {
         imageList.remove(at: index)
     }
     func didTapLocationButton() {
-        actions.showMap()
+        actions.showMap(didSetCoordinate(coordinate:))
     }
-    
 }

@@ -128,7 +128,7 @@ extension MapViewController: CLLocationManagerDelegate {
         
          switch status {
          case .authorizedAlways, .authorizedWhenInUse:
-             locationManager.requestLocation()
+             locationManager.startUpdatingLocation()
          case .restricted, .notDetermined:
              print("GPS 권한 설정되지 않음")
          case .denied:
@@ -137,6 +137,10 @@ extension MapViewController: CLLocationManagerDelegate {
              print("GPS: Default")
          }
      }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error requesting location: \(error.localizedDescription)")
+    }
     
     private func requestAuthorizationForCurrentLocation() {
         
@@ -150,7 +154,7 @@ extension MapViewController: CLLocationManagerDelegate {
 
         switch authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
-            locationManager.requestLocation()
+            locationManager.startUpdatingLocation()
         case .denied, .restricted:
             let title = "Location Access Denied"
             let message = "To use this app, please enable location access in Settings."
