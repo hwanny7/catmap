@@ -15,11 +15,6 @@ class MapCoordinateViewController: UIViewController, Alertable {
     
     private var viewModel: DefaultCoordinateViewModel
     private let map = MKMapView()
-    let coordinate = CLLocationCoordinate2D(
-        latitude: 30.8025,
-        longitude: 26.8206
-    )
-
     
     init(with viewModel: DefaultCoordinateViewModel) {
         self.viewModel = viewModel
@@ -39,6 +34,7 @@ class MapCoordinateViewController: UIViewController, Alertable {
         view.addSubview(map)
         map.translatesAutoresizingMaskIntoConstraints = false
         map.showsUserLocation = true
+        locationManager.delegate = self
         
         NSLayoutConstraint.activate([
             map.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -55,15 +51,35 @@ class MapCoordinateViewController: UIViewController, Alertable {
             markerImageView.centerXAnchor.constraint(equalTo: map.centerXAnchor),
             markerImageView.centerYAnchor.constraint(equalTo: map.centerYAnchor)
         ])
+        
+        requestAuthorizationForCurrentLocation()
     }
 }
 
 extension MapCoordinateViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+
+        // Get the user's current location from the locations array
+        let userLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+
+        // Set the region for the map to center on the user's location
+        let region = MKCoordinateRegion(center: userLocation, latitudinalMeters: 500, longitudinalMeters: 500)
+        map.setRegion(region, animated: false)
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error requesting location: \(error.localizedDescription)")
+    }
+    
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
          switch status {
          case .authorizedAlways, .authorizedWhenInUse:
-             locationManager.startUpdatingLocation()
+             locationManager.requestLocation()
          case .restricted, .notDetermined:
              print("GPS 권한 설정되지 않음")
          case .denied:
@@ -72,6 +88,9 @@ extension MapCoordinateViewController: CLLocationManagerDelegate {
              print("GPS: Default")
          }
      }
+    
+    // MARK: - Custom function
+    
     
     private func requestAuthorizationForCurrentLocation() {
         
@@ -85,7 +104,7 @@ extension MapCoordinateViewController: CLLocationManagerDelegate {
 
         switch authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
-            locationManager.startUpdatingLocation()
+            locationManager.requestLocation()
         case .denied, .restricted:
             let title = "Location Access Denied"
             let message = "To use this app, please enable location access in Settings."
@@ -103,3 +122,7 @@ extension MapCoordinateViewController: CLLocationManagerDelegate {
         }
     }
 }
+
+
+
+

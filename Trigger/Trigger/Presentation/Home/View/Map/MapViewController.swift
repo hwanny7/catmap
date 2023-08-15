@@ -113,7 +113,7 @@ extension MapViewController: MKMapViewDelegate {
 extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard !isRegionSet, let location = locations.last else { return }
+        guard let location = locations.last else { return }
 
         // Get the user's current location from the locations array
         let userLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
@@ -122,19 +122,13 @@ extension MapViewController: CLLocationManagerDelegate {
         let region = MKCoordinateRegion(center: userLocation, latitudinalMeters: 500, longitudinalMeters: 500)
         map.setRegion(region, animated: false)
 
-        isRegionSet = true
-
-        // You can also add a custom annotation (e.g., a marker) for the user's location on the map if needed
-        // let annotation = MKPointAnnotation()
-        // annotation.coordinate = userLocation
-        // mapView.addAnnotation(annotation)
     }
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
          switch status {
          case .authorizedAlways, .authorizedWhenInUse:
-             locationManager.startUpdatingLocation()
+             locationManager.requestLocation()
          case .restricted, .notDetermined:
              print("GPS 권한 설정되지 않음")
          case .denied:
@@ -156,7 +150,7 @@ extension MapViewController: CLLocationManagerDelegate {
 
         switch authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
-            locationManager.startUpdatingLocation()
+            locationManager.requestLocation()
         case .denied, .restricted:
             let title = "Location Access Denied"
             let message = "To use this app, please enable location access in Settings."
