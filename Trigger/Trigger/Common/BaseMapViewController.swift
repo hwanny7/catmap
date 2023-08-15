@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class CustomMapViewController: UIViewController, Alertable {
+class BaseMapViewController: UIViewController, Alertable {
     let locationManager = CLLocationManager()
     let map = MKMapView()
     
@@ -61,7 +61,7 @@ class CustomMapViewController: UIViewController, Alertable {
     }
 }
 
-extension CustomMapViewController: CLLocationManagerDelegate {
+extension BaseMapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }

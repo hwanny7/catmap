@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapCoordinateViewController: CustomMapViewController {
+class MapCoordinateViewController: BaseMapViewController {
 
     private var viewModel: DefaultCoordinateViewModel
     

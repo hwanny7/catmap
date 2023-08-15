@@ -17,26 +17,46 @@ import CoreLocation
 //}
 // 백엔드에 바운더리 보내는 방법
 
-class MapViewController: UIViewController, StoryboardInstantiable, Alertable {
+class MapViewController: BaseMapViewController {
     
-    @IBOutlet weak var map: MKMapView!
+    let floatingButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 30
+        button.backgroundColor = .systemIndigo
+        
+        let image = UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 32, weight: .medium))
+        button.setImage(image, for: .normal)
+        button.tintColor = .white
+        button.setTitleColor(.white, for: .normal)
+        
+        return button
+    }()
     
-    private let locationManager = CLLocationManager()
-    private var viewModel: DefaultMapViewModel!
+    private var viewModel: DefaultMapViewModel
     
-    private var isRegionSet = false
-    
-    let coordinate = CLLocationCoordinate2D(latitude: 40.728, longitude: -74)
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(floatingButton)
+        setupViews()
+    }
+    
+    override func setupViews() {
+        super.setupViews()
         floatingButton.addTarget(self, action: #selector(didTapFloatingButton), for: .touchUpInside)
+        view.addSubview(floatingButton)
         
-        map.delegate = self
-        map.showsUserLocation = true
-        locationManager.delegate = self
-        requestAuthorizationForCurrentLocation()
+        NSLayoutConstraint.activate([
+            map.topAnchor.constraint(equalTo: view.topAnchor),
+            map.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            map.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            map.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            floatingButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            floatingButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -36),
+            floatingButton.widthAnchor.constraint(equalToConstant: 80),
+            floatingButton.heightAnchor.constraint(equalToConstant: 80),
+        ])
 
 //        addCustomPin()
 //        사용자 위치 확인했을 때 Pin 가져와서 수행하기
@@ -44,35 +64,27 @@ class MapViewController: UIViewController, StoryboardInstantiable, Alertable {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let frameWidth = view.frame.width
-        let frameHeight = view.frame.height
-        let tabBarHeight = tabBarController!.tabBar.frame.height
-        floatingButton.frame = CGRect(x: frameWidth - 80, y: frameHeight - tabBarHeight - 80, width: 60, height: 60)
-        // margin 20
     }
     
     
-    static func create(
-        with viewModel: DefaultMapViewModel
-//        posterImagesRepository: PosterImagesRepository?
-    ) -> MapViewController {
-        let view = MapViewController.instantiateViewController()
-        view.viewModel = viewModel
-//        view.posterImagesRepository = posterImagesRepository
-        return view
+    init(with viewModel: DefaultMapViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 
-    private func addCustomPin() {
-        let pin = MKPointAnnotation()
-        pin.coordinate = coordinate
-        pin.title = "Bug"
-        pin.subtitle = "Go and catch them all"
-        map.addAnnotation(pin)
-    }
+//    private func addCustomPin() {
+//        let pin = MKPointAnnotation()
+//        pin.coordinate = coordinate
+//        pin.title = "Bug"
+//        pin.subtitle = "Go and catch them all"
+//        map.addAnnotation(pin)
+//    }
     
-    private func setRegion() {
-        
-    }
     
 // MARK: - Tab Floating Button
     
@@ -107,72 +119,6 @@ extension MapViewController: MKMapViewDelegate {
     
     // mapView func은 addCustomPin을 커스텀해서 이쁜 View로 보여준다.
 }
-
-// MARK: - Delegate CLLocationManager
-
-extension MapViewController: CLLocationManagerDelegate {
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-
-        // Get the user's current location from the locations array
-        let userLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-
-        // Set the region for the map to center on the user's location
-        let region = MKCoordinateRegion(center: userLocation, latitudinalMeters: 500, longitudinalMeters: 500)
-        map.setRegion(region, animated: false)
-
-    }
-
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        
-         switch status {
-         case .authorizedAlways, .authorizedWhenInUse:
-             locationManager.startUpdatingLocation()
-         case .restricted, .notDetermined:
-             print("GPS 권한 설정되지 않음")
-         case .denied:
-             print("GPS 권한 요청 거부됨")
-         default:
-             print("GPS: Default")
-         }
-     }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Error requesting location: \(error.localizedDescription)")
-    }
-    
-    private func requestAuthorizationForCurrentLocation() {
-        
-        let authorizationStatus: CLAuthorizationStatus
-        
-        if #available(iOS 14, *) {
-            authorizationStatus = locationManager.authorizationStatus
-        } else {
-            authorizationStatus = CLLocationManager.authorizationStatus()
-        }
-
-        switch authorizationStatus {
-        case .authorizedAlways, .authorizedWhenInUse:
-            locationManager.startUpdatingLocation()
-        case .denied, .restricted:
-            let title = "Location Access Denied"
-            let message = "To use this app, please enable location access in Settings."
-            let action = UIAlertAction(title: "설정", style: .default) { _ in
-                if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
-                    UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
-                }
-            }
-            showAlert(actions: [action], title: title, message: message)
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-            break
-        @unknown default:
-            break
-        }
-    }
-}
-
 
 
 
