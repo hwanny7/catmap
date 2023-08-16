@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MyPageViewController: UITableViewController {
+final class MyPageViewController: UITableViewController {
 
     private let viewModel: MyPageViewModel
 

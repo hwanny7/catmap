@@ -17,7 +17,7 @@ import CoreLocation
 //}
 // 백엔드에 바운더리 보내는 방법
 
-class MapViewController: BaseMapViewController {
+final class MapViewController: BaseMapViewController {
     
     let floatingButton: UIButton = {
         let button = UIButton()

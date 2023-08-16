@@ -9,7 +9,7 @@ import UIKit
 import IQKeyboardManagerSwift
 
 @IBDesignable
-class CreatePostViewController: UIViewController, Alertable {
+final class CreatePostViewController: UIViewController, Alertable {
 
     private var viewModel: PostViewModel
     

@@ -31,10 +31,24 @@ extension ProfileDIContainer {
 
 extension ProfileDIContainer {
     func makeMyPageViewController() -> MyPageViewController {
-        return MyPageViewController(with: DefaultMyPageViewModel())
+        return MyPageViewController(with: makeMyPageViewModel())
     }
     
     func makeLoginViewController() -> LoginViewController {
-        return LoginViewController(with: DefaultLoginViewModel())
+        return LoginViewController(with: makeLoginViewModel())
     }
+}
+
+// MARK: - Make ViewModel
+
+extension ProfileDIContainer {
+    
+    func makeMyPageViewModel() -> MyPageViewModel {
+        DefaultMyPageViewModel()
+    }
+    
+    func makeLoginViewModel() -> LoginViewModel {
+        DefaultLoginViewModel()
+    }
+    
 }

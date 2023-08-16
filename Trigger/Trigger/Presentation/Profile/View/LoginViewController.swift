@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import AuthenticationServices
 
-class LoginViewController: UITableViewController {
+final class LoginViewController: UITableViewController {
 
     private let viewModel: LoginViewModel
 
@@ -18,18 +19,33 @@ class LoginViewController: UITableViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
     }
     
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func setupViews() {
+        view.backgroundColor = .white
+        let appleLoginButton = ASAuthorizationAppleIDButton()
+        appleLoginButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(appleLoginButton)
+        NSLayoutConstraint.activate([
+            appleLoginButton.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            appleLoginButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            appleLoginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            appleLoginButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
     }
     
-    func setupViews() {
-        view.backgroundColor = .black
+    @objc func didTapAppleLoginButton() {
+        let provider = ASAuthorizationAppleIDProvider()
+        let request = provider.createRequest()
+        request.requestedScopes = [.fullName, .email]
     }
     
     // MARK: - Table view data source
