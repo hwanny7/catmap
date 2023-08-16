@@ -25,7 +25,7 @@ final class ProfileCoordinator: Coordinator {
     }
     
     func start() {
-        let profileVC = profileDIContainer.makeMyPageViewController()
-        navigationController.pushViewController(profileVC, animated: false)
+        let LoginVC = profileDIContainer.makeLoginViewController()
+        navigationController.pushViewController(LoginVC, animated: false)
     }
 }

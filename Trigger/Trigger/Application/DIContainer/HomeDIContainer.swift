@@ -31,15 +31,33 @@ extension HomeDIContainer {
 
 extension HomeDIContainer {
     func makeGoodgleMapViewController(actions: MapViewModelActions) -> MapViewController {
-        return MapViewController(with: DefaultMapViewModel(actions: actions))
+        MapViewController(with: makeMapViewController(actions: actions))
     }
     
     func makeCreatePostViewViewController(actions: PostViewModelActions) -> CreatePostViewController {
-        return CreatePostViewController(with: DefaultPostViewModel(actions: actions))
+        CreatePostViewController(with: makeCreatePostViewController(actions: actions))
     }
     
     func createMapCoordinateViewController(action: @escaping didSelectCoordinateAction) -> MapCoordinateViewController {
-        return MapCoordinateViewController(with: DefaultCoordinateViewModel(didSelectCoordinate: action))
+        MapCoordinateViewController(with: makeMapCoordinateViewController(action: action))
     }
+    
+}
+
+// MARK: - Make ViewModel
+
+extension HomeDIContainer {
+    func makeMapViewController(actions: MapViewModelActions) -> MapViewModel {
+        DefaultMapViewModel(actions: actions)
+    }
+    
+    func makeCreatePostViewController(actions: PostViewModelActions) -> PostViewModel {
+        DefaultPostViewModel(actions: actions)
+    }
+    
+    func makeMapCoordinateViewController(action: @escaping didSelectCoordinateAction) -> CoordinateViewModel {
+        DefaultCoordinateViewModel(didSelectCoordinate: action)
+    }
+
     
 }

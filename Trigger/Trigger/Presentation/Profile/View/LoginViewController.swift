@@ -29,7 +29,7 @@ class LoginViewController: UITableViewController {
     }
     
     func setupViews() {
-        view.backgroundColor = .red
+        view.backgroundColor = .black
     }
     
     // MARK: - Table view data source

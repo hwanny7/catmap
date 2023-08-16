@@ -34,7 +34,7 @@ class MapViewController: BaseMapViewController {
         return button
     }()
     
-    private var viewModel: DefaultMapViewModel
+    private var viewModel: MapViewModel
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +68,7 @@ class MapViewController: BaseMapViewController {
     }
     
     
-    init(with viewModel: DefaultMapViewModel) {
+    init(with viewModel: MapViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
