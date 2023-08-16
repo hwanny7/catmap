@@ -7,22 +7,25 @@
 
 import UIKit
 
-class MyPageListViewController: UITableViewController, StoryboardInstantiable {
+class MyPageViewController: UITableViewController, StoryboardInstantiable {
 
+    private let viewModel: DefaultMyPageViewModel
+
+    init(
+        with viewModel: DefaultMyPageViewModel
+    ) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    static func create(
-//        with viewModel: MoviesListViewModel,
-//        posterImagesRepository: PosterImagesRepository?
-    ) -> MyPageListViewController {
-        let view = MyPageListViewController.instantiateViewController()
-//        view.viewModel = viewModel
-//        view.posterImagesRepository = posterImagesRepository
-        return view
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

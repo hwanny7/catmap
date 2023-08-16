@@ -14,8 +14,7 @@
 		AE1581DF2A80A80E00B79291 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581DE2A80A80E00B79291 /* MapViewController.swift */; };
 		AE1581E62A80C01D00B79291 /* ProfileDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581E52A80C01D00B79291 /* ProfileDIContainer.swift */; };
 		AE1581E82A80C05B00B79291 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581E72A80C05B00B79291 /* ProfileCoordinator.swift */; };
-		AE1581EA2A80C0EA00B79291 /* MyPageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581E92A80C0EA00B79291 /* MyPageListViewController.swift */; };
-		AE1581EC2A80C15400B79291 /* MyPageListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE1581EB2A80C15400B79291 /* MyPageListViewController.storyboard */; };
+		AE1581EA2A80C0EA00B79291 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581E92A80C0EA00B79291 /* MyPageViewController.swift */; };
 		AE1581EF2A81A5DF00B79291 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581EE2A81A5DF00B79291 /* MapViewModel.swift */; };
 		AE1581F12A81CFA500B79291 /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581F02A81CFA500B79291 /* Alertable.swift */; };
 		AE1581F52A82347E00B79291 /* PickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1581F42A82347E00B79291 /* PickerController.swift */; };
@@ -36,6 +35,7 @@
 		AE18FD632A8B0EAC007251A4 /* MapCoordinateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18FD622A8B0EAC007251A4 /* MapCoordinateViewController.swift */; };
 		AE18FD652A8B0FEE007251A4 /* CoordinateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18FD642A8B0FEE007251A4 /* CoordinateViewModel.swift */; };
 		AE18FD6A2A8BB84B007251A4 /* BaseMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18FD692A8BB84B007251A4 /* BaseMapViewController.swift */; };
+		AE5EE7032A8CEDB70078A7CD /* DefaultMyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7022A8CEDB70078A7CD /* DefaultMyPageViewModel.swift */; };
 		AE94CE252A8857E2009F195E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE94CE242A8857E2009F195E /* Post.swift */; };
 		AE94CE272A887B00009F195E /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE94CE262A887B00009F195E /* Observable.swift */; };
 		AE94CE2C2A899056009F195E /* TextFieldWithLabelStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE94CE2B2A899056009F195E /* TextFieldWithLabelStackView.swift */; };
@@ -50,8 +50,7 @@
 		AE1581DE2A80A80E00B79291 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		AE1581E52A80C01D00B79291 /* ProfileDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDIContainer.swift; sourceTree = "<group>"; };
 		AE1581E72A80C05B00B79291 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
-		AE1581E92A80C0EA00B79291 /* MyPageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageListViewController.swift; sourceTree = "<group>"; };
-		AE1581EB2A80C15400B79291 /* MyPageListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPageListViewController.storyboard; sourceTree = "<group>"; };
+		AE1581E92A80C0EA00B79291 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		AE1581EE2A81A5DF00B79291 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		AE1581F02A81CFA500B79291 /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
 		AE1581F42A82347E00B79291 /* PickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerController.swift; sourceTree = "<group>"; };
@@ -73,6 +72,7 @@
 		AE18FD622A8B0EAC007251A4 /* MapCoordinateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinateViewController.swift; sourceTree = "<group>"; };
 		AE18FD642A8B0FEE007251A4 /* CoordinateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateViewModel.swift; sourceTree = "<group>"; };
 		AE18FD692A8BB84B007251A4 /* BaseMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMapViewController.swift; sourceTree = "<group>"; };
+		AE5EE7022A8CEDB70078A7CD /* DefaultMyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMyPageViewModel.swift; sourceTree = "<group>"; };
 		AE94CE242A8857E2009F195E /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		AE94CE262A887B00009F195E /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		AE94CE2B2A899056009F195E /* TextFieldWithLabelStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithLabelStackView.swift; sourceTree = "<group>"; };
@@ -117,6 +117,7 @@
 			children = (
 				AE1581E32A80BF5E00B79291 /* Coordinator */,
 				AE1581E42A80C00600B79291 /* View */,
+				AE5EE7012A8CED580078A7CD /* ViewModel */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -132,8 +133,7 @@
 		AE1581E42A80C00600B79291 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AE1581E92A80C0EA00B79291 /* MyPageListViewController.swift */,
-				AE1581EB2A80C15400B79291 /* MyPageListViewController.storyboard */,
+				AE1581E92A80C0EA00B79291 /* MyPageViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -243,6 +243,14 @@
 				AE1581D72A7FB8D600B79291 /* HomeCoordinator.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		AE5EE7012A8CED580078A7CD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AE5EE7022A8CEDB70078A7CD /* DefaultMyPageViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		AE94CE202A885765009F195E /* Domain */ = {
@@ -364,7 +372,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE16AD0E2A7E37AC00CB6B81 /* LaunchScreen.storyboard in Resources */,
-				AE1581EC2A80C15400B79291 /* MyPageListViewController.storyboard in Resources */,
 				AE16AD0B2A7E37AC00CB6B81 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,7 +386,7 @@
 				AE18FD5F2A8A70C4007251A4 /* CustomButton.swift in Sources */,
 				AE1581D42A7F837300B79291 /* Coordinator.swift in Sources */,
 				AE16AD202A7E834600CB6B81 /* DataTransferService.swift in Sources */,
-				AE1581EA2A80C0EA00B79291 /* MyPageListViewController.swift in Sources */,
+				AE1581EA2A80C0EA00B79291 /* MyPageViewController.swift in Sources */,
 				AE1581F52A82347E00B79291 /* PickerController.swift in Sources */,
 				AE1581DF2A80A80E00B79291 /* MapViewController.swift in Sources */,
 				AE1581DA2A7FDF8500B79291 /* StoryboardInstantiable.swift in Sources */,
@@ -393,6 +400,7 @@
 				AE18FD6A2A8BB84B007251A4 /* BaseMapViewController.swift in Sources */,
 				AE16AD192A7E7FA700CB6B81 /* AppAppearance.swift in Sources */,
 				AE18FD612A8AFB7D007251A4 /* Coordinate.swift in Sources */,
+				AE5EE7032A8CEDB70078A7CD /* DefaultMyPageViewModel.swift in Sources */,
 				AE94CE252A8857E2009F195E /* Post.swift in Sources */,
 				AE1581E82A80C05B00B79291 /* ProfileCoordinator.swift in Sources */,
 				AE16AD1D2A7E80EE00CB6B81 /* AppDIContainer.swift in Sources */,

@@ -56,7 +56,7 @@ final class TextFieldWithLabelStackView: UIStackView {
         textView.layer.borderWidth = 1
         textView.layer.cornerRadius = 10
         textView.delegate = self
-        textView.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        textView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         
         return textView
     }()
@@ -98,8 +98,8 @@ final class TextFieldWithLabelStackView: UIStackView {
             addArrangedSubview(descriptionTextView)
             descriptionTextView.addSubview(placeholderLabel)
             NSLayoutConstraint.activate([
-                placeholderLabel.topAnchor.constraint(equalTo: descriptionTextView.topAnchor, constant: 8),
-                placeholderLabel.leadingAnchor.constraint(equalTo: descriptionTextView.leadingAnchor, constant: 13),
+                placeholderLabel.topAnchor.constraint(equalTo: descriptionTextView.topAnchor, constant: 16),
+                placeholderLabel.leadingAnchor.constraint(equalTo: descriptionTextView.leadingAnchor, constant: 21),
             ])
             descriptionTextView.setContentHuggingPriority(UILayoutPriority(249), for: .vertical)
         }
@@ -116,5 +116,4 @@ extension TextFieldWithLabelStackView: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         isContentEmpty(textView)
     }
-    
 }

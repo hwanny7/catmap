@@ -31,6 +31,6 @@ extension ProfileDIContainer {
 
 extension ProfileDIContainer {
     func makeMyPageListViewController() -> UIViewController {
-        return MyPageListViewController.create()
+        return MyPageViewController(with: DefaultMyPageViewModel())
     }
 }
