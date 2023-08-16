@@ -18,6 +18,14 @@ final class TextFieldWithLabelStackView: UIStackView {
     private let placeholderText: String
     private let textType: TextType
     
+    lazy var placeholderLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = placeholderText
+        label.textColor = .lightGray
+        return label
+    }()
+    
     lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -46,6 +54,10 @@ final class TextFieldWithLabelStackView: UIStackView {
         textView.layer.borderColor = UIColor.gray.cgColor
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.layer.borderWidth = 1
+        textView.layer.cornerRadius = 10
+        textView.delegate = self
+        textView.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        
         return textView
     }()
     
@@ -84,21 +96,25 @@ final class TextFieldWithLabelStackView: UIStackView {
             descriptionTextField.setContentHuggingPriority(UILayoutPriority(249), for: .vertical)
         case .view:
             addArrangedSubview(descriptionTextView)
+            descriptionTextView.addSubview(placeholderLabel)
+            NSLayoutConstraint.activate([
+                placeholderLabel.topAnchor.constraint(equalTo: descriptionTextView.topAnchor, constant: 8),
+                placeholderLabel.leadingAnchor.constraint(equalTo: descriptionTextView.leadingAnchor, constant: 13),
+            ])
             descriptionTextView.setContentHuggingPriority(UILayoutPriority(249), for: .vertical)
         }
     }
+    
+    private func isContentEmpty(_ textView: UITextView) {
+        placeholderLabel.isHidden = !textView.text.isEmpty
+    }
 }
 
-// MARK: - <#Section Heading#>
-//
-//extension TextFieldWithLabelStackView: UITextFieldDelegate {
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        textField.layer.borderColor = UIColor.blue.cgColor
-//        textField.layer.borderWidth = 1.0
-//    }
-//
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        textField.layer.borderColor = UIColor.clear.cgColor
-//        textField.layer.borderWidth = 0.0
-//    }
-//}
+// MARK: - UITextView deleagte
+
+extension TextFieldWithLabelStackView: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        isContentEmpty(textView)
+    }
+    
+}
