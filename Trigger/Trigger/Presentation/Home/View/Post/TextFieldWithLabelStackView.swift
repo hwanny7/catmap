@@ -70,7 +70,9 @@ final class TextFieldWithLabelStackView: UIStackView {
         translatesAutoresizingMaskIntoConstraints = false
         
         addArrangedSubview(descriptionLabel)
-        if textType == .field {
+        
+        switch textType {
+        case .field:
             addArrangedSubview(descriptionTextField)
             let image = UIImageView(image: UIImage(systemName: "chevron.right"))
             image.translatesAutoresizingMaskIntoConstraints = false
@@ -80,7 +82,7 @@ final class TextFieldWithLabelStackView: UIStackView {
                 image.centerYAnchor.constraint(equalTo: descriptionTextField.centerYAnchor),
             ])
             descriptionTextField.setContentHuggingPriority(UILayoutPriority(249), for: .vertical)
-        } else {
+        case .view:
             addArrangedSubview(descriptionTextView)
             descriptionTextView.setContentHuggingPriority(UILayoutPriority(249), for: .vertical)
         }
