@@ -233,9 +233,12 @@ extension ImageCollectionView: UIImagePickerControllerDelegate & UINavigationCon
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
-        
-        guard let _ = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
-        // edit image는 크기가 작아지니까 orginal이랑 크기 차이가 얼마나 나는지 확인하기
+        print("사진찌금")
+        guard let image = info[.originalImage] as? UIImage else { return }
+        self.viewModel.appendImage(image)
+        DispatchQueue.main.async {
+            self.reloadData()
+        }
     }
 }
 

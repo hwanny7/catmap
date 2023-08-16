@@ -96,29 +96,29 @@ class MapViewController: BaseMapViewController {
 
 // MARK: - MKMapViewDelegate
 
-//extension MapViewController: MKMapViewDelegate {
-//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        guard !(annotation is MKUserLocation) else { return nil }
-//        // User의 위치 표시 마커는 변경하지 않는다. 원하면 변경하는 것도 가능할 듯?
-//
-//        var annotationView = map.dequeueReusableAnnotationView(withIdentifier: "custom")
-//        // tableView처럼 캐시를 사용해서 메모리를 효율적으로 사용한다.
-//
-//        if annotationView == nil {
-//            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "custom")
-//            annotationView?.canShowCallout = true
-////            annotationView?.rightCalloutAccessoryView => 더 자세한 페이지 보여주는 거인 듯
-//        } else {
-//            annotationView?.annotation = annotation
-//        }
-//        
-//        annotationView?.image = UIImage(systemName: "house")
-//
-//        return annotationView
-//    }
-//    
-//    // mapView func은 addCustomPin을 커스텀해서 이쁜 View로 보여준다.
-//}
+extension MapViewController {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard !(annotation is MKUserLocation) else { return nil }
+        // User의 위치 표시 마커는 변경하지 않는다. 원하면 변경하는 것도 가능할 듯?
+
+        var annotationView = map.dequeueReusableAnnotationView(withIdentifier: "custom")
+        // tableView처럼 캐시를 사용해서 메모리를 효율적으로 사용한다.
+
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "custom")
+            annotationView?.canShowCallout = true
+//            annotationView?.rightCalloutAccessoryView => 더 자세한 페이지 보여주는 거인 듯
+        } else {
+            annotationView?.annotation = annotation
+        }
+        
+        annotationView?.image = UIImage(systemName: "house")
+
+        return annotationView
+    }
+    
+    // mapView func은 addCustomPin을 커스텀해서 이쁜 View로 보여준다.
+}
 
 
 

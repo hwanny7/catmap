@@ -62,6 +62,7 @@ class BaseMapViewController: UIViewController, Alertable {
         switch authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
             centerMapOnUser()
+            // 이 부분 필요 없을 듯
         case .denied, .restricted:
             let title = "Location Access Denied"
             let message = "To use this app, please enable location access in Settings."
@@ -101,18 +102,13 @@ extension BaseMapViewController: MKMapViewDelegate {
 }
 
 extension BaseMapViewController: CLLocationManagerDelegate {
-    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
          switch status {
          case .authorizedAlways, .authorizedWhenInUse:
+             print("권한 설정 완료요@")
              centerMapOnUser()
-         case .restricted, .notDetermined:
-             print("GPS 권한 설정되지 않음")
-         case .denied:
-             print("GPS 권한 요청 거부됨")
          default:
-             print("GPS: Default")
+             print("권한 설정 X")
          }
      }
-    
 }
