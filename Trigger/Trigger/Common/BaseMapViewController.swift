@@ -12,6 +12,7 @@ import CoreLocation
 class BaseMapViewController: UIViewController, Alertable {
     let locationManager = CLLocationManager()
     let map = MKMapView()
+    private var isFirstLocationUpdate = true
     
     private let compassButton: UIButton = {
         let button = UIButton(type: .system)
@@ -60,8 +61,7 @@ class BaseMapViewController: UIViewController, Alertable {
 
         switch authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
-//            locationManager.startUpdatingLocation()
-            check()
+            centerMapOnUser()
         case .denied, .restricted:
             let title = "Location Access Denied"
             let message = "To use this app, please enable location access in Settings."
@@ -79,20 +79,12 @@ class BaseMapViewController: UIViewController, Alertable {
         }
     }
     
-    func stopUpdatingLocation() {
-        locationManager.stopUpdatingLocation()
-    }
-    
     @objc private func didTapCurrentLocationButton() {
-//        requestAuthorizationForCurrentLocation()
-//        check()
+        requestAuthorizationForCurrentLocation()
     }
     
-    func check() {
-        print(map.userLocation.location ?? "없어용")
-    }
-    
-    private func centerMapOnUser(location: CLLocation) {
+    private func centerMapOnUser() {
+        guard let location = map.userLocation.location else { return }
         let userLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let region = MKCoordinateRegion(center: userLocation, latitudinalMeters: 500, longitudinalMeters: 500)
         map.setRegion(region, animated: false)
@@ -101,35 +93,19 @@ class BaseMapViewController: UIViewController, Alertable {
 
 extension BaseMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-        if let location = userLocation.location {
-            // 최초의 사용자 위치 업데이트를 처리하는 코드를 여기에 작성합니다.
-            print("최초 사용자 위치: \(location.coordinate)")
-            
-            // 필요한 경우 해당 위치를 지도의 중앙으로 이동시키는 등의 처리를 할 수 있습니다.
-            let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
-            mapView.setRegion(region, animated: true)
+        if isFirstLocationUpdate {
+            centerMapOnUser()
+            isFirstLocationUpdate = false
         }
     }
 }
 
 extension BaseMapViewController: CLLocationManagerDelegate {
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-        centerMapOnUser(location: location)
-        stopUpdatingLocation()
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Error requesting location: \(error.localizedDescription)")
-    }
-    
-
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        
          switch status {
          case .authorizedAlways, .authorizedWhenInUse:
-             locationManager.startUpdatingLocation()
+             centerMapOnUser()
          case .restricted, .notDetermined:
              print("GPS 권한 설정되지 않음")
          case .denied:
