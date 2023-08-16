@@ -34,7 +34,6 @@ class BaseMapViewController: UIViewController, Alertable {
         map.showsUserLocation = true
         view.addSubview(map)
         locationManager.delegate = self
-        map.delegate = self
         
         compassButton.addTarget(self, action: #selector(didTapCurrentLocationButton), for: .touchUpInside)
         map.addSubview(compassButton)
@@ -61,17 +60,16 @@ class BaseMapViewController: UIViewController, Alertable {
 
         switch authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
-            centerMapOnUser()
-            // 이 부분 필요 없을 듯
+            print("첫번째!")
+            locationManager.startUpdatingLocation()
         case .denied, .restricted:
-            let title = "Location Access Denied"
-            let message = "To use this app, please enable location access in Settings."
-            let action = UIAlertAction(title: "설정", style: .default) { _ in
+            let message = "위치 서비스를 사용할 수 없습니다. 기기의 '설정 > 개인정보 보호'에서 위치 서비스를 켜주세요. (필수권한)"
+            let action = UIAlertAction(title: "설정으로 이동", style: .default) { _ in
                 if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
                     UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
                 }
             }
-            showAlert(actions: [action], title: title, message: message)
+            showAlert(actions: [action], message: message)
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
             break
@@ -84,29 +82,31 @@ class BaseMapViewController: UIViewController, Alertable {
         requestAuthorizationForCurrentLocation()
     }
     
-    private func centerMapOnUser() {
-        guard let location = map.userLocation.location else { return }
+    private func centerMapOnUser(location: CLLocation) {
         let userLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let region = MKCoordinateRegion(center: userLocation, latitudinalMeters: 500, longitudinalMeters: 500)
         map.setRegion(region, animated: false)
     }
 }
 
-extension BaseMapViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-        if isFirstLocationUpdate {
-            centerMapOnUser()
-            isFirstLocationUpdate = false
-        }
-    }
-}
 
 extension BaseMapViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        centerMapOnUser(location: location)
+        locationManager.stopUpdatingLocation()
+    }
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
          switch status {
          case .authorizedAlways, .authorizedWhenInUse:
-             print("권한 설정 완료요@")
-             centerMapOnUser()
+             print("사용자가 위치 설정에 동의했습니다.")
+             locationManager.startUpdatingLocation()
+         case .denied, .restricted:
+             print("사용자가 위치 설정에 동의하지 않았습니다.")
+         case .notDetermined:
+                 print("위치 설정 권한이 아직 결정되지 않았습니다.")
          default:
              print("권한 설정 X")
          }

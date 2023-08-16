@@ -43,6 +43,7 @@ class MapViewController: BaseMapViewController {
     
     override func setupViews() {
         super.setupViews()
+        map.delegate = self
         floatingButton.addTarget(self, action: #selector(didTapFloatingButton), for: .touchUpInside)
         view.addSubview(floatingButton)
         
@@ -96,7 +97,7 @@ class MapViewController: BaseMapViewController {
 
 // MARK: - MKMapViewDelegate
 
-extension MapViewController {
+extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard !(annotation is MKUserLocation) else { return nil }
         // User의 위치 표시 마커는 변경하지 않는다. 원하면 변경하는 것도 가능할 듯?

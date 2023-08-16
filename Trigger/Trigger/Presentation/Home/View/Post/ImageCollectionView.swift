@@ -92,6 +92,10 @@ final class ImageCollectionView: UICollectionView, UICollectionViewDelegate, UIC
               let indexPath = indexPath(for: cell) else { return }
         let index = indexPath.row
         viewModel.removeImage(index)
+        reloadDataInMainQueue()
+    }
+    
+    private func reloadDataInMainQueue() {
         DispatchQueue.main.async {
             self.reloadData()
         }
@@ -233,12 +237,9 @@ extension ImageCollectionView: UIImagePickerControllerDelegate & UINavigationCon
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
-        print("사진찌금")
         guard let image = info[.originalImage] as? UIImage else { return }
         self.viewModel.appendImage(image)
-        DispatchQueue.main.async {
-            self.reloadData()
-        }
+        reloadDataInMainQueue()
     }
 }
 
@@ -256,9 +257,7 @@ extension ImageCollectionView: PHPickerViewControllerDelegate {
                 itemProvider.itemProvider.loadObject(ofClass: UIImage.self) { (image, error) in
                     guard let image = image as? UIImage else { return}
                     self.viewModel.appendImage(image)
-                    DispatchQueue.main.async {
-                        self.reloadData()
-                    }
+                    self.reloadDataInMainQueue()
                 }
             } else {
                 print("load가 불가능합니다.")
