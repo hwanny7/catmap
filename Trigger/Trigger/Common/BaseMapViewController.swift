@@ -12,6 +12,7 @@ import CoreLocation
 class BaseMapViewController: UIViewController, Alertable {
     let locationManager = CLLocationManager()
     let map = MKMapView()
+    
     private let compassButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "location"), for: .normal)
@@ -32,6 +33,7 @@ class BaseMapViewController: UIViewController, Alertable {
         map.showsUserLocation = true
         view.addSubview(map)
         locationManager.delegate = self
+        map.delegate = self
         
         compassButton.addTarget(self, action: #selector(didTapCurrentLocationButton), for: .touchUpInside)
         map.addSubview(compassButton)
@@ -58,7 +60,8 @@ class BaseMapViewController: UIViewController, Alertable {
 
         switch authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
-            locationManager.startUpdatingLocation()
+//            locationManager.startUpdatingLocation()
+            check()
         case .denied, .restricted:
             let title = "Location Access Denied"
             let message = "To use this app, please enable location access in Settings."
@@ -81,13 +84,31 @@ class BaseMapViewController: UIViewController, Alertable {
     }
     
     @objc private func didTapCurrentLocationButton() {
-        requestAuthorizationForCurrentLocation()
+//        requestAuthorizationForCurrentLocation()
+//        check()
+    }
+    
+    func check() {
+        print(map.userLocation.location ?? "없어용")
     }
     
     private func centerMapOnUser(location: CLLocation) {
         let userLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let region = MKCoordinateRegion(center: userLocation, latitudinalMeters: 500, longitudinalMeters: 500)
         map.setRegion(region, animated: false)
+    }
+}
+
+extension BaseMapViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        if let location = userLocation.location {
+            // 최초의 사용자 위치 업데이트를 처리하는 코드를 여기에 작성합니다.
+            print("최초 사용자 위치: \(location.coordinate)")
+            
+            // 필요한 경우 해당 위치를 지도의 중앙으로 이동시키는 등의 처리를 할 수 있습니다.
+            let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
+            mapView.setRegion(region, animated: true)
+        }
     }
 }
 
