@@ -11,9 +11,9 @@ import IQKeyboardManagerSwift
 @IBDesignable
 class CreatePostViewController: UIViewController, Alertable {
 
-    private var viewModel: DefaultPostViewModel
+    private var viewModel: PostViewModel
     
-    init(with viewModel: DefaultPostViewModel) {
+    init(with viewModel: PostViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

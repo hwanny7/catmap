@@ -20,7 +20,7 @@ protocol CoordinateViewModelOutput {
 
 typealias CoordinateViewModel = CoordinateViewModelInput & CoordinateViewModelOutput
 
-final class DefaultCoordinateViewModel {
+final class DefaultCoordinateViewModel: CoordinateViewModel {
 
     private let didSelectCoordinate: didSelectCoordinateAction
     
@@ -31,7 +31,9 @@ final class DefaultCoordinateViewModel {
     }
 }
 
-extension DefaultCoordinateViewModel: CoordinateViewModel {
+// MARK: - Input methods
+
+extension DefaultCoordinateViewModel {
     func didSelect(coordinate: CLLocationCoordinate2D) {
         let coordinate = Coordinate(coordinate: coordinate)
         didSelectCoordinate(coordinate)

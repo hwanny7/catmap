@@ -22,8 +22,13 @@ protocol MapViewModelInput {
     func didTapFloatingButton()
 }
 
+protocol MapViewModelOutput {
+    
+}
 
-final class DefaultMapViewModel {
+typealias MapViewModel = MapViewModelInput & MapViewModelOutput
+
+final class DefaultMapViewModel: MapViewModel {
     private let actions: MapViewModelActions
     
     init(
@@ -32,7 +37,10 @@ final class DefaultMapViewModel {
         self.actions = actions
     }
 }
-extension DefaultMapViewModel: MapViewModelInput {
+
+// MARK: - Input view event methods
+
+extension DefaultMapViewModel {
     func didTapFloatingButton() {
         actions.showCreatePost()
     }

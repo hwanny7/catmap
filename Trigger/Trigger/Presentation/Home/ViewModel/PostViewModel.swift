@@ -22,16 +22,19 @@ protocol postViewModelOutput {
     var title: String { get }
     var content: String { get }
     var isPublic: Bool { get }
-    var imageList: [UIImage] { get }
+    var imageList: [UIImage] { get set }
+    var numberOfPhotos: Int { get }
     var maxPhotoUploadCount: Int { get }
     var canUploadImage: Bool { get }
+    var photoUploadLimit: Int { get }
+    
 }
 
 
 typealias PostViewModel = postViewModelInput & postViewModelOutput
 
 
-final class DefaultPostViewModel {
+final class DefaultPostViewModel: PostViewModel {
     var title: String = ""
     var content: String = ""
     var isPublic: Bool = true
@@ -67,7 +70,7 @@ final class DefaultPostViewModel {
 
 // MARK: - Output
 
-extension DefaultPostViewModel: PostViewModel {
+extension DefaultPostViewModel {
     func appendImage(_ image: UIImage) {
         imageList.append(image)
     }

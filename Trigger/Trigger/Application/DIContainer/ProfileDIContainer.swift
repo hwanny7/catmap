@@ -30,7 +30,11 @@ extension ProfileDIContainer {
 // MARK: - Make Controllers
 
 extension ProfileDIContainer {
-    func makeMyPageListViewController() -> UIViewController {
+    func makeMyPageViewController() -> UIViewController {
+        return MyPageViewController(with: DefaultMyPageViewModel())
+    }
+    
+    func makeLoginViewController() -> UIViewController {
         return MyPageViewController(with: DefaultMyPageViewModel())
     }
 }

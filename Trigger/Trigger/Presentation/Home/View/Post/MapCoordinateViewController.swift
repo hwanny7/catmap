@@ -11,9 +11,9 @@ import CoreLocation
 
 class MapCoordinateViewController: BaseMapViewController {
 
-    private var viewModel: DefaultCoordinateViewModel
+    private var viewModel: CoordinateViewModel
     
-    init(with viewModel: DefaultCoordinateViewModel) {
+    init(with viewModel: CoordinateViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

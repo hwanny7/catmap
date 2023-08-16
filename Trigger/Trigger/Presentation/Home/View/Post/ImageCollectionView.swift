@@ -12,10 +12,10 @@ final class ImageCollectionView: UICollectionView, UICollectionViewDelegate, UIC
     
     weak var parentViewController: (UIViewController & Alertable)?
     
-    private var viewModel: DefaultPostViewModel
+    private var viewModel: PostViewModel
     
 
-    init(parentViewController: (UIViewController & Alertable)?, viewModel: DefaultPostViewModel) {
+    init(parentViewController: (UIViewController & Alertable)?, viewModel: PostViewModel) {
         self.parentViewController = parentViewController
         self.viewModel = viewModel
         

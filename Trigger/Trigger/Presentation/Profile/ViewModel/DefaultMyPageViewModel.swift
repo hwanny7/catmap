@@ -24,6 +24,7 @@ typealias MyPageViewModel = MyPageViewModelInput & MyPageViewModelOutput
 
 
 final class DefaultMyPageViewModel: MyPageViewModel {
+
     
     init() {
         
