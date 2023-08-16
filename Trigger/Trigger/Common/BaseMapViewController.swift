@@ -12,6 +12,15 @@ import CoreLocation
 class BaseMapViewController: UIViewController, Alertable {
     let locationManager = CLLocationManager()
     let map = MKMapView()
+    private let compassButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "location"), for: .normal)
+        button.layer.cornerRadius = 10
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.tintColor = .systemIndigo
+        button.backgroundColor = .white
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +32,17 @@ class BaseMapViewController: UIViewController, Alertable {
         map.showsUserLocation = true
         view.addSubview(map)
         locationManager.delegate = self
+        
+        compassButton.addTarget(self, action: #selector(didTapCurrentLocationButton), for: .touchUpInside)
+        map.addSubview(compassButton)
+        
+        NSLayoutConstraint.activate([
+            compassButton.centerYAnchor.constraint(equalTo: map.centerYAnchor),
+            compassButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            compassButton.widthAnchor.constraint(equalTo: map.widthAnchor, multiplier: 0.15),
+            compassButton.heightAnchor.constraint(equalTo: compassButton.widthAnchor)
+        ])
+        
         requestAuthorizationForCurrentLocation()
     }
     
@@ -59,19 +79,23 @@ class BaseMapViewController: UIViewController, Alertable {
     func stopUpdatingLocation() {
         locationManager.stopUpdatingLocation()
     }
+    
+    @objc private func didTapCurrentLocationButton() {
+        requestAuthorizationForCurrentLocation()
+    }
+    
+    private func centerMapOnUser(location: CLLocation) {
+        let userLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        let region = MKCoordinateRegion(center: userLocation, latitudinalMeters: 500, longitudinalMeters: 500)
+        map.setRegion(region, animated: false)
+    }
 }
 
 extension BaseMapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
-
-        // Get the user's current location from the locations array
-        let userLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-
-        // Set the region for the map to center on the user's location
-        let region = MKCoordinateRegion(center: userLocation, latitudinalMeters: 500, longitudinalMeters: 500)
-        map.setRegion(region, animated: false)
+        centerMapOnUser(location: location)
         stopUpdatingLocation()
     }
     
