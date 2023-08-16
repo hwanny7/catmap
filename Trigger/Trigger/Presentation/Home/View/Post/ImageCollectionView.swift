@@ -1,5 +1,6 @@
 import UIKit
 import PhotosUI
+import AVFoundation
 
 final class ImageCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
@@ -207,6 +208,12 @@ extension ImageCollectionView: UICollectionViewDataSource {
 
 extension ImageCollectionView: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
+    private func startCamera() {
+        guard let viewController = parentViewController else { return }
+        imagePicker.sourceType = .camera
+        viewController.present(imagePicker, animated: true)
+    }
+    
     private func openLibrary() {
         guard let viewController = parentViewController else { return }
         
@@ -224,10 +231,22 @@ extension ImageCollectionView: UIImagePickerControllerDelegate & UINavigationCon
     }
     
     private func openCamera() {
-        guard let viewController = parentViewController else { return }
         
-        imagePicker.sourceType = .camera
-        viewController.present(imagePicker, animated: true)
+        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
+        
+        switch cameraAuthorizationStatus {
+        case .authorized:
+            startCamera()
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .video) { granted in
+                if granted { self.openCamera() }
+            }
+        case .denied, .restricted:
+            parentViewController?.goTo(setting: .map)
+        default:
+            break
+        }
+        
     }
     
     

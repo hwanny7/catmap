@@ -63,17 +63,11 @@ class BaseMapViewController: UIViewController, Alertable {
             print("첫번째!")
             locationManager.startUpdatingLocation()
         case .denied, .restricted:
-            let message = "위치 서비스를 사용할 수 없습니다. 기기의 '설정 > 개인정보 보호'에서 위치 서비스를 켜주세요. (필수권한)"
-            let action = UIAlertAction(title: "설정으로 이동", style: .default) { _ in
-                if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
-                    UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
-                }
-            }
-            showAlert(actions: [action], message: message)
+            goTo(setting: .map)
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
             break
-        @unknown default:
+        default:
             break
         }
     }
