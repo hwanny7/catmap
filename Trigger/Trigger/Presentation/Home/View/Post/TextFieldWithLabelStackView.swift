@@ -7,10 +7,16 @@
 
 import UIKit
 
+enum TextType {
+    case field
+    case view
+}
+
 final class TextFieldWithLabelStackView: UIStackView {
     
     private let title: String
     private let placeholderText: String
+    private let textType: TextType
     
     lazy var descriptionLabel: UILabel = {
         let label = UILabel()
@@ -30,14 +36,24 @@ final class TextFieldWithLabelStackView: UIStackView {
         textField.layer.borderColor = UIColor.gray.cgColor
         textField.layer.cornerRadius = 10.0
         textField.returnKeyType = .done
-        textField.delegate = self
+        textField.isEnabled = false
         return textField
     }()
     
+    lazy var descriptionTextView: UITextView = {
+        let textView = UITextView()
+        textView.font = UIFont.systemFont(ofSize: 16)
+        textView.layer.borderColor = UIColor.gray.cgColor
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.layer.borderWidth = 1
+        return textView
+    }()
     
-    init(title: String, placeholderText: String) {
+    
+    init(title: String, placeholderText: String, textType: TextType) {
         self.title = title
         self.placeholderText = placeholderText
+        self.textType = textType
         super.init(frame: .zero)
         setupViews()
     }
@@ -52,34 +68,35 @@ final class TextFieldWithLabelStackView: UIStackView {
         alignment = .fill
         spacing = 8
         translatesAutoresizingMaskIntoConstraints = false
+        
         addArrangedSubview(descriptionLabel)
-        addArrangedSubview(descriptionTextField)
-        descriptionTextField.setContentHuggingPriority(UILayoutPriority(249), for: .vertical)
+        if textType == .field {
+            addArrangedSubview(descriptionTextField)
+            let image = UIImageView(image: UIImage(systemName: "chevron.right"))
+            image.translatesAutoresizingMaskIntoConstraints = false
+            descriptionTextField.addSubview(image)
+            NSLayoutConstraint.activate([
+                image.trailingAnchor.constraint(equalTo: descriptionTextField.trailingAnchor, constant: -8),
+                image.centerYAnchor.constraint(equalTo: descriptionTextField.centerYAnchor),
+            ])
+            descriptionTextField.setContentHuggingPriority(UILayoutPriority(249), for: .vertical)
+        } else {
+            addArrangedSubview(descriptionTextView)
+            descriptionTextView.setContentHuggingPriority(UILayoutPriority(249), for: .vertical)
+        }
     }
-    
-    func addImageViewOnRightSide(imageName: String) {
-        descriptionTextField.isEnabled = false
-        let image = UIImageView(image: UIImage(systemName: imageName))
-        image.translatesAutoresizingMaskIntoConstraints = false
-        descriptionTextField.addSubview(image)
-        NSLayoutConstraint.activate([
-            image.trailingAnchor.constraint(equalTo: descriptionTextField.trailingAnchor, constant: -8),
-            image.centerYAnchor.constraint(equalTo: descriptionTextField.centerYAnchor),
-        ])
-    }
-    
 }
 
 // MARK: - <#Section Heading#>
-
-extension TextFieldWithLabelStackView: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor.blue.cgColor
-        textField.layer.borderWidth = 1.0
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor.clear.cgColor
-        textField.layer.borderWidth = 0.0
-    }
-}
+//
+//extension TextFieldWithLabelStackView: UITextFieldDelegate {
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        textField.layer.borderColor = UIColor.blue.cgColor
+//        textField.layer.borderWidth = 1.0
+//    }
+//
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        textField.layer.borderColor = UIColor.clear.cgColor
+//        textField.layer.borderWidth = 0.0
+//    }
+//}

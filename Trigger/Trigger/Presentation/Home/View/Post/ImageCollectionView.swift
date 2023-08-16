@@ -239,10 +239,10 @@ extension ImageCollectionView: UIImagePickerControllerDelegate & UINavigationCon
             startCamera()
         case .notDetermined:
             AVCaptureDevice.requestAccess(for: .video) { granted in
-                if granted { self.openCamera() }
+                if granted { self.startCamera() }
             }
         case .denied, .restricted:
-            parentViewController?.goTo(setting: .map)
+            parentViewController?.goTo(setting: .camera)
         default:
             break
         }

@@ -43,9 +43,8 @@ class CreatePostViewController: UIViewController, Alertable {
     
         
         let imageCollectionView = ImageCollectionView(parentViewController: self, viewModel: viewModel)
-        let descriptionTextField = TextFieldWithLabelStackView(title: "내용", placeholderText: "게시글 내용을 작성해 주세요.")
-        let locationButton = TextFieldWithLabelStackView(title: "장소", placeholderText: "위치 추가")
-        locationButton.addImageViewOnRightSide(imageName: "chevron.right")
+        let descriptionTextField = TextFieldWithLabelStackView(title: "내용", placeholderText: "게시글 내용을 작성해 주세요.", textType: .view)
+        let locationButton = TextFieldWithLabelStackView(title: "장소", placeholderText: "위치 추가", textType: .field)
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCoordinateButton))
         locationButton.addGestureRecognizer(tap)
 
