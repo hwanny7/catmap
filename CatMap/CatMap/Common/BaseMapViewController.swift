@@ -13,6 +13,7 @@ class BaseMapViewController: UIViewController, Alertable {
     let locationManager = CLLocationManager()
     let map = MKMapView()
     private var isFirstLocationUpdate = true
+    private var locationArray = ["바보", "멍청이"]
     
     private let compassButton: UIButton = {
         let button = UIButton(type: .system)
@@ -24,11 +25,20 @@ class BaseMapViewController: UIViewController, Alertable {
         return button
     }()
     
-    private let locationSearchBar: UISearchBar = {
+    private lazy var locationSearchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
-        searchBar.showsCancelButton = true
+        searchBar.delegate = self
         return searchBar
+    }()
+    
+    private lazy var locationTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false 
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        return tableView
     }()
     
     
@@ -46,6 +56,7 @@ class BaseMapViewController: UIViewController, Alertable {
         compassButton.addTarget(self, action: #selector(didTapCurrentLocationButton), for: .touchUpInside)
         map.addSubview(compassButton)
         map.addSubview(locationSearchBar)
+        map.addSubview(locationTableView)
         
         NSLayoutConstraint.activate([
             compassButton.centerYAnchor.constraint(equalTo: map.centerYAnchor),
@@ -56,6 +67,11 @@ class BaseMapViewController: UIViewController, Alertable {
             locationSearchBar.topAnchor.constraint(equalTo: map.topAnchor),
             locationSearchBar.leadingAnchor.constraint(equalTo: map.leadingAnchor),
             locationSearchBar.trailingAnchor.constraint(equalTo: map.trailingAnchor),
+            
+            locationTableView.topAnchor.constraint(equalTo: locationSearchBar.bottomAnchor),
+            locationTableView.leadingAnchor.constraint(equalTo: map.leadingAnchor),
+            locationTableView.trailingAnchor.constraint(equalTo: map.trailingAnchor),
+            locationTableView.bottomAnchor.constraint(equalTo: map.bottomAnchor, constant: -30)
         ])
         
         requestAuthorizationForCurrentLocation()
@@ -125,8 +141,26 @@ extension BaseMapViewController: CLLocationManagerDelegate {
 }
 
 
-extension BaseMapViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        
+extension BaseMapViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print(searchText)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // 검색 버튼을 눌렀을 때 검색을 수행하도록 구현합니다.
+
+    }
+}
+
+extension BaseMapViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return locationArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = locationArray[indexPath.row]
+        print(cell)
+        return cell
     }
 }
