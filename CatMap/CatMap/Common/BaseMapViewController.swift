@@ -24,6 +24,13 @@ class BaseMapViewController: UIViewController, Alertable {
         return button
     }()
     
+    private lazy var locationSearchController: UISearchController = {
+        let searchController = UISearchController()
+        searchController.searchResultsUpdater = self
+        return searchController
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -109,7 +116,11 @@ extension BaseMapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Location update failed with error: \(error.localizedDescription)")
     }
-    
-    // search
+}
 
+
+extension BaseMapViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
 }
