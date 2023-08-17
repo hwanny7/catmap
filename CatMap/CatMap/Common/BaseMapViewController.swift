@@ -24,10 +24,11 @@ class BaseMapViewController: UIViewController, Alertable {
         return button
     }()
     
-    private lazy var locationSearchController: UISearchController = {
-        let searchController = UISearchController()
-        searchController.searchResultsUpdater = self
-        return searchController
+    private let locationSearchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.showsCancelButton = true
+        return searchBar
     }()
     
     
@@ -44,12 +45,17 @@ class BaseMapViewController: UIViewController, Alertable {
         
         compassButton.addTarget(self, action: #selector(didTapCurrentLocationButton), for: .touchUpInside)
         map.addSubview(compassButton)
+        map.addSubview(locationSearchBar)
         
         NSLayoutConstraint.activate([
             compassButton.centerYAnchor.constraint(equalTo: map.centerYAnchor),
             compassButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
             compassButton.widthAnchor.constraint(equalTo: map.widthAnchor, multiplier: 0.15),
-            compassButton.heightAnchor.constraint(equalTo: compassButton.widthAnchor)
+            compassButton.heightAnchor.constraint(equalTo: compassButton.widthAnchor),
+            
+            locationSearchBar.topAnchor.constraint(equalTo: map.topAnchor),
+            locationSearchBar.leadingAnchor.constraint(equalTo: map.leadingAnchor),
+            locationSearchBar.trailingAnchor.constraint(equalTo: map.trailingAnchor),
         ])
         
         requestAuthorizationForCurrentLocation()
