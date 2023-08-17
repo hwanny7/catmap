@@ -13,7 +13,15 @@ class BaseMapViewController: UIViewController, Alertable {
     let locationManager = CLLocationManager()
     let map = MKMapView()
     private var isFirstLocationUpdate = true
-    private var locationArray = ["바보", "멍청이"]
+    private var locationArray = [String]()
+    private let CountryArray = [
+        "미국", "캐나다", "영국", "프랑스", "독일",
+        "일본", "중국", "한국", "브라질", "호주",
+        "이탈리아", "스페인", "인도", "러시아", "멕시코",
+        "인도네시아", "터키", "사우디아라비아", "남아프리카", "아르헨티나",
+        "콜롬비아", "페루", "이란", "칠레", "태국",
+        "베네수엘라", "말레이시아", "이스라엘", "이집트", "그리스"
+    ]
     
     private let compassButton: UIButton = {
         let button = UIButton(type: .system)
@@ -28,6 +36,7 @@ class BaseMapViewController: UIViewController, Alertable {
     private lazy var locationSearchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.showsCancelButton = true
         searchBar.delegate = self
         return searchBar
     }()
@@ -71,7 +80,7 @@ class BaseMapViewController: UIViewController, Alertable {
             locationTableView.topAnchor.constraint(equalTo: locationSearchBar.bottomAnchor),
             locationTableView.leadingAnchor.constraint(equalTo: map.leadingAnchor),
             locationTableView.trailingAnchor.constraint(equalTo: map.trailingAnchor),
-            locationTableView.bottomAnchor.constraint(equalTo: map.bottomAnchor, constant: -30)
+            locationTableView.bottomAnchor.constraint(equalTo: map.bottomAnchor),
         ])
         
         requestAuthorizationForCurrentLocation()
@@ -112,6 +121,7 @@ class BaseMapViewController: UIViewController, Alertable {
     }
 }
 
+// MARK: - CLLocation manager delegate
 
 extension BaseMapViewController: CLLocationManagerDelegate {
     
@@ -140,17 +150,21 @@ extension BaseMapViewController: CLLocationManagerDelegate {
     }
 }
 
+// MARK: - Search bar delegate
 
 extension BaseMapViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+        if !searchText.isEmpty { return }
+        locationArray = CountryArray.filter { $0.hasPrefix(searchText) }
+        locationTableView.reloadData()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        // 검색 버튼을 눌렀을 때 검색을 수행하도록 구현합니다.
-
+        
     }
 }
+
+// MARK: - Table View delegate
 
 extension BaseMapViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -160,7 +174,6 @@ extension BaseMapViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = locationArray[indexPath.row]
-        print(cell)
         return cell
     }
 }
