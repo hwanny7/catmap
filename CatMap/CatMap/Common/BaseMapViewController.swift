@@ -109,5 +109,7 @@ extension BaseMapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Location update failed with error: \(error.localizedDescription)")
     }
+    
+    // search
 
 }
