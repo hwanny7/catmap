@@ -10,7 +10,6 @@ import MapKit
 import CoreLocation
 
 class BaseMapViewController: UIViewController, Alertable {
-    var constraint: NSLayoutConstraint!
     let locationManager = CLLocationManager()
     let map = MKMapView()
     private var isFirstLocationUpdate = true
@@ -36,22 +35,13 @@ class BaseMapViewController: UIViewController, Alertable {
     
     private lazy var locationSearchController: UISearchController = {
         let searchController = UISearchController()
-        searchController.searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "어딨냐냥?"
-        searchController.searchBar.delegate = self
-//        navigationItem.searchController = searchController
+        searchController.obscuresBackgroundDuringPresentation = false
         return searchController
     }()
     
     
-//    lazy var locationSearchBar: UISearchBar = {
-//        let searchBar = UISearchBar()
-//        searchBar.translatesAutoresizingMaskIntoConstraints = false
-//        searchBar.showsCancelButton = true
-//        searchBar.delegate = self
-//        return searchBar
-//    }()
     
     private lazy var locationTableView: UITableView = {
         let tableView = UITableView()
@@ -73,32 +63,19 @@ class BaseMapViewController: UIViewController, Alertable {
         map.translatesAutoresizingMaskIntoConstraints = false
         map.showsUserLocation = true
         view.addSubview(map)
+        navigationItem.searchController = locationSearchController
         locationManager.delegate = self
         
         compassButton.addTarget(self, action: #selector(didTapCurrentLocationButton), for: .touchUpInside)
         map.addSubview(compassButton)
-        map.addSubview(locationSearchController.searchBar)
-//        map.addSubview(locationTableView)
         
-        constraint = locationSearchController.searchBar.topAnchor.constraint(equalTo: map.topAnchor)
         
         NSLayoutConstraint.activate([
-            constraint,
             compassButton.centerYAnchor.constraint(equalTo: map.centerYAnchor),
             compassButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
             compassButton.widthAnchor.constraint(equalTo: map.widthAnchor, multiplier: 0.15),
             compassButton.heightAnchor.constraint(equalTo: compassButton.widthAnchor),
             
-            
-            
-            locationSearchController.searchBar.topAnchor.constraint(equalTo: map.topAnchor),
-            locationSearchController.searchBar.leadingAnchor.constraint(equalTo: map.leadingAnchor),
-            locationSearchController.searchBar.trailingAnchor.constraint(equalTo: map.trailingAnchor),
-//
-//            locationTableView.topAnchor.constraint(equalTo: locationSearchBar.bottomAnchor),
-//            locationTableView.leadingAnchor.constraint(equalTo: map.leadingAnchor),
-//            locationTableView.trailingAnchor.constraint(equalTo: map.trailingAnchor),
-//            locationTableView.bottomAnchor.constraint(equalTo: map.bottomAnchor),
         ])
         
         requestAuthorizationForCurrentLocation()
@@ -170,23 +147,6 @@ extension BaseMapViewController: CLLocationManagerDelegate {
 
 // MARK: - Search bar delegate
 
-//extension BaseMapViewController: UISearchBarDelegate {
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        if searchText.isEmpty {
-//            locationTableView.isHidden = true
-//        } else {
-//            locationArray = CountryArray.filter { $0.hasPrefix(searchText) }
-//            locationTableView.reloadData()
-//            locationTableView.isHidden = false
-//        }
-//    }
-//
-//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-//        locationArray.removeAll()
-//        locationTableView.reloadData()
-//        locationTableView.isHidden = true
-//    }
-//}
 
 // MARK: - Table View delegate
 
@@ -204,20 +164,8 @@ extension BaseMapViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension BaseMapViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        
+        print("변경요!")
     }
 
     
-}
-
-extension BaseMapViewController: UISearchBarDelegate {
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-
-        print("Search bar touched!")
-        constraint.isActive = false
-        navigationItem.searchController = locationSearchController
-        
-
-        return true
-    }
 }

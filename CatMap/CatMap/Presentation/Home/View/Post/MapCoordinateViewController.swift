@@ -40,7 +40,7 @@ final class MapCoordinateViewController: BaseMapViewController {
         view.addSubview(textLabel)
         
         NSLayoutConstraint.activate([
-            textLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            textLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             textLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
         ])
         
