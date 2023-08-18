@@ -29,7 +29,9 @@ final class MapCoordinateViewController: BaseMapViewController {
     
     override func setupViews() {
         super.setupViews()
+    }
     
+    override func addSubViews() {
         let textLabel = UILabel()
         textLabel.numberOfLines = 0
         textLabel.textAlignment = .left
