@@ -86,11 +86,7 @@ final class MapViewController: BaseMapViewController {
     
     override func setupSearchBarConstraint() {
         super.setupSearchBarConstraint()
-        NSLayoutConstraint.activate([
-            locationSearchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            locationSearchBar.leadingAnchor.constraint(equalTo: map.leadingAnchor),
-            locationSearchBar.trailingAnchor.constraint(equalTo: map.trailingAnchor),
-        ])
+        navigationItem.titleView = locationSearchBar
     }
     
     
