@@ -33,7 +33,7 @@ class BaseMapViewController: UIViewController, Alertable {
         return button
     }()
     
-    private lazy var locationSearchBar: UISearchBar = {
+    lazy var locationSearchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.showsCancelButton = true
@@ -167,6 +167,7 @@ extension BaseMapViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         locationArray.removeAll()
         locationTableView.reloadData()
+        locationTableView.isHidden = true
     }
 }
 
