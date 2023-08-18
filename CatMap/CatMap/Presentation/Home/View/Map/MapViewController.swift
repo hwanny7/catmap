@@ -41,11 +41,27 @@ final class MapViewController: BaseMapViewController {
         setupViews()
     }
     
+
+    init(with viewModel: MapViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func setupViews() {
         super.setupViews()
         map.delegate = self
+
+//        addCustomPin()
+//        사용자 위치 확인했을 때 Pin 가져와서 수행하기
+    }
+    
+    override func addSubViews() {
         floatingButton.addTarget(self, action: #selector(didTapFloatingButton), for: .touchUpInside)
-        view.addSubview(floatingButton)
+        map.addSubview(floatingButton)
         
         NSLayoutConstraint.activate([
             map.topAnchor.constraint(equalTo: view.topAnchor),
@@ -58,25 +74,7 @@ final class MapViewController: BaseMapViewController {
             floatingButton.widthAnchor.constraint(equalToConstant: 60),
             floatingButton.heightAnchor.constraint(equalToConstant: 60),
         ])
-
-//        addCustomPin()
-//        사용자 위치 확인했을 때 Pin 가져와서 수행하기
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    }
-    
-    
-    init(with viewModel: MapViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
 
 //    private func addCustomPin() {
 //        let pin = MKPointAnnotation()
@@ -85,6 +83,15 @@ final class MapViewController: BaseMapViewController {
 //        pin.subtitle = "Go and catch them all"
 //        map.addAnnotation(pin)
 //    }
+    
+    override func setupSearchBarConstraint() {
+        super.setupSearchBarConstraint()
+        NSLayoutConstraint.activate([
+            locationSearchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            locationSearchBar.leadingAnchor.constraint(equalTo: map.leadingAnchor),
+            locationSearchBar.trailingAnchor.constraint(equalTo: map.trailingAnchor),
+        ])
+    }
     
     
 // MARK: - Tab Floating Button

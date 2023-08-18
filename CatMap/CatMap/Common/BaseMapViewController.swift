@@ -67,7 +67,6 @@ class BaseMapViewController: UIViewController, Alertable {
         map.addSubview(compassButton)
         
         NSLayoutConstraint.activate([
-            
             compassButton.centerYAnchor.constraint(equalTo: map.centerYAnchor),
             compassButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
             compassButton.widthAnchor.constraint(equalTo: map.widthAnchor, multiplier: 0.15),
@@ -95,11 +94,6 @@ class BaseMapViewController: UIViewController, Alertable {
     
     func setupSearchBarConstraint() {
         map.addSubview(locationSearchBar)
-        NSLayoutConstraint.activate([
-            locationSearchBar.topAnchor.constraint(equalTo: map.topAnchor),
-            locationSearchBar.leadingAnchor.constraint(equalTo: map.leadingAnchor),
-            locationSearchBar.trailingAnchor.constraint(equalTo: map.trailingAnchor),
-        ])
     }
     
     func requestAuthorizationForCurrentLocation() {

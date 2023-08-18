@@ -18,6 +18,17 @@ final class MapCoordinateViewController: BaseMapViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
+    private var textLabel: UILabel = {
+        let Label = UILabel()
+        Label.numberOfLines = 0
+        Label.textAlignment = .left
+        Label.text = "어디서 만난 고양이인가요? \n이웃들과 공유해주세요. 🐈‍⬛"
+        Label.textColor = .black
+        Label.font = UIFont.boldSystemFont(ofSize: 24)
+        Label.translatesAutoresizingMaskIntoConstraints = false
+        return Label
+    }()
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -27,18 +38,13 @@ final class MapCoordinateViewController: BaseMapViewController {
         setupViews()
     }
     
+    
     override func setupViews() {
         super.setupViews()
     }
     
     override func addSubViews() {
-        let textLabel = UILabel()
-        textLabel.numberOfLines = 0
-        textLabel.textAlignment = .left
-        textLabel.text = "어디서 만난 고양이인가요? \n이웃들과 공유해주세요. 🐈‍⬛"
-        textLabel.textColor = .black
-        textLabel.font = UIFont.boldSystemFont(ofSize: 24)
-        textLabel.translatesAutoresizingMaskIntoConstraints = false
+
         view.addSubview(textLabel)
         
         NSLayoutConstraint.activate([
@@ -78,11 +84,34 @@ final class MapCoordinateViewController: BaseMapViewController {
             squareButton.heightAnchor.constraint(equalTo: map.heightAnchor, multiplier: 1/14)
         ])
     }
+    
+    override func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        textLabel.isHidden = false
+        super.searchBarCancelButtonClicked(searchBar)
+    }
+    
+    override func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        textLabel.isHidden = true
+        textLabel.heightAnchor.constraint(equalToConstant: 0).isActive = true
+        return super.searchBarShouldBeginEditing(searchBar)
+    }
+    
+    
+    override func setupSearchBarConstraint() {
+        super.setupSearchBarConstraint()
+        NSLayoutConstraint.activate([
+            locationSearchBar.topAnchor.constraint(equalTo: map.safeAreaLayoutGuide.topAnchor),
+            locationSearchBar.leadingAnchor.constraint(equalTo: map.leadingAnchor),
+            locationSearchBar.trailingAnchor.constraint(equalTo: map.trailingAnchor),
+        ])
+    }
+    
   
     @objc private func getCenterCoordinate() {
         let centerCoordinate = map.centerCoordinate
         viewModel.didSelect(coordinate: centerCoordinate)
     }
+    
 }
 
 
