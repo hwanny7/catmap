@@ -47,6 +47,7 @@ class BaseMapViewController: UIViewController, Alertable {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.isHidden = true
         return tableView
     }()
     
@@ -154,13 +155,18 @@ extension BaseMapViewController: CLLocationManagerDelegate {
 
 extension BaseMapViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if !searchText.isEmpty { return }
-        locationArray = CountryArray.filter { $0.hasPrefix(searchText) }
-        locationTableView.reloadData()
+        if searchText.isEmpty {
+            locationTableView.isHidden = true
+        } else {
+            locationArray = CountryArray.filter { $0.hasPrefix(searchText) }
+            locationTableView.reloadData()
+            locationTableView.isHidden = false
+        }
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        locationArray.removeAll()
+        locationTableView.reloadData()
     }
 }
 
