@@ -44,7 +44,6 @@ final class MapViewController: BaseMapViewController {
     override func setupViews() {
         super.setupViews()
         map.delegate = self
-        navigationItem.titleView = locationSearchBar
         floatingButton.addTarget(self, action: #selector(didTapFloatingButton), for: .touchUpInside)
         view.addSubview(floatingButton)
         
