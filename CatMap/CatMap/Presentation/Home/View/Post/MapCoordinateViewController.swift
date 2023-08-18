@@ -85,16 +85,16 @@ final class MapCoordinateViewController: BaseMapViewController {
         ])
     }
     
-    override func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        textLabel.isHidden = false
-        super.searchBarCancelButtonClicked(searchBar)
-    }
-    
-    override func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        textLabel.isHidden = true
-        textLabel.heightAnchor.constraint(equalToConstant: 0).isActive = true
-        return super.searchBarShouldBeginEditing(searchBar)
-    }
+//    override func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+//        textLabel.isHidden = false
+//        super.searchBarCancelButtonClicked(searchBar)
+//    }
+//    
+//    override func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+//        textLabel.isHidden = true
+//        textLabel.heightAnchor.constraint(equalToConstant: 0).isActive = true
+//        return super.searchBarShouldBeginEditing(searchBar)
+//    }
     
     
     override func setupSearchBarConstraint() {

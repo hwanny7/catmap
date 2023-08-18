@@ -12,7 +12,7 @@ import CoreLocation
 class BaseMapViewController: UIViewController, Alertable {
     let locationManager = CLLocationManager()
     let map = MKMapView()
-    private var isFirstLocationUpdate = true
+    
     private var locationArray = [String]()
     private let CountryArray = [
         "미국", "캐나다", "영국", "프랑스", "독일",
@@ -83,12 +83,12 @@ class BaseMapViewController: UIViewController, Alertable {
     }
     
     func addLocationTableView() {
-        map.addSubview(locationTableView)
+        view.addSubview(locationTableView)
         NSLayoutConstraint.activate([
-            locationTableView.topAnchor.constraint(equalTo: map.topAnchor),
-            locationTableView.leadingAnchor.constraint(equalTo: map.leadingAnchor),
-            locationTableView.trailingAnchor.constraint(equalTo: map.trailingAnchor),
-            locationTableView.bottomAnchor.constraint(equalTo: map.bottomAnchor),
+            locationTableView.topAnchor.constraint(equalTo: view.topAnchor),
+            locationTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            locationTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            locationTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
     
