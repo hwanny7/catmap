@@ -40,6 +40,7 @@
 		AE25E3722A9100E800B131FA /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3712A9100E800B131FA /* Cancellable.swift */; };
 		AE25E3742A91059F00B131FA /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3732A91059F00B131FA /* Endpoint.swift */; };
 		AE25E3762A91085E00B131FA /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3752A91085E00B131FA /* NetworkConfig.swift */; };
+		AE25E3782A9109AA00B131FA /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3772A9109AA00B131FA /* NetworkService.swift */; };
 		AE5EE7032A8CEDB70078A7CD /* DefaultMyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7022A8CEDB70078A7CD /* DefaultMyPageViewModel.swift */; };
 		AE5EE7052A8CF4D90078A7CD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7042A8CF4D90078A7CD /* LoginViewController.swift */; };
 		AE5EE7082A8CF6B60078A7CD /* DefaultLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7072A8CF6B60078A7CD /* DefaultLoginViewModel.swift */; };
@@ -84,6 +85,7 @@
 		AE25E3712A9100E800B131FA /* Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
 		AE25E3732A91059F00B131FA /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		AE25E3752A91085E00B131FA /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
+		AE25E3772A9109AA00B131FA /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		AE5EE7022A8CEDB70078A7CD /* DefaultMyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMyPageViewModel.swift; sourceTree = "<group>"; };
 		AE5EE7042A8CF4D90078A7CD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AE5EE7072A8CF6B60078A7CD /* DefaultLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLoginViewModel.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				AE16AD1F2A7E834600CB6B81 /* DataTransferService.swift */,
+				AE25E3772A9109AA00B131FA /* NetworkService.swift */,
 				AE25E3732A91059F00B131FA /* Endpoint.swift */,
 				AE25E3752A91085E00B131FA /* NetworkConfig.swift */,
 			);
@@ -454,6 +457,7 @@
 				AE1581DC2A80670500B79291 /* TabCoordinator.swift in Sources */,
 				AE16AD272A7E8B9200CB6B81 /* HomeDIContainer.swift in Sources */,
 				AE16AD022A7E37AA00CB6B81 /* AppDelegate.swift in Sources */,
+				AE25E3782A9109AA00B131FA /* NetworkService.swift in Sources */,
 				AE25E3762A91085E00B131FA /* NetworkConfig.swift in Sources */,
 				AE16AD042A7E37AA00CB6B81 /* SceneDelegate.swift in Sources */,
 				AE18FD632A8B0EAC007251A4 /* MapCoordinateViewController.swift in Sources */,
