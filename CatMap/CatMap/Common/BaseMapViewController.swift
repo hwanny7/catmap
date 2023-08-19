@@ -12,17 +12,9 @@ import CoreLocation
 class BaseMapViewController: UIViewController, Alertable {
     let locationManager = CLLocationManager()
     let map = MKMapView()
-    
-    private var locationArray = [String]()
-    private let CountryArray = [
-        "미국", "캐나다", "영국", "프랑스", "독일",
-        "일본", "중국", "한국", "브라질", "호주",
-        "이탈리아", "스페인", "인도", "러시아", "멕시코",
-        "인도네시아", "터키", "사우디아라비아", "남아프리카", "아르헨티나",
-        "콜롬비아", "페루", "이란", "칠레", "태국",
-        "베네수엘라", "말레이시아", "이스라엘", "이집트", "그리스"
-    ]
-    
+
+    private var locationArray = [MKMapItem]()
+
     private let compassButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "location"), for: .normal)
@@ -167,8 +159,23 @@ extension BaseMapViewController: UISearchBarDelegate {
         if searchText.isEmpty {
             locationArray.removeAll()
         } else {
-            locationArray = CountryArray.filter { $0.hasPrefix(searchText) }
-            locationTableView.reloadData()
+            let searchRequest = MKLocalSearch.Request()
+            searchRequest.naturalLanguageQuery = searchText     
+            let localSearch = MKLocalSearch(request: searchRequest)
+            localSearch.start { response, error in
+                if let error = error {
+                    print("Error while searching: \(error.localizedDescription)")
+                    return
+                }
+                
+                guard let mapItems = response?.mapItems else { return }
+                print(mapItems)
+                print("=================")
+                self.locationArray = mapItems
+                self.locationTableView.reloadData()
+                
+            }
+            
         }
     }
     
@@ -199,7 +206,8 @@ extension BaseMapViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = locationArray[indexPath.row]
+        let location = locationArray[indexPath.row]
+        cell.textLabel?.text = location.name
         return cell
     }
 }
