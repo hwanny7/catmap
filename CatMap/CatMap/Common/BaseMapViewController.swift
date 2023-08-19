@@ -13,8 +13,15 @@ class BaseMapViewController: UIViewController, Alertable {
     let locationManager = CLLocationManager()
     let map = MKMapView()
 
-    private var locationArray = [MKMapItem]()
-
+    private var locationArray = [MKLocalSearchCompletion]()
+    
+    private lazy var locationCompleter: MKLocalSearchCompleter = {
+        let completer = MKLocalSearchCompleter()
+        completer.delegate = self
+        return completer
+    }()
+    
+    
     private let compassButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "location"), for: .normal)
@@ -159,23 +166,7 @@ extension BaseMapViewController: UISearchBarDelegate {
         if searchText.isEmpty {
             locationArray.removeAll()
         } else {
-            let searchRequest = MKLocalSearch.Request()
-            searchRequest.naturalLanguageQuery = searchText     
-            let localSearch = MKLocalSearch(request: searchRequest)
-            localSearch.start { response, error in
-                if let error = error {
-                    print("Error while searching: \(error.localizedDescription)")
-                    return
-                }
-                
-                guard let mapItems = response?.mapItems else { return }
-                print(mapItems)
-                print("=================")
-                self.locationArray = mapItems
-                self.locationTableView.reloadData()
-                
-            }
-            
+            locationCompleter.queryFragment = searchText
         }
     }
     
@@ -207,7 +198,17 @@ extension BaseMapViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let location = locationArray[indexPath.row]
-        cell.textLabel?.text = location.name
+        cell.textLabel?.text = location.title
         return cell
+    }
+}
+
+extension BaseMapViewController: MKLocalSearchCompleterDelegate {
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        locationArray = completer.results
+    }
+    
+    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
+        print("자동완성 검색에 실패했습니다:", error.localizedDescription)
     }
 }
