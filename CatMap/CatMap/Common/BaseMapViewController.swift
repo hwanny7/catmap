@@ -165,6 +165,7 @@ extension BaseMapViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             locationArray.removeAll()
+            locationTableView.reloadData()
         } else {
             locationCompleter.queryFragment = searchText
         }
@@ -198,14 +199,39 @@ extension BaseMapViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let location = locationArray[indexPath.row]
-        cell.textLabel?.text = location.title
+        cell.textLabel?.text = location.title + location.subtitle
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let selectedCell = tableView.cellForRow(at: indexPath) {
+            selectedCell.selectedBackgroundView?.backgroundColor = .white // 선택한 셀의 배경색을 원래대로 되돌림
+            selectedCell.backgroundView?.backgroundColor = .white
+        }
+        
+        let selectedCompletion = locationArray[indexPath.row] // 검색 결과 중 선택한 항목
+        let searchRequest = MKLocalSearch.Request(completion: selectedCompletion)
+        
+        let search = MKLocalSearch(request: searchRequest)
+        search.start { response, error in
+            guard let mapItem = response?.mapItems.first else {
+                print("No map item found")
+                return
+            }
+            print(mapItem.name)
+            print("==========")
+        }
+    }
+
 }
+
+
+// MARK: - MKLocalSearch delegate
 
 extension BaseMapViewController: MKLocalSearchCompleterDelegate {
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         locationArray = completer.results
+        locationTableView.reloadData()
     }
     
     func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
