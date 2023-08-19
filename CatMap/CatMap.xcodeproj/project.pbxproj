@@ -38,6 +38,7 @@
 		AE25E36C2A90EF1F00B131FA /* BaseMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E36B2A90EF1F00B131FA /* BaseMapViewModel.swift */; };
 		AE25E36E2A90F9C100B131FA /* FetchMarkerCoordinatesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E36D2A90F9C100B131FA /* FetchMarkerCoordinatesUseCase.swift */; };
 		AE25E3722A9100E800B131FA /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3712A9100E800B131FA /* Cancellable.swift */; };
+		AE25E3742A91059F00B131FA /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3732A91059F00B131FA /* Endpoint.swift */; };
 		AE5EE7032A8CEDB70078A7CD /* DefaultMyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7022A8CEDB70078A7CD /* DefaultMyPageViewModel.swift */; };
 		AE5EE7052A8CF4D90078A7CD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7042A8CF4D90078A7CD /* LoginViewController.swift */; };
 		AE5EE7082A8CF6B60078A7CD /* DefaultLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7072A8CF6B60078A7CD /* DefaultLoginViewModel.swift */; };
@@ -80,6 +81,7 @@
 		AE25E36B2A90EF1F00B131FA /* BaseMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMapViewModel.swift; sourceTree = "<group>"; };
 		AE25E36D2A90F9C100B131FA /* FetchMarkerCoordinatesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMarkerCoordinatesUseCase.swift; sourceTree = "<group>"; };
 		AE25E3712A9100E800B131FA /* Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
+		AE25E3732A91059F00B131FA /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		AE5EE7022A8CEDB70078A7CD /* DefaultMyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMyPageViewModel.swift; sourceTree = "<group>"; };
 		AE5EE7042A8CF4D90078A7CD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AE5EE7072A8CF6B60078A7CD /* DefaultLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLoginViewModel.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				AE16AD1F2A7E834600CB6B81 /* DataTransferService.swift */,
+				AE25E3732A91059F00B131FA /* Endpoint.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				AE1581F52A82347E00B79291 /* PickerController.swift in Sources */,
 				AE1581DF2A80A80E00B79291 /* MapViewController.swift in Sources */,
 				AE1581DA2A7FDF8500B79291 /* StoryboardInstantiable.swift in Sources */,
+				AE25E3742A91059F00B131FA /* Endpoint.swift in Sources */,
 				AE18FD652A8B0FEE007251A4 /* CoordinateViewModel.swift in Sources */,
 				AE1581D82A7FB8D600B79291 /* HomeCoordinator.swift in Sources */,
 				AE1581E62A80C01D00B79291 /* ProfileDIContainer.swift in Sources */,
