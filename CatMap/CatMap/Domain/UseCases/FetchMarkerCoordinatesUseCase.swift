@@ -13,15 +13,21 @@ protocol FetchMarkerUseCase {
         requestValue: FetchMarkerUseCaseRequestValue,
         completion: @escaping (Result<[Coordinate], Error>) -> Void
     ) -> Cancellable?
-    
+    // Coordinate에 id 값 추가
 }
 
 
 
-final class FetchMarkerCoordinatesUseCase {
+final class FetchMarkerCoordinatesUseCase: FetchMarkerUseCase {
     
-    
-    
+//    func excute(
+//        requestValue: FetchMarkerUseCaseRequestValue,
+//        completion: @escaping (Result<[Coordinate], Error>) -> Void
+//    ) -> Cancellable? {
+//
+//        return
+//
+//    }
     
 }
 
