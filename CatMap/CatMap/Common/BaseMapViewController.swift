@@ -123,11 +123,24 @@ class BaseMapViewController: UIViewController, Alertable {
         requestAuthorizationForCurrentLocation()
     }
     
-    private func centerMapOnUser(location: CLLocation) {
-        let userLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let region = MKCoordinateRegion(center: userLocation, latitudinalMeters: 500, longitudinalMeters: 500)
+    private func centerMapBaseOn(location: CLLocationCoordinate2D) {
+        let region = MKCoordinateRegion(center: location, latitudinalMeters: 500, longitudinalMeters: 500)
         map.setRegion(region, animated: false)
     }
+    
+    private func convertToCLLocationCoordinate2D(from location: CLLocation) -> CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+    }
+    
+    private func didEndSearch() {
+        locationArray.removeAll()
+        locationTableView.isHidden = true
+        navigationItem.titleView = nil
+        navigationItem.hidesBackButton = false
+        locationSearchBar.showsCancelButton = false
+        setupSearchBarConstraint()
+    }
+    
 }
 
 // MARK: - CLLocation manager delegate
@@ -136,7 +149,7 @@ extension BaseMapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
-        centerMapOnUser(location: location)
+        centerMapBaseOn(location: convertToCLLocationCoordinate2D(from: location))
         locationManager.stopUpdatingLocation()
     }
     
@@ -172,12 +185,7 @@ extension BaseMapViewController: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        locationArray.removeAll()
-        locationTableView.isHidden = true
-        navigationItem.titleView = nil
-        navigationItem.hidesBackButton = false
-        locationSearchBar.showsCancelButton = false
-        setupSearchBarConstraint()
+        didEndSearch()
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
@@ -204,11 +212,7 @@ extension BaseMapViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let selectedCell = tableView.cellForRow(at: indexPath) {
-            selectedCell.selectedBackgroundView?.backgroundColor = .white // 선택한 셀의 배경색을 원래대로 되돌림
-            selectedCell.backgroundView?.backgroundColor = .white
-        }
-        
+
         let selectedCompletion = locationArray[indexPath.row] // 검색 결과 중 선택한 항목
         let searchRequest = MKLocalSearch.Request(completion: selectedCompletion)
         
@@ -218,8 +222,9 @@ extension BaseMapViewController: UITableViewDelegate, UITableViewDataSource {
                 print("No map item found")
                 return
             }
-            print(mapItem.name)
-            print("==========")
+            let location = mapItem.placemark.coordinate
+            self.centerMapBaseOn(location: location)
+            self.didEndSearch()
         }
     }
 
