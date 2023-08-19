@@ -21,6 +21,14 @@ class BaseMapViewController: UIViewController, Alertable {
         return completer
     }()
     
+//    init() {
+//        
+//    }
+//    
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+    
     
     private let compassButton: UIButton = {
         let button = UIButton(type: .system)
@@ -36,7 +44,6 @@ class BaseMapViewController: UIViewController, Alertable {
         let searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.delegate = self
-        searchBar.backgroundColor = nil
         return searchBar
     }()
     
@@ -107,7 +114,6 @@ class BaseMapViewController: UIViewController, Alertable {
 
         switch authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
-            print("첫번째!")
             locationManager.startUpdatingLocation()
         case .denied, .restricted:
             goTo(setting: .map)
@@ -139,6 +145,13 @@ class BaseMapViewController: UIViewController, Alertable {
         navigationItem.hidesBackButton = false
         locationSearchBar.showsCancelButton = false
         setupSearchBarConstraint()
+    }
+    
+    private func didBeginSearch() {
+        navigationItem.titleView = locationSearchBar
+        navigationItem.hidesBackButton = true
+        locationSearchBar.showsCancelButton = true
+        locationTableView.isHidden = false
     }
     
 }
@@ -179,6 +192,7 @@ extension BaseMapViewController: UISearchBarDelegate {
         if searchText.isEmpty {
             locationArray.removeAll()
             locationTableView.reloadData()
+            locationCompleter.cancel()
         } else {
             locationCompleter.queryFragment = searchText
         }
@@ -189,10 +203,7 @@ extension BaseMapViewController: UISearchBarDelegate {
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        navigationItem.titleView = locationSearchBar
-        navigationItem.hidesBackButton = true
-        locationSearchBar.showsCancelButton = true
-        locationTableView.isHidden = false
+        didBeginSearch()
         return true
     }
 }
@@ -207,6 +218,7 @@ extension BaseMapViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let location = locationArray[indexPath.row]
+        cell.textLabel?.text = nil
         cell.textLabel?.text = location.title + location.subtitle
         return cell
     }
@@ -237,6 +249,7 @@ extension BaseMapViewController: MKLocalSearchCompleterDelegate {
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         locationArray = completer.results
         locationTableView.reloadData()
+        print("reload!")
     }
     
     func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
