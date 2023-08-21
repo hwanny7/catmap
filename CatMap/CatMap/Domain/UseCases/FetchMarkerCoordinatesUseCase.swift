@@ -18,18 +18,18 @@ protocol FetchMarkerUseCase {
 
 
 
-final class FetchMarkerCoordinatesUseCase: FetchMarkerUseCase {
-    
-//    func excute(
-//        requestValue: FetchMarkerUseCaseRequestValue,
-//        completion: @escaping (Result<[Coordinate], Error>) -> Void
-//    ) -> Cancellable? {
-//
-//        return
-//
-//    }
-    
-}
+//final class FetchMarkerCoordinatesUseCase: FetchMarkerUseCase {
+//    
+////    func excute(
+////        requestValue: FetchMarkerUseCaseRequestValue,
+////        completion: @escaping (Result<[Coordinate], Error>) -> Void
+////    ) -> Cancellable? {
+////
+////        return
+////
+////    }
+//    
+//}
 
 
 struct FetchMarkerUseCaseRequestValue {
