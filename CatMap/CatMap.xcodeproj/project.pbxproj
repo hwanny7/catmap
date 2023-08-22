@@ -42,6 +42,7 @@
 		AE25E3762A91085E00B131FA /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3752A91085E00B131FA /* NetworkConfig.swift */; };
 		AE25E3782A9109AA00B131FA /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3772A9109AA00B131FA /* NetworkService.swift */; };
 		AE25E37A2A941D8000B131FA /* AppConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3792A941D8000B131FA /* AppConfigurations.swift */; };
+		AE25E37E2A94F24400B131FA /* DefaultCoordinateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E37D2A94F24400B131FA /* DefaultCoordinateRepository.swift */; };
 		AE5EE7032A8CEDB70078A7CD /* DefaultMyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7022A8CEDB70078A7CD /* DefaultMyPageViewModel.swift */; };
 		AE5EE7052A8CF4D90078A7CD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7042A8CF4D90078A7CD /* LoginViewController.swift */; };
 		AE5EE7082A8CF6B60078A7CD /* DefaultLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7072A8CF6B60078A7CD /* DefaultLoginViewModel.swift */; };
@@ -88,6 +89,7 @@
 		AE25E3752A91085E00B131FA /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		AE25E3772A9109AA00B131FA /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		AE25E3792A941D8000B131FA /* AppConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurations.swift; sourceTree = "<group>"; };
+		AE25E37D2A94F24400B131FA /* DefaultCoordinateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCoordinateRepository.swift; sourceTree = "<group>"; };
 		AE5EE7022A8CEDB70078A7CD /* DefaultMyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMyPageViewModel.swift; sourceTree = "<group>"; };
 		AE5EE7042A8CF4D90078A7CD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AE5EE7072A8CF6B60078A7CD /* DefaultLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLoginViewModel.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				AE16AD152A7E7A4C00CB6B81 /* Application */,
 				AE16AD212A7E8B2200CB6B81 /* Presentation */,
 				AE94CE202A885765009F195E /* Domain */,
+				AE25E37B2A944A4100B131FA /* Data */,
 				AE16AD1E2A7E82EB00CB6B81 /* Network */,
 				AE1581D22A7F833700B79291 /* Common */,
 				AE16AD162A7E7A6700CB6B81 /* Resources */,
@@ -281,6 +284,22 @@
 		AE25E36F2A90FCFD00B131FA /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		AE25E37B2A944A4100B131FA /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				AE25E37C2A944A5E00B131FA /* Repositories */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		AE25E37C2A944A5E00B131FA /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				AE25E37D2A94F24400B131FA /* DefaultCoordinateRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -453,6 +472,7 @@
 				AE94CE252A8857E2009F195E /* Post.swift in Sources */,
 				AE25E37A2A941D8000B131FA /* AppConfigurations.swift in Sources */,
 				AE1581E82A80C05B00B79291 /* ProfileCoordinator.swift in Sources */,
+				AE25E37E2A94F24400B131FA /* DefaultCoordinateRepository.swift in Sources */,
 				AE16AD1D2A7E80EE00CB6B81 /* AppDIContainer.swift in Sources */,
 				AE94CE272A887B00009F195E /* Observable.swift in Sources */,
 				AE1581FB2A82836A00B79291 /* PostViewModel.swift in Sources */,

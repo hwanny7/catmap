@@ -9,7 +9,17 @@ import UIKit
 
 final class AppDIContainer {
     
-    private let apiDataTransferService: DataTransferService = DefaultDataTransferService()
+    lazy var appConfiguration = AppConfiguration()
+    
+    lazy var apiDataTransferService: DataTransferService = {
+        let config = ApiDataNetworkConfig(
+            baseURL: URL(string: appConfiguration.apiBaseURL)!
+            )
+        
+        let apiDataNetwork = DefaultNetworkService(config: config)
+        return DefaultDataTransferService(with: apiDataNetwork)
+    }()
+    
     
     
     // MARK: - Make Coordinator
@@ -29,11 +39,3 @@ final class AppDIContainer {
     }
     
 }
-
-
-// home, friends, user DI Container, Coordinator 생성
-
-// 각 Tab을 위한 Navigation Controller 생성
-// DI Container를 생성, Di Container가 Coordinator 생성
-// Coordinator에 Nav Controller 전달
-// Coordinator.start()

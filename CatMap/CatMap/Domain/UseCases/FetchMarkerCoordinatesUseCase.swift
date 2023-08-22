@@ -18,21 +18,25 @@ protocol FetchMarkerUseCase {
 
 
 
-//final class FetchMarkerCoordinatesUseCase: FetchMarkerUseCase {
-//    
-////    func excute(
-////        requestValue: FetchMarkerUseCaseRequestValue,
-////        completion: @escaping (Result<[Coordinate], Error>) -> Void
-////    ) -> Cancellable? {
-////
-////        return
-////
-////    }
-//    
-//}
+final class FetchMarkerCoordinatesUseCase: FetchMarkerUseCase {
+    
+    func excute(
+        requestValue: FetchMarkerUseCaseRequestValue,
+        completion: @escaping (Result<[Coordinate], Error>) -> Void
+    ) -> Cancellable? {
+        
+        
+        return
+
+    }
+    
+}
 
 
 struct FetchMarkerUseCaseRequestValue {
     let latitude: Double
     let longitude: Double
 }
+
+// 유저가 보고 있는 지도의 좌표
+// 이 좌표를 통해 근처 마커를 계산
