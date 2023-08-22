@@ -9,6 +9,8 @@ import Foundation
 
 protocol FetchMarkerUseCase {
     
+    
+    
     func execute(
         requestValue: FetchMarkerUseCaseRequestValue,
         completion: @escaping (Result<[Coordinate], Error>) -> Void
@@ -24,8 +26,6 @@ final class FetchMarkerCoordinatesUseCase: FetchMarkerUseCase {
         requestValue: FetchMarkerUseCaseRequestValue,
         completion: @escaping (Result<[Coordinate], Error>) -> Void
     ) -> Cancellable? {
-        
-        
         return
 
     }
@@ -34,9 +34,10 @@ final class FetchMarkerCoordinatesUseCase: FetchMarkerUseCase {
 
 
 struct FetchMarkerUseCaseRequestValue {
-    let latitude: Double
-    let longitude: Double
+    let coordinate: Coordinate
 }
 
 // 유저가 보고 있는 지도의 좌표
 // 이 좌표를 통해 근처 마커를 계산
+// Presenter layer에서 사용하는 Model
+// Repository에서 RequestDTO로 변환될 예정

@@ -8,7 +8,7 @@
 import Foundation
 
 
-final class DefaultCoordinateRepository {
+final class DefaultMarkerRepository {
     
     private let dataTransferService: DataTransferService
     private let backgroundQueue: DataTransferDispatchQueue
