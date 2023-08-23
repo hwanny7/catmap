@@ -44,6 +44,10 @@
 		AE25E37A2A941D8000B131FA /* AppConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3792A941D8000B131FA /* AppConfigurations.swift */; };
 		AE25E37E2A94F24400B131FA /* DefaultMarkerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E37D2A94F24400B131FA /* DefaultMarkerRepository.swift */; };
 		AE25E3802A957D8600B131FA /* MarkerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E37F2A957D8600B131FA /* MarkerRepository.swift */; };
+		AE25E3832A95E09700B131FA /* MarkersRequestDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3822A95E09700B131FA /* MarkersRequestDTO+Mapping.swift */; };
+		AE25E3862A95E1A300B131FA /* RepositoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3852A95E1A300B131FA /* RepositoryTask.swift */; };
+		AE25E3892A95E1E700B131FA /* APIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3882A95E1E700B131FA /* APIEndpoints.swift */; };
+		AE25E38B2A95E27300B131FA /* MarkersResponseDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E38A2A95E27300B131FA /* MarkersResponseDTO+Mapping.swift */; };
 		AE5EE7032A8CEDB70078A7CD /* DefaultMyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7022A8CEDB70078A7CD /* DefaultMyPageViewModel.swift */; };
 		AE5EE7052A8CF4D90078A7CD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7042A8CF4D90078A7CD /* LoginViewController.swift */; };
 		AE5EE7082A8CF6B60078A7CD /* DefaultLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7072A8CF6B60078A7CD /* DefaultLoginViewModel.swift */; };
@@ -92,6 +96,10 @@
 		AE25E3792A941D8000B131FA /* AppConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurations.swift; sourceTree = "<group>"; };
 		AE25E37D2A94F24400B131FA /* DefaultMarkerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMarkerRepository.swift; sourceTree = "<group>"; };
 		AE25E37F2A957D8600B131FA /* MarkerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerRepository.swift; sourceTree = "<group>"; };
+		AE25E3822A95E09700B131FA /* MarkersRequestDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MarkersRequestDTO+Mapping.swift"; sourceTree = "<group>"; };
+		AE25E3852A95E1A300B131FA /* RepositoryTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTask.swift; sourceTree = "<group>"; };
+		AE25E3882A95E1E700B131FA /* APIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoints.swift; sourceTree = "<group>"; };
+		AE25E38A2A95E27300B131FA /* MarkersResponseDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MarkersResponseDTO+Mapping.swift"; sourceTree = "<group>"; };
 		AE5EE7022A8CEDB70078A7CD /* DefaultMyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMyPageViewModel.swift; sourceTree = "<group>"; };
 		AE5EE7042A8CF4D90078A7CD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AE5EE7072A8CF6B60078A7CD /* DefaultLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLoginViewModel.swift; sourceTree = "<group>"; };
@@ -294,6 +302,7 @@
 		AE25E37B2A944A4100B131FA /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				AE25E3872A95E1C900B131FA /* Network */,
 				AE25E37C2A944A5E00B131FA /* Repositories */,
 			);
 			path = Data;
@@ -303,8 +312,35 @@
 			isa = PBXGroup;
 			children = (
 				AE25E37D2A94F24400B131FA /* DefaultMarkerRepository.swift */,
+				AE25E3842A95E19100B131FA /* Utils */,
 			);
 			path = Repositories;
+			sourceTree = "<group>";
+		};
+		AE25E3812A95E06F00B131FA /* DataMapping */ = {
+			isa = PBXGroup;
+			children = (
+				AE25E3822A95E09700B131FA /* MarkersRequestDTO+Mapping.swift */,
+				AE25E38A2A95E27300B131FA /* MarkersResponseDTO+Mapping.swift */,
+			);
+			path = DataMapping;
+			sourceTree = "<group>";
+		};
+		AE25E3842A95E19100B131FA /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				AE25E3852A95E1A300B131FA /* RepositoryTask.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		AE25E3872A95E1C900B131FA /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				AE25E3882A95E1E700B131FA /* APIEndpoints.swift */,
+				AE25E3812A95E06F00B131FA /* DataMapping */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		AE5EE7012A8CED580078A7CD /* ViewModel */ = {
@@ -451,7 +487,9 @@
 				AE25E3722A9100E800B131FA /* Cancellable.swift in Sources */,
 				AE5EE7082A8CF6B60078A7CD /* DefaultLoginViewModel.swift in Sources */,
 				AE18FD5F2A8A70C4007251A4 /* CustomButton.swift in Sources */,
+				AE25E3892A95E1E700B131FA /* APIEndpoints.swift in Sources */,
 				AE25E36E2A90F9C100B131FA /* FetchMarkerCoordinatesUseCase.swift in Sources */,
+				AE25E3832A95E09700B131FA /* MarkersRequestDTO+Mapping.swift in Sources */,
 				AE1581D42A7F837300B79291 /* Coordinator.swift in Sources */,
 				AE16AD202A7E834600CB6B81 /* DataTransferService.swift in Sources */,
 				AE1581EA2A80C0EA00B79291 /* MyPageViewController.swift in Sources */,
@@ -466,6 +504,7 @@
 				AE94CE2C2A899056009F195E /* TextFieldWithLabelStackView.swift in Sources */,
 				AE16AD1B2A7E804E00CB6B81 /* AppCoordinator.swift in Sources */,
 				AE5EE7052A8CF4D90078A7CD /* LoginViewController.swift in Sources */,
+				AE25E38B2A95E27300B131FA /* MarkersResponseDTO+Mapping.swift in Sources */,
 				AE1581F72A826A2700B79291 /* CreatePostViewController.swift in Sources */,
 				AE25E36C2A90EF1F00B131FA /* BaseMapViewModel.swift in Sources */,
 				AE18FD6A2A8BB84B007251A4 /* BaseMapViewController.swift in Sources */,
@@ -476,6 +515,7 @@
 				AE94CE252A8857E2009F195E /* Post.swift in Sources */,
 				AE25E37A2A941D8000B131FA /* AppConfigurations.swift in Sources */,
 				AE1581E82A80C05B00B79291 /* ProfileCoordinator.swift in Sources */,
+				AE25E3862A95E1A300B131FA /* RepositoryTask.swift in Sources */,
 				AE25E37E2A94F24400B131FA /* DefaultMarkerRepository.swift in Sources */,
 				AE16AD1D2A7E80EE00CB6B81 /* AppDIContainer.swift in Sources */,
 				AE94CE272A887B00009F195E /* Observable.swift in Sources */,
