@@ -11,7 +11,7 @@ import Foundation
 protocol MarkerRepository {
     @discardableResult
     func fetchMarkerList(
-        query: Coordinate
-//        completion: @escaping (Result< ,Error>) -> Void
+        query: Coordinate,
+        completion: @escaping (Result<[Coordinate],Error>) -> Void
     ) -> Cancellable?
 }

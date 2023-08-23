@@ -23,3 +23,10 @@ final class DefaultMarkerRepository {
 
 }
 
+extension DefaultMarkerRepository: MarkerRepository {
+    
+    func fetchMarkerList(query: Coordinate, completion: @escaping (Result<[Coordinate], Error>) -> Void) -> Cancellable? {
+        
+    }
+    
+}

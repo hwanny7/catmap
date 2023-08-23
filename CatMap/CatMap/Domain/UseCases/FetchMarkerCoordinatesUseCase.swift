@@ -8,9 +8,6 @@
 import Foundation
 
 protocol FetchMarkerUseCase {
-    
-    
-    
     func execute(
         requestValue: FetchMarkerUseCaseRequestValue,
         completion: @escaping (Result<[Coordinate], Error>) -> Void
@@ -22,12 +19,18 @@ protocol FetchMarkerUseCase {
 
 final class FetchMarkerCoordinatesUseCase: FetchMarkerUseCase {
     
+    private let markerRepository: MarkerRepository
+    
+    init(markerRepository: MarkerRepository) {
+        self.markerRepository = markerRepository
+    }
+    
+    
     func excute(
         requestValue: FetchMarkerUseCaseRequestValue,
         completion: @escaping (Result<[Coordinate], Error>) -> Void
     ) -> Cancellable? {
-        return
-
+        return markerRepository
     }
     
 }
