@@ -48,7 +48,7 @@ extension HomeDIContainer {
 
 extension HomeDIContainer {
     func makeMapViewController(actions: MapViewModelActions) -> MapViewModel {
-        DefaultMapViewModel(actions: actions)
+        DefaultMapViewModel(actions: actions, fetchMarkerUseCase: makeFetchMarkerUseCase())
     }
     
     func makeCreatePostViewController(actions: PostViewModelActions) -> PostViewModel {
@@ -58,6 +58,21 @@ extension HomeDIContainer {
     func makeMapCoordinateViewController(action: @escaping didSelectCoordinateAction) -> CoordinateViewModel {
         DefaultCoordinateViewModel(didSelectCoordinate: action)
     }
+}
 
-    
+// MARK: - Make UseCase
+
+extension HomeDIContainer {
+    func makeFetchMarkerUseCase() -> FetchMarkerUseCase {
+        DefaultFetchMarkerUseCase(markerRepository: makeMarkerRepository())
+    }
+}
+
+
+// MARK: - Make Repository
+
+extension HomeDIContainer {
+    func makeMarkerRepository() -> MarkerRepository {
+        DefaultMarkerRepository(dataTransferService: apiDataTransferService)
+    }
 }

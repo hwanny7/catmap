@@ -17,7 +17,7 @@ protocol FetchMarkerUseCase {
 
 
 
-final class FetchMarkerCoordinatesUseCase: FetchMarkerUseCase {
+final class DefaultFetchMarkerUseCase: FetchMarkerUseCase {
 
     private let markerRepository: MarkerRepository
     

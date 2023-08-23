@@ -30,11 +30,14 @@ typealias MapViewModel = MapViewModelInput & MapViewModelOutput
 
 final class DefaultMapViewModel: MapViewModel {
     private let actions: MapViewModelActions
+    private let fetchMarkerUseCase : FetchMarkerUseCase
     
     init(
-        actions: MapViewModelActions
+        actions: MapViewModelActions,
+        fetchMarkerUseCase: FetchMarkerUseCase
     ) {
         self.actions = actions
+        self.fetchMarkerUseCase = fetchMarkerUseCase
     }
 }
 

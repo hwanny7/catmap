@@ -36,7 +36,7 @@
 		AE18FD652A8B0FEE007251A4 /* CoordinateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18FD642A8B0FEE007251A4 /* CoordinateViewModel.swift */; };
 		AE18FD6A2A8BB84B007251A4 /* BaseMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18FD692A8BB84B007251A4 /* BaseMapViewController.swift */; };
 		AE25E36C2A90EF1F00B131FA /* BaseMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E36B2A90EF1F00B131FA /* BaseMapViewModel.swift */; };
-		AE25E36E2A90F9C100B131FA /* FetchMarkerCoordinatesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E36D2A90F9C100B131FA /* FetchMarkerCoordinatesUseCase.swift */; };
+		AE25E36E2A90F9C100B131FA /* DefaultFetchMarkerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E36D2A90F9C100B131FA /* DefaultFetchMarkerUseCase.swift */; };
 		AE25E3722A9100E800B131FA /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3712A9100E800B131FA /* Cancellable.swift */; };
 		AE25E3742A91059F00B131FA /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3732A91059F00B131FA /* Endpoint.swift */; };
 		AE25E3762A91085E00B131FA /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3752A91085E00B131FA /* NetworkConfig.swift */; };
@@ -89,7 +89,7 @@
 		AE18FD642A8B0FEE007251A4 /* CoordinateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateViewModel.swift; sourceTree = "<group>"; };
 		AE18FD692A8BB84B007251A4 /* BaseMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMapViewController.swift; sourceTree = "<group>"; };
 		AE25E36B2A90EF1F00B131FA /* BaseMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMapViewModel.swift; sourceTree = "<group>"; };
-		AE25E36D2A90F9C100B131FA /* FetchMarkerCoordinatesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMarkerCoordinatesUseCase.swift; sourceTree = "<group>"; };
+		AE25E36D2A90F9C100B131FA /* DefaultFetchMarkerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFetchMarkerUseCase.swift; sourceTree = "<group>"; };
 		AE25E3712A9100E800B131FA /* Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
 		AE25E3732A91059F00B131FA /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		AE25E3752A91085E00B131FA /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
@@ -377,7 +377,7 @@
 		AE94CE222A885794009F195E /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
-				AE25E36D2A90F9C100B131FA /* FetchMarkerCoordinatesUseCase.swift */,
+				AE25E36D2A90F9C100B131FA /* DefaultFetchMarkerUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -491,7 +491,7 @@
 				AE5EE7082A8CF6B60078A7CD /* DefaultLoginViewModel.swift in Sources */,
 				AE18FD5F2A8A70C4007251A4 /* CustomButton.swift in Sources */,
 				AE25E3892A95E1E700B131FA /* APIEndpoints.swift in Sources */,
-				AE25E36E2A90F9C100B131FA /* FetchMarkerCoordinatesUseCase.swift in Sources */,
+				AE25E36E2A90F9C100B131FA /* DefaultFetchMarkerUseCase.swift in Sources */,
 				AE25E3832A95E09700B131FA /* MarkersRequestDTO+Mapping.swift in Sources */,
 				AE1581D42A7F837300B79291 /* Coordinator.swift in Sources */,
 				AE16AD202A7E834600CB6B81 /* DataTransferService.swift in Sources */,
