@@ -48,6 +48,7 @@
 		AE25E3862A95E1A300B131FA /* RepositoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3852A95E1A300B131FA /* RepositoryTask.swift */; };
 		AE25E3892A95E1E700B131FA /* APIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3882A95E1E700B131FA /* APIEndpoints.swift */; };
 		AE25E38B2A95E27300B131FA /* MarkersResponseDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E38A2A95E27300B131FA /* MarkersResponseDTO+Mapping.swift */; };
+		AE25E38D2A95E52500B131FA /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E38C2A95E52500B131FA /* Marker.swift */; };
 		AE5EE7032A8CEDB70078A7CD /* DefaultMyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7022A8CEDB70078A7CD /* DefaultMyPageViewModel.swift */; };
 		AE5EE7052A8CF4D90078A7CD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7042A8CF4D90078A7CD /* LoginViewController.swift */; };
 		AE5EE7082A8CF6B60078A7CD /* DefaultLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7072A8CF6B60078A7CD /* DefaultLoginViewModel.swift */; };
@@ -100,6 +101,7 @@
 		AE25E3852A95E1A300B131FA /* RepositoryTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTask.swift; sourceTree = "<group>"; };
 		AE25E3882A95E1E700B131FA /* APIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoints.swift; sourceTree = "<group>"; };
 		AE25E38A2A95E27300B131FA /* MarkersResponseDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MarkersResponseDTO+Mapping.swift"; sourceTree = "<group>"; };
+		AE25E38C2A95E52500B131FA /* Marker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
 		AE5EE7022A8CEDB70078A7CD /* DefaultMyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMyPageViewModel.swift; sourceTree = "<group>"; };
 		AE5EE7042A8CF4D90078A7CD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AE5EE7072A8CF6B60078A7CD /* DefaultLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLoginViewModel.swift; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 			children = (
 				AE94CE242A8857E2009F195E /* Post.swift */,
 				AE18FD602A8AFB7D007251A4 /* Coordinate.swift */,
+				AE25E38C2A95E52500B131FA /* Marker.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				AE16AD022A7E37AA00CB6B81 /* AppDelegate.swift in Sources */,
 				AE25E3782A9109AA00B131FA /* NetworkService.swift in Sources */,
 				AE25E3762A91085E00B131FA /* NetworkConfig.swift in Sources */,
+				AE25E38D2A95E52500B131FA /* Marker.swift in Sources */,
 				AE16AD042A7E37AA00CB6B81 /* SceneDelegate.swift in Sources */,
 				AE18FD632A8B0EAC007251A4 /* MapCoordinateViewController.swift in Sources */,
 			);

@@ -25,15 +25,23 @@ final class DefaultMarkerRepository {
 
 extension DefaultMarkerRepository: MarkerRepository {
     
-    func fetchMarkerList(query: Coordinate, completion: @escaping (Result<[Coordinate], Error>) -> Void) -> Cancellable? {
+    func fetchMarkerList(query: Coordinate, completion: @escaping (Result<MapMarkers, Error>) -> Void) -> Cancellable? {
         
         
         let requestDTO = MarkersRequestDTO(latitude: query.latitude, longitude: query.longitude)
         let task = RepositoryTask()
         
-        let endpoint = APIEndpoints.getMarkers(with: <#T##<<error type>>#>)
+        let endpoint = APIEndpoints.getMarkers(with: requestDTO)
         
-        
+        task.networkTask = self.dataTransferService.request(with: endpoint, on: backgroundQueue, completion: { result in
+            switch result {
+            case .success(let responseDTO):
+                completion(.success(responseDTO.toDomain()))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
+        return task
     }
     
 }

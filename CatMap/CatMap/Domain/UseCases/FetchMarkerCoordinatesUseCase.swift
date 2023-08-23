@@ -10,7 +10,7 @@ import Foundation
 protocol FetchMarkerUseCase {
     func execute(
         requestValue: FetchMarkerUseCaseRequestValue,
-        completion: @escaping (Result<[Coordinate], Error>) -> Void
+        completion: @escaping (Result<MapMarkers, Error>) -> Void
     ) -> Cancellable?
     // Coordinate에 id 값 추가
 }
@@ -19,21 +19,17 @@ protocol FetchMarkerUseCase {
 
 final class FetchMarkerCoordinatesUseCase: FetchMarkerUseCase {
 
-    
-    
     private let markerRepository: MarkerRepository
     
     init(markerRepository: MarkerRepository) {
         self.markerRepository = markerRepository
     }
     
-    
-    func excute(
-        requestValue: FetchMarkerUseCaseRequestValue,
-        completion: @escaping (Result<[Coordinate], Error>) -> Void
-    ) -> Cancellable? {
+    func execute(requestValue: FetchMarkerUseCaseRequestValue, completion: @escaping (Result<MapMarkers, Error>) -> Void) -> Cancellable? {
         return markerRepository.fetchMarkerList(query: requestValue.coordinate, completion: completion)
     }
+    
+    
     
 }
 
