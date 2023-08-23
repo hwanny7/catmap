@@ -18,6 +18,8 @@ protocol FetchMarkerUseCase {
 
 
 final class FetchMarkerCoordinatesUseCase: FetchMarkerUseCase {
+
+    
     
     private let markerRepository: MarkerRepository
     
@@ -30,7 +32,7 @@ final class FetchMarkerCoordinatesUseCase: FetchMarkerUseCase {
         requestValue: FetchMarkerUseCaseRequestValue,
         completion: @escaping (Result<[Coordinate], Error>) -> Void
     ) -> Cancellable? {
-        return markerRepository
+        return markerRepository.fetchMarkerList(query: requestValue.coordinate, completion: completion)
     }
     
 }
