@@ -36,7 +36,11 @@ final class MapViewController: BaseMapViewController {
     
     private let refreshButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Refresh", for: .normal)
+        button.backgroundColor = .systemIndigo
+        button.tintColor = .white
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let refreshImage = UIImage(systemName: "arrow.clockwise")
+        button.setImage(refreshImage, for: .normal)
         return button
     }()
     
@@ -71,6 +75,7 @@ final class MapViewController: BaseMapViewController {
         floatingButton.addTarget(self, action: #selector(didTapFloatingButton), for: .touchUpInside)
         refreshButton.addTarget(self, action: #selector(refreshButtonTapped), for: .touchUpInside)
         map.addSubview(floatingButton)
+        map.addSubview(refreshButton)
         
         NSLayoutConstraint.activate([
             map.topAnchor.constraint(equalTo: view.topAnchor),
@@ -82,6 +87,11 @@ final class MapViewController: BaseMapViewController {
             floatingButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -24),
             floatingButton.widthAnchor.constraint(equalToConstant: 60),
             floatingButton.heightAnchor.constraint(equalToConstant: 60),
+            
+            refreshButton.topAnchor.constraint(equalTo: compassButton.bottomAnchor),
+            refreshButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            refreshButton.widthAnchor.constraint(equalTo: compassButton.widthAnchor),
+            refreshButton.heightAnchor.constraint(equalTo: compassButton.heightAnchor),
         ])
     }
 

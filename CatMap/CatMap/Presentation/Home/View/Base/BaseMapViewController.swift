@@ -30,10 +30,9 @@ class BaseMapViewController: UIViewController, Alertable {
 //    }
     
     
-    private let compassButton: UIButton = {
+    let compassButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "location"), for: .normal)
-        button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tintColor = .systemIndigo
         button.backgroundColor = .white
