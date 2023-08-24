@@ -43,6 +43,20 @@ final class DefaultMapViewModel: MapViewModel {
         self.actions = actions
         self.fetchMarkerUseCase = fetchMarkerUseCase
     }
+    
+    private func load() {
+        
+//        markerLoadTask = fetchMarkerUseCase.execute(requestValue: <#T##FetchMarkerUseCaseRequestValue#>, completion: <#T##(Result<MapMarkers, Error>) -> Void#>)
+        
+    }
+    
+    private func appendMaker() {
+        let marker1 = Marker(id: 1, latitude: 36.29534255486295, longitude: 127.5687921843418)
+        let marker2 = Marker(id: 1, latitude: 36.29524297601406, longitude: 127.56841295925204)
+        markers.value.append(marker1)
+        markers.value.append(marker2)
+    }
+    
 }
 
 // MARK: - Input view event methods
@@ -53,6 +67,6 @@ extension DefaultMapViewModel {
     }
     
     func didRefreshButtonTapped(){
-        print("눌렀다요!")
+        appendMaker()
     }
 }
