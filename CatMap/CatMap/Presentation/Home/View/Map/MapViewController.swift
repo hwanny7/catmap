@@ -67,7 +67,7 @@ final class MapViewController: BaseMapViewController {
     
     private func bind(to viewModel: MapViewModel) {
         viewModel.markers.observe(on: self) { [weak self] in
-            print($0)
+            self?.addCustomPin($0)
         }
     }
 
@@ -104,13 +104,15 @@ final class MapViewController: BaseMapViewController {
         ])
     }
 
-//    private func addCustomPin() {
-//        let pin = MKPointAnnotation()
-//        pin.coordinate = coordinate
-//        pin.title = "Bug"
-//        pin.subtitle = "Go and catch them all"
-//        map.addAnnotation(pin)
-//    }
+    private func addCustomPin(_ markers: [Marker]) {
+        for marker in markers {
+            let coordinate = CLLocationCoordinate2D(latitude: marker.latitude, longitude: marker.longitude)
+            let pin = MKPointAnnotation()
+            pin.coordinate = coordinate
+            map.addAnnotation(pin)
+            // array로 추가하는 방법도 있음
+        }
+    }
     
     override func setupSearchBarConstraint() {
         super.setupSearchBarConstraint()
