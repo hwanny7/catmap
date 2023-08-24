@@ -48,12 +48,6 @@ final class MapViewController: BaseMapViewController {
     
     private var viewModel: MapViewModel
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupViews()
-    }
-    
-
     init(with viewModel: MapViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -62,6 +56,21 @@ final class MapViewController: BaseMapViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupViews()
+        bind(to: viewModel)
+    }
+    
+    
+    private func bind(to viewModel: MapViewModel) {
+        viewModel.markers.observe(on: self) { [weak self] in
+            print($0)
+        }
+    }
+
     
     override func setupViews() {
         super.setupViews()
