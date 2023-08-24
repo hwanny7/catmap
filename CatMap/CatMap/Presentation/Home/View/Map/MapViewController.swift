@@ -116,7 +116,9 @@ final class MapViewController: BaseMapViewController {
     }
     
     @objc private func refreshButtonTapped() {
-        print("Tapped")
+        let currentRegion = map.region
+        let span = currentRegion.span
+        viewModel.didRefreshButtonTapped()
     }
     
 }

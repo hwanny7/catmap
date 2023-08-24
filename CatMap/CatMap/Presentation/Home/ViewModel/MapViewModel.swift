@@ -20,10 +20,11 @@ struct MapViewModelActions {
 
 protocol MapViewModelInput {
     func didTapFloatingButton()
+    func didRefreshButtonTapped()
 }
 
 protocol MapViewModelOutput {
-    
+    var markers: Observable<[Marker]> { get }
 }
 
 typealias MapViewModel = MapViewModelInput & MapViewModelOutput
@@ -31,6 +32,8 @@ typealias MapViewModel = MapViewModelInput & MapViewModelOutput
 final class DefaultMapViewModel: MapViewModel {
     private let actions: MapViewModelActions
     private let fetchMarkerUseCase : FetchMarkerUseCase
+    
+    let markers: Observable<[Marker]> = Observable([])
     
     
     init(
@@ -45,7 +48,11 @@ final class DefaultMapViewModel: MapViewModel {
 // MARK: - Input view event methods
 
 extension DefaultMapViewModel {
-    func didTapFloatingButton() {
+    func didTapFloatingButton(){
         actions.showCreatePost()
+    }
+    
+    func didRefreshButtonTapped(){
+        print("눌렀다요!")
     }
 }
