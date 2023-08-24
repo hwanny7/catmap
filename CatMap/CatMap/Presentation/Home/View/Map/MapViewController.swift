@@ -19,7 +19,7 @@ import CoreLocation
 
 final class MapViewController: BaseMapViewController {
     
-    let floatingButton: UIButton = {
+    private let floatingButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.masksToBounds = true
@@ -33,6 +33,14 @@ final class MapViewController: BaseMapViewController {
         
         return button
     }()
+    
+    private let refreshButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Refresh", for: .normal)
+        return button
+    }()
+    
+    
     
     private var viewModel: MapViewModel
     
@@ -61,6 +69,7 @@ final class MapViewController: BaseMapViewController {
     
     override func addSubViews() {
         floatingButton.addTarget(self, action: #selector(didTapFloatingButton), for: .touchUpInside)
+        refreshButton.addTarget(self, action: #selector(refreshButtonTapped), for: .touchUpInside)
         map.addSubview(floatingButton)
         
         NSLayoutConstraint.activate([
@@ -94,6 +103,10 @@ final class MapViewController: BaseMapViewController {
     
     @objc private func didTapFloatingButton() {
         viewModel.didTapFloatingButton()
+    }
+    
+    @objc private func refreshButtonTapped() {
+        print("Tapped")
     }
     
 }

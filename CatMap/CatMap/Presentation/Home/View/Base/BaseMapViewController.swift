@@ -63,6 +63,7 @@ class BaseMapViewController: UIViewController, Alertable {
     }
     
     func setupViews() {
+        
         view.backgroundColor = .white
         map.translatesAutoresizingMaskIntoConstraints = false
         map.showsUserLocation = true
