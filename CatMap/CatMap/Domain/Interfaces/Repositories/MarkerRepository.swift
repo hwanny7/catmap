@@ -14,4 +14,10 @@ protocol MarkerRepository {
         query: Coordinate,
         completion: @escaping (Result<MapMarkers,Error>) -> Void
     ) -> Cancellable?
+    
+    @discardableResult
+    func addMarkerList(
+//        body: ,
+        completion: @escaping (Result<Void,Error>) -> Void
+    ) -> Cancellable?
 }
