@@ -54,6 +54,8 @@ final class DefaultMapViewModel: MapViewModel {
         let marker1 = Marker(id: 1, latitude: 36.29534255486295, longitude: 127.5687921843418)
         let marker2 = Marker(id: 1, latitude: 36.29524297601406, longitude: 127.56841295925204)
         markers.value = [marker1, marker2]
+        // load 함수가 이 메소드를 실행한다.
+        
     }
     
 }

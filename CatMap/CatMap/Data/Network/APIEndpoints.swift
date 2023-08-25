@@ -17,4 +17,16 @@ struct APIEndpoints {
             queryParametersEncodable: MarkersRequestDTO
         )
     }
+    
+    
+    static func addMarkers(from addMarkerRequestDTO: AddMakerRequestDTO) -> Endpoint<AddMarkerResponseDTO> {
+        
+        return Endpoint(
+            path: "",
+            method: .post,
+            bodyParametersEncodable: addMarkerRequestDTO
+        )
+        
+    }
+    
 }
