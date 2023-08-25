@@ -16,6 +16,7 @@ protocol postViewModelInput {
     func appendImage(_ image: UIImage)
     func removeImage(_ index: Int)
     func didTapLocationButton()
+    func didTapRegisterButton()
 }
 
 protocol postViewModelOutput {
@@ -68,7 +69,7 @@ final class DefaultPostViewModel: PostViewModel {
     }
 }
 
-// MARK: - Output
+// MARK: - Input
 
 extension DefaultPostViewModel {
     func appendImage(_ image: UIImage) {
@@ -79,5 +80,8 @@ extension DefaultPostViewModel {
     }
     func didTapLocationButton() {
         actions.showMap(didSetCoordinate(coordinate:))
+    }
+    func didTapRegisterButton() {
+        print("탭했습니당~")
     }
 }

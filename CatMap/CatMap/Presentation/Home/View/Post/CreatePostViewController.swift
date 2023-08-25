@@ -52,6 +52,7 @@ final class CreatePostViewController: UIViewController, Alertable {
         bottomButton.translatesAutoresizingMaskIntoConstraints = false
         bottomButton.setTitle("등록", for: .normal)
         bottomButton.backgroundColor = .blue
+        bottomButton.addTarget(self, action: #selector(didTapRegisterButton), for: .touchUpInside)
         
         
         view.addSubview(scrollView)
@@ -87,6 +88,10 @@ final class CreatePostViewController: UIViewController, Alertable {
     @objc private func didTapCoordinateButton() {
         IQKeyboardManager.shared.resignFirstResponder()
         viewModel.didTapLocationButton()
+    }
+    
+    @objc private func didTapRegisterButton() {
+        viewModel.didTapRegisterButton()
     }
 }
 
