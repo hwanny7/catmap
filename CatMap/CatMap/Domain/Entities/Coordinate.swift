@@ -18,3 +18,6 @@ struct Coordinate {
         self.longitude = coordinate.longitude
     }
 }
+
+
+

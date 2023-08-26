@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct addMarkerRequestDTO {
+struct addMarkerRequestDTO: MultipartFormDataConvertible {
     let latitude: Double
     let longitude: Double
     let images: [UIImage]

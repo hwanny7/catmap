@@ -11,6 +11,6 @@ import UIKit
 struct Post {
     var title: String
     var content: String
-    var isPublic: Bool
-    var imageList: [UIImage]
+    var images: [UIImage]
+    var coordinate: Coordinate
 }
