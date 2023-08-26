@@ -52,7 +52,7 @@ extension HomeDIContainer {
     }
     
     func makeCreatePostViewController(actions: PostViewModelActions) -> PostViewModel {
-        DefaultPostViewModel(actions: actions)
+        DefaultPostViewModel(actions: actions, addMarkerUseCase: makeAddMarkerUseCase())
     }
     
     func makeMapCoordinateViewController(action: @escaping didSelectCoordinateAction) -> CoordinateViewModel {
@@ -65,6 +65,10 @@ extension HomeDIContainer {
 extension HomeDIContainer {
     func makeFetchMarkerUseCase() -> FetchMarkerUseCase {
         DefaultFetchMarkerUseCase(markerRepository: makeMarkerRepository())
+    }
+    
+    func makeAddMarkerUseCase() -> AddMarkerUseCase {
+        DefaultAddMarkerUseCase(markerRepository: makeMarkerRepository())
     }
 }
 
