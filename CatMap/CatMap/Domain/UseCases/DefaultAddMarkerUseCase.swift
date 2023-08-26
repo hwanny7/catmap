@@ -29,7 +29,9 @@ final class DefaultAddMarkerUseCase: AddMarkerUseCase {
         requestValue: AddMarkerUseCaseRequestValue,
         completion: @escaping (Result<Void, Error>) -> Void
     ) -> Cancellable? {
-        return 
+        return markerRepository.addMarker(body: requestValue) { result in
+            completion(result)
+        }
     }
     
     
