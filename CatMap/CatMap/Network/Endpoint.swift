@@ -5,7 +5,7 @@
 //  Created by yun on 2023/08/19.
 //
 
-import Foundation
+import UIKit
 
 
 enum HTTPMethodType: String {
@@ -34,6 +34,7 @@ class Endpoint<R>: ResponseRequestable {
     let queryParameters: [String: Any]
     let bodyParametersEncodable: Encodable?
     let bodyParameters: [String: Any]
+    let bodyParametersConvertible: MultipartFormDataConvertible?
     let bodyEncoding: BodyEncoding
     let responseDecoder: ResponseDecoder
 
@@ -45,6 +46,7 @@ class Endpoint<R>: ResponseRequestable {
          queryParameters: [String: Any] = [:],
          bodyParametersEncodable: Encodable? = nil,
          bodyParameters: [String: Any] = [:],
+         bodyParametersConvertible: MultipartFormDataConvertible? = nil,
          bodyEncoding: BodyEncoding = .jsonSerializationData,
          responseDecoder: ResponseDecoder = JSONResponseDecoder()) {
         self.path = path
@@ -55,6 +57,7 @@ class Endpoint<R>: ResponseRequestable {
         self.queryParameters = queryParameters
         self.bodyParametersEncodable = bodyParametersEncodable
         self.bodyParameters = bodyParameters
+        self.bodyParametersConvertible = bodyParametersConvertible
         self.bodyEncoding = bodyEncoding
         self.responseDecoder = responseDecoder
     }
@@ -69,6 +72,7 @@ protocol Requestable {
     var queryParameters: [String: Any] { get }
     var bodyParametersEncodable: Encodable? { get }
     var bodyParameters: [String: Any] { get }
+    var bodyParametersConvertible : MultipartFormDataConvertible? { get }
     var bodyEncoding: BodyEncoding { get }
 
     func urlRequest(with networkConfig: NetworkConfigurable) throws -> URLRequest
@@ -129,11 +133,17 @@ extension Requestable {
         headerParameters.forEach { allHeaders.updateValue($1, forKey: $0) }
         // config header는 필요없을 듯 하다.
         
+        
         let bodyParameters = try bodyParametersEncodable?.toDictionary() ?? self.bodyParameters
         if !bodyParameters.isEmpty {
             urlRequest.httpBody = encodeBody(bodyParameters: bodyParameters, bodyEncoding: bodyEncoding)
         }
-        // isEmpty 없애도 될 듯
+        
+        if let bodyParametersConvertible = bodyParametersConvertible {
+            let formData = bodyParametersConvertible.encode(request: &urlRequest)
+            urlRequest.httpBody = formData
+        }
+        
         urlRequest.httpMethod = method.rawValue
         urlRequest.allHTTPHeaderFields = allHeaders
         return urlRequest
@@ -170,4 +180,52 @@ private extension Encodable {
         return jsonData as? [String : Any]
     }
     // query 또는 body ParemtersEncodable DTO를 딕셔너리로 변경
+}
+
+private extension Data {
+    mutating func append(_ string: String) {
+        if let data = string.data(using: .utf8) {
+            self.append(data)
+        }
+    }
+}
+
+
+protocol MultipartFormDataConvertible {
+    
+}
+
+extension MultipartFormDataConvertible {
+    func encode(request: inout URLRequest) -> Data {
+        let mirror = Mirror(reflecting: self)
+        
+        let boundary: String = UUID().uuidString
+        var body = Data()
+        
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        
+        for case let (label?, value) in mirror.children {
+            if let images = value as? [UIImage] {
+                for image in images {
+                    let uuid = UUID().uuidString.components(separatedBy: "-").first!
+                    body.append("--\(boundary)\r\n")
+                    body.append("Content-Disposition: form-data; name=\"\(label)\"; filename=\"\(uuid).jpg\"\r\n")
+                    body.append("Content-Type: image/jpeg\r\n\r\n")
+                    body.append(image.jpegData(compressionQuality: 0.99)!)
+                    body.append("\r\n")
+                }
+            } else if let stringValue = value as? String {
+                body.append("--\(boundary)\r\n")
+                body.append("Content-Disposition: form-data; name=\"\(label)\"\r\n\r\n")
+                body.append(stringValue)
+                body.append("\r\n")
+            }
+        }
+        
+        body.append("--\(boundary)--\r\n")
+        
+        return body
+        
+    }
 }

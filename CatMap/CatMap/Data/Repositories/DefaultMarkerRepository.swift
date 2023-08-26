@@ -25,6 +25,13 @@ final class DefaultMarkerRepository {
 
 extension DefaultMarkerRepository: MarkerRepository {
     
+    func addMarkerList(
+        completion: @escaping (Result<Void, Error>) -> Void
+    ) -> Cancellable? {
+        
+    }
+    
+    
     func fetchMarkerList(query: Coordinate, completion: @escaping (Result<MapMarkers, Error>) -> Void) -> Cancellable? {
         
         
@@ -43,5 +50,7 @@ extension DefaultMarkerRepository: MarkerRepository {
         })
         return task
     }
+    
+    
     
 }
