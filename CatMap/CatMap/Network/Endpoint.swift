@@ -141,6 +141,8 @@ extension Requestable {
         
         if let bodyParametersConvertible = bodyParametersConvertible {
             let formData = bodyParametersConvertible.encode(request: &urlRequest)
+            print(formData)
+            print("===================")
             urlRequest.httpBody = formData
         }
         
@@ -200,6 +202,7 @@ extension MultipartFormDataConvertible {
         let mirror = Mirror(reflecting: self)
         
         let boundary: String = UUID().uuidString
+        let lineBreak = "\r\n"
         var body = Data()
         
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
@@ -209,21 +212,29 @@ extension MultipartFormDataConvertible {
             if let images = value as? [UIImage] {
                 for image in images {
                     let uuid = UUID().uuidString.components(separatedBy: "-").first!
-                    body.append("--\(boundary)\r\n")
-                    body.append("Content-Disposition: form-data; name=\"\(label)\"; filename=\"\(uuid).jpg\"\r\n")
-                    body.append("Content-Type: image/jpeg\r\n\r\n")
+                    body.append("--\(boundary + lineBreak)")
+                    body.append("Content-Disposition: form-data; name=\"\(label)\"; filename=\"\(uuid).jpg\"\(lineBreak)")
+                    body.append("Content-Type: image/jpeg\(lineBreak + lineBreak)")
                     body.append(image.jpegData(compressionQuality: 0.99)!)
-                    body.append("\r\n")
+                    // assertion 넣지 않기
+                    // Jpeg가 아닌 경우면 어떻게 하지
+                    body.append(lineBreak)
                 }
             } else if let stringValue = value as? String {
-                body.append("--\(boundary)\r\n")
-                body.append("Content-Disposition: form-data; name=\"\(label)\"\r\n\r\n")
+                body.append("--\(boundary + lineBreak)")
+                body.append("Content-Disposition: form-data; name=\"\(label)\"\(lineBreak + lineBreak)")
                 body.append(stringValue)
-                body.append("\r\n")
+                body.append(lineBreak)
             }
         }
         
-        body.append("--\(boundary)--\r\n")
+        body.append("--\(boundary)--\(lineBreak)")
+        
+        if let bodyString = String(data: body.prefix(500), encoding: .utf8) {
+            print(bodyString)
+        } else {
+            print("안된다고요!")
+        }
         
         return body
         

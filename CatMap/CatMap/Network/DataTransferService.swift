@@ -169,8 +169,8 @@ final class DefaultDataTransferErrorLogger: DataTransferErrorLogger {
     init() { }
     
     func log(error: Error) {
-        printIfDebug("-------------")
-        printIfDebug("\(error)")
+//        printIfDebug("-------------")
+//        printIfDebug("\(error)")
     }
 }
 

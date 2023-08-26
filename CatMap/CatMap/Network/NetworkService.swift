@@ -159,12 +159,12 @@ final class DefaultNetworkErrorLogger: NetworkErrorLogger {
     func log(responseData data: Data?, response: URLResponse?) {
         guard let data = data else { return }
         if let dataDict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-            printIfDebug("responseData: \(String(describing: dataDict))")
+//            printIfDebug("responseData: \(String(describing: dataDict))")
         }
     }
 
     func log(error: Error) {
-        printIfDebug("\(error)")
+//        printIfDebug("\(error)")
     }
 }
 

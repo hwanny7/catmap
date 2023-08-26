@@ -27,7 +27,7 @@ protocol postViewModelOutput {
     var maxPhotoUploadCount: Int { get }
     var canUploadImage: Bool { get }
     var photoUploadLimit: Int { get }
-    
+    var isValidated: ValidationError? { get }
 }
 
 
@@ -50,12 +50,15 @@ final class DefaultPostViewModel: PostViewModel {
     var canUploadImage: Bool {
         return numberOfPhotos != photoUploadLimit ? true : false
     }
+    var isValidated: ValidationError?
     
     private var coordinate: Coordinate?
     
     private let actions: PostViewModelActions
     
     private let addMarkerUseCase: AddMarkerUseCase
+    
+    private var addMarkerTask: Cancellable?
     
     init(
         actions: PostViewModelActions,
@@ -73,10 +76,17 @@ final class DefaultPostViewModel: PostViewModel {
     private func validateForm() {
         // 유효성 검사
         submitForm()
-        
     }
     
     private func submitForm() {
+//        self.loading.value = loading
+        guard let coordinate = coordinate else { return }
+        addMarkerTask = addMarkerUseCase.execute(
+            requestValue: .init(title: title, content: content, images: images, coordinate: coordinate)
+        ) { [weak self] result in
+//            self?.actions 다음페이지로 이동하는 액션 실행
+        }
+        
         
     }
     
@@ -96,7 +106,12 @@ extension DefaultPostViewModel {
     }
     func didTapRegisterButton() {
         validateForm()
-        // 유효성 검사 메소드 호출, 거기서 use case 호출
-//        let post = AddMarkerUseCaseRequestValue(title: title, content: content, images: images, coordinate: coordinate)
     }
+}
+
+// MARK: - Validation check description
+
+enum ValidationError {
+    case noPhoto
+    case noLocation
 }
