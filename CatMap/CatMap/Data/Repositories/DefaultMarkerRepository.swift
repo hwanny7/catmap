@@ -29,15 +29,22 @@ extension DefaultMarkerRepository: MarkerRepository {
         body: AddMarkerUseCaseRequestValue,
         completion: @escaping (Result<Void, Error>) -> Void
     ) -> Cancellable? {
-        let latitude = body.coordinate.latitude
-        let longitude = body.coordinate.longitude
-        
-        let requestDTO = addMarkerRequestDTO(latitude: latitude, longitude: longitude, images: body.images, content: body.content)
+
+        let requestDTO = addMarkerRequestDTO(latitude: body.coordinate.latitude, longitude: body.coordinate.longitude, images: body.images, content: body.content)
         let task = RepositoryTask()
         
+        let endpoint = APIEndpoints.addMarkers(from: requestDTO)
         
+        task.networkTask = self.dataTransferService.request(with: endpoint, on: backgroundQueue, completion: { result in
+            switch result {
+            case .success():
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
         
-        
+        return task
     }
     
     
