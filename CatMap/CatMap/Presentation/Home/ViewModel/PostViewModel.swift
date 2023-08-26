@@ -22,8 +22,7 @@ protocol postViewModelInput {
 protocol postViewModelOutput {
     var title: String { get }
     var content: String { get }
-    var isPublic: Bool { get }
-    var imageList: [UIImage] { get set }
+    var images: [UIImage] { get set }
     var numberOfPhotos: Int { get }
     var maxPhotoUploadCount: Int { get }
     var canUploadImage: Bool { get }
@@ -38,13 +37,12 @@ typealias PostViewModel = postViewModelInput & postViewModelOutput
 final class DefaultPostViewModel: PostViewModel {
     var title: String = ""
     var content: String = ""
-    var isPublic: Bool = true
-    var imageList: [UIImage] = [UIImage(systemName: "camera")!]
+    var images: [UIImage] = [UIImage(systemName: "camera")!]
     
     let photoUploadLimit: Int = 10
     
     var numberOfPhotos: Int {
-        return imageList.count - 1
+        return images.count - 1
     }
     var maxPhotoUploadCount: Int {
         return photoUploadLimit - numberOfPhotos
@@ -73,15 +71,17 @@ final class DefaultPostViewModel: PostViewModel {
 
 extension DefaultPostViewModel {
     func appendImage(_ image: UIImage) {
-        imageList.append(image)
+        images.append(image)
     }
     func removeImage(_ index: Int) {
-        imageList.remove(at: index)
+        images.remove(at: index)
     }
     func didTapLocationButton() {
         actions.showMap(didSetCoordinate(coordinate:))
     }
     func didTapRegisterButton() {
-        print("탭했습니당~")
+        // 유효성 검사 실시
+        guard let coordinate = coordinate else { return }
+        let post = Post(title: title, content: content, images: images, coordinate: coordinate)
     }
 }
