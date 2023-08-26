@@ -55,16 +55,31 @@ final class DefaultPostViewModel: PostViewModel {
     
     private let actions: PostViewModelActions
     
+    private let addMarkerUseCase: AddMarkerUseCase
+    
     init(
-        actions: PostViewModelActions
+        actions: PostViewModelActions,
+        addMarkerUseCase: AddMarkerUseCase
     ) {
         self.actions = actions
+        self.addMarkerUseCase = addMarkerUseCase
     }
     
     private func didSetCoordinate(coordinate: Coordinate) {
         actions.dismissMap()
         self.coordinate = coordinate
     }
+    
+    private func validateForm() {
+        // 유효성 검사
+        submitForm()
+        
+    }
+    
+    private func submitForm() {
+        
+    }
+    
 }
 
 // MARK: - Input
@@ -80,7 +95,7 @@ extension DefaultPostViewModel {
         actions.showMap(didSetCoordinate(coordinate:))
     }
     func didTapRegisterButton() {
-        guard let coordinate = coordinate else { return }
+        validateForm()
         // 유효성 검사 메소드 호출, 거기서 use case 호출
 //        let post = AddMarkerUseCaseRequestValue(title: title, content: content, images: images, coordinate: coordinate)
     }
