@@ -19,14 +19,14 @@ struct APIEndpoints {
     }
     
     
-//    static func addMarkers(from addMarkerRequestDTO: AddMakerRequestDTO) -> Endpoint<AddMarkerResponseDTO> {
-//
-//        return Endpoint(
-//            path: "",
-//            method: .post,
-//            bodyParametersEncodable: addMarkerRequestDTO
-//        )
-//
-//    }
+    static func addMarkers(from addMarkerRequestDTO: MultipartFormDataConvertible) -> Endpoint<Void> {
+
+        return Endpoint(
+            path: "",
+            method: .post,
+            bodyParametersConvertible: addMarkerRequestDTO
+        )
+
+    }
     
 }

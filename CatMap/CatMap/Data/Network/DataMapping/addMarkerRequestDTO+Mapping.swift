@@ -11,5 +11,5 @@ struct addMarkerRequestDTO: MultipartFormDataConvertible {
     let latitude: Double
     let longitude: Double
     let images: [UIImage]
-    let description: String
+    let content: String
 }

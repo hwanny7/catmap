@@ -80,8 +80,8 @@ extension DefaultPostViewModel {
         actions.showMap(didSetCoordinate(coordinate:))
     }
     func didTapRegisterButton() {
-        // 유효성 검사 실시
         guard let coordinate = coordinate else { return }
-        let post = Post(title: title, content: content, images: images, coordinate: coordinate)
+        // 유효성 검사 메소드 호출, 거기서 use case 호출
+//        let post = AddMarkerUseCaseRequestValue(title: title, content: content, images: images, coordinate: coordinate)
     }
 }

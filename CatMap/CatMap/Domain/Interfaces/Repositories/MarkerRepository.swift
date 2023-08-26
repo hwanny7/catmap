@@ -16,8 +16,8 @@ protocol MarkerRepository {
     ) -> Cancellable?
     
     @discardableResult
-    func addMarkerList(
-//        body: ,
+    func addMarker(
+        body: AddMarkerUseCaseRequestValue,
         completion: @escaping (Result<Void,Error>) -> Void
     ) -> Cancellable?
 }

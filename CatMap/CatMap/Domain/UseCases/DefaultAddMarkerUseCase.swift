@@ -5,7 +5,7 @@
 //  Created by yun on 2023/08/25.
 //
 
-import Foundation
+import UIKit
 
 protocol AddMarkerUseCase {
     func execute(
@@ -38,7 +38,10 @@ final class DefaultAddMarkerUseCase: AddMarkerUseCase {
 
 
 struct AddMarkerUseCaseRequestValue {
-    let coordinate: Coordinate
+    var title: String
+    var content: String
+    var images: [UIImage]
+    var coordinate: Coordinate
 }
 
 // 유저가 보고 있는 지도의 좌표

@@ -25,9 +25,18 @@ final class DefaultMarkerRepository {
 
 extension DefaultMarkerRepository: MarkerRepository {
     
-    func addMarkerList(
+    func addMarker(
+        body: AddMarkerUseCaseRequestValue,
         completion: @escaping (Result<Void, Error>) -> Void
     ) -> Cancellable? {
+        let latitude = body.coordinate.latitude
+        let longitude = body.coordinate.longitude
+        
+        let requestDTO = addMarkerRequestDTO(latitude: latitude, longitude: longitude, images: body.images, content: body.content)
+        let task = RepositoryTask()
+        
+        
+        
         
     }
     

@@ -46,7 +46,7 @@ final class DefaultMapViewModel: MapViewModel {
     
     private func load() {
         
-//        markerLoadTask = fetchMarkerUseCase.execute(requestValue: <#T##FetchMarkerUseCaseRequestValue#>, completion: <#T##(Result<MapMarkers, Error>) -> Void#>)
+//        markerLoadTask = fetchMarkerUseCase.execute(requestValue: .init(), completion: <#T##(Result<MapMarkers, Error>) -> Void#>)
         
     }
     
