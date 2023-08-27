@@ -40,7 +40,6 @@ final class DefaultAddMarkerUseCase: AddMarkerUseCase {
 
 
 struct AddMarkerUseCaseRequestValue {
-    var title: String
     var content: String
     var images: [UIImage]
     var coordinate: Coordinate

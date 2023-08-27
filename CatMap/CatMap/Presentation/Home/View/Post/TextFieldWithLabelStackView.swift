@@ -17,6 +17,7 @@ final class TextFieldWithLabelStackView: UIStackView {
     private let title: String
     private let placeholderText: String
     private let textType: TextType
+    private let updateContent: ((String) -> Void)?
     
     lazy var placeholderLabel: UILabel = {
         let label = UILabel()
@@ -62,10 +63,11 @@ final class TextFieldWithLabelStackView: UIStackView {
     }()
     
     
-    init(title: String, placeholderText: String, textType: TextType) {
+    init(title: String, placeholderText: String, textType: TextType, updateContent:  ((String) -> Void)? = nil) {
         self.title = title
         self.placeholderText = placeholderText
         self.textType = textType
+        self.updateContent = updateContent
         super.init(frame: .zero)
         setupViews()
     }
@@ -115,5 +117,6 @@ final class TextFieldWithLabelStackView: UIStackView {
 extension TextFieldWithLabelStackView: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         isContentEmpty(textView)
+        updateContent!(textView.text)
     }
 }

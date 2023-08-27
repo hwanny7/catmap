@@ -17,10 +17,10 @@ protocol postViewModelInput {
     func removeImage(_ index: Int)
     func didTapLocationButton()
     func didTapRegisterButton()
+    func didUpdate(content: String)
 }
 
 protocol postViewModelOutput {
-    var title: String { get }
     var content: String { get }
     var images: [UIImage] { get set }
     var numberOfPhotos: Int { get }
@@ -35,7 +35,6 @@ typealias PostViewModel = postViewModelInput & postViewModelOutput
 
 
 final class DefaultPostViewModel: PostViewModel {
-    var title: String = ""
     var content: String = ""
     var images: [UIImage] = [UIImage(systemName: "camera")!]
     
@@ -74,20 +73,20 @@ final class DefaultPostViewModel: PostViewModel {
     }
     
     private func validateForm() {
-        // 유효성 검사
-        submitForm()
+        print(images.count)
+        print(content)
+        print(coordinate)
+//        submitForm()
     }
     
     private func submitForm() {
 //        self.loading.value = loading
         guard let coordinate = coordinate else { return }
         addMarkerTask = addMarkerUseCase.execute(
-            requestValue: .init(title: title, content: content, images: images, coordinate: coordinate)
+            requestValue: .init(content: content, images: images, coordinate: coordinate)
         ) { [weak self] result in
 //            self?.actions 다음페이지로 이동하는 액션 실행
         }
-        
-        
     }
     
 }
@@ -106,6 +105,9 @@ extension DefaultPostViewModel {
     }
     func didTapRegisterButton() {
         validateForm()
+    }
+    func didUpdate(content: String) {
+        self.content = content
     }
 }
 
