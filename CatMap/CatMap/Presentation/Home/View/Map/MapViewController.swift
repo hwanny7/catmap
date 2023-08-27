@@ -75,9 +75,6 @@ final class MapViewController: BaseMapViewController {
     override func setupViews() {
         super.setupViews()
         map.delegate = self
-        print(map.centerCoordinate)
-//        addCustomPin()
-//        사용자 위치 확인했을 때 Pin 가져와서 수행하기
     }
     
     override func addSubViews() {
@@ -105,10 +102,9 @@ final class MapViewController: BaseMapViewController {
     }
 
     private func addCustomPin(_ markers: [Marker]) {
-        print(map.centerCoordinate, "여기는 커스텀 핀!")
         for marker in markers {
-            let coordinate = CLLocationCoordinate2D(latitude: marker.latitude, longitude: marker.longitude)
             let pin = MKPointAnnotation()
+            let coordinate = CLLocationCoordinate2D(latitude: marker.latitude, longitude: marker.longitude)
             pin.coordinate = coordinate
             map.addAnnotation(pin)
             // array로 추가하는 방법도 있음
@@ -152,7 +148,7 @@ extension MapViewController: MKMapViewDelegate {
         } else {
             annotationView?.annotation = annotation
         }
-        
+
         annotationView?.image = UIImage(systemName: "house")
 
         return annotationView

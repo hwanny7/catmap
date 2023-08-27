@@ -82,8 +82,8 @@ final class DefaultPostViewModel: PostViewModel {
             isValidated.value = .noLocation
             return
         }
-        
-//        submitForm()
+        // Content는 공백 허용
+        submitForm()
     }
     
     private func submitForm() {
@@ -115,7 +115,6 @@ extension DefaultPostViewModel {
     }
     func didUpdate(content: String) {
         self.content = content
-        print(self.content)
     }
 }
 
