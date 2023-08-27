@@ -121,7 +121,7 @@ extension DefaultPostViewModel {
 
 // MARK: - Validation check description
 
-enum ValidationError {
-    case noPhoto
-    case noLocation
+enum ValidationError: String {
+    case noPhoto = "최소 한 장의 사진을 추가해주세요."
+    case noLocation = "위치 정보를 추가해주세요."
 }
