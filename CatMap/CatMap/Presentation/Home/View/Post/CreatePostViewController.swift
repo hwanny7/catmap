@@ -26,6 +26,7 @@ final class CreatePostViewController: UIViewController, Alertable {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        bind(to: viewModel)
     }
     
     
@@ -85,6 +86,12 @@ final class CreatePostViewController: UIViewController, Alertable {
         ])
     }
     
+    private func bind(to viewModel: PostViewModel) {
+        viewModel.isValidated.observe(on: self) { [weak self] in
+            self?.showAlert(for: $0)
+        }
+    }
+    
     @objc private func didTapCoordinateButton() {
         IQKeyboardManager.shared.resignFirstResponder()
         viewModel.didTapLocationButton()
@@ -96,6 +103,10 @@ final class CreatePostViewController: UIViewController, Alertable {
     
     private func didChange(content: String) {
         viewModel.didUpdate(content: content)
+    }
+    
+    private func showAlert(for validation: ValidationError?) {
+        print(validation)
     }
     
 }
