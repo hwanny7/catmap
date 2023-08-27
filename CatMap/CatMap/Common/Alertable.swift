@@ -23,12 +23,13 @@ extension Alertable where Self: UIViewController{
         actions: [UIAlertAction] = [],
         title: String? = nil,
         message: String? = nil,
-        preferredStyle: UIAlertController.Style = .alert
+        preferredStyle: UIAlertController.Style = .alert,
+        cancelButtonTitle: String = "닫기"
 //        completion: (() -> Void)? = nil
     ) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
         actions.forEach { alert.addAction($0) }
-        let cancelAction = UIAlertAction(title: "닫기", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .cancel, handler: nil)
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
     }

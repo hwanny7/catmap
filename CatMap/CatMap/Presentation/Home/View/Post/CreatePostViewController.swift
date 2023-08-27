@@ -106,8 +106,7 @@ final class CreatePostViewController: UIViewController, Alertable {
     }
     
     private func showAlert(for validation: ValidationError?) {
-        let alertController = UIAlertController(title: validation?.rawValue, message: nil, preferredStyle: .alert)
-        
+     
         switch validation {
         case .noPhoto:
             print("photho")
@@ -116,10 +115,8 @@ final class CreatePostViewController: UIViewController, Alertable {
         case .none:
             return
         }
+        self.showAlert(message: validation?.rawValue, cancelButtonTitle: "확인")
         
-        alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
-        
-        present(alertController, animated: true, completion: nil)
         
     }
     
