@@ -21,13 +21,13 @@ protocol postViewModelInput {
 }
 
 protocol postViewModelOutput {
-    var content: String { get }
+    var content: String { get set }
     var images: [UIImage] { get set }
     var numberOfPhotos: Int { get }
     var maxPhotoUploadCount: Int { get }
     var canUploadImage: Bool { get }
     var photoUploadLimit: Int { get }
-    var isValidated: ValidationError? { get }
+    var isValidated: Observable<ValidationError?> { get set }
 }
 
 
@@ -49,7 +49,7 @@ final class DefaultPostViewModel: PostViewModel {
     var canUploadImage: Bool {
         return numberOfPhotos != photoUploadLimit ? true : false
     }
-    var isValidated: ValidationError?
+    var isValidated: Observable<ValidationError?> = Observable(.none)
     
     private var coordinate: Coordinate?
     
@@ -73,12 +73,13 @@ final class DefaultPostViewModel: PostViewModel {
     }
     
     private func validateForm() {
+        // 일단 .none으로 변경하고 시작해야 할 듯
         if numberOfPhotos == 0 {
-            isValidated = .noPhoto
+            isValidated.value = .noPhoto
             return
         }
         guard let _ = coordinate else {
-            isValidated = .noLocation
+            isValidated.value = .noLocation
             return
         }
         
@@ -114,6 +115,7 @@ extension DefaultPostViewModel {
     }
     func didUpdate(content: String) {
         self.content = content
+        print(self.content)
     }
 }
 
