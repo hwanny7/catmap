@@ -73,9 +73,15 @@ final class DefaultPostViewModel: PostViewModel {
     }
     
     private func validateForm() {
-        print(images.count)
-        print(content)
-        print(coordinate)
+        if numberOfPhotos == 0 {
+            isValidated = .noPhoto
+            return
+        }
+        guard let _ = coordinate else {
+            isValidated = .noLocation
+            return
+        }
+        
 //        submitForm()
     }
     
