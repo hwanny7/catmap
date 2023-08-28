@@ -20,7 +20,7 @@ struct MapViewModelActions {
 
 protocol MapViewModelInput {
     func didTapFloatingButton()
-    func didRequestFetchCoordinate()
+    func didRequestFetchMarker()
 }
 
 protocol MapViewModelOutput {
@@ -32,6 +32,7 @@ typealias MapViewModel = MapViewModelInput & MapViewModelOutput
 final class DefaultMapViewModel: MapViewModel {
     private let actions: MapViewModelActions
     private let fetchMarkerUseCase : FetchMarkerUseCase
+    private let mainQueue: DispatchQueueType
     private var markerLoadTask: Cancellable? { willSet { markerLoadTask?.cancel() } }
     
     let markers: Observable<[Marker]> = Observable([])
@@ -39,15 +40,19 @@ final class DefaultMapViewModel: MapViewModel {
     
     init(
         actions: MapViewModelActions,
-        fetchMarkerUseCase: FetchMarkerUseCase
+        fetchMarkerUseCase: FetchMarkerUseCase,
+        mainQueue: DispatchQueueType = DispatchQueue.main
     ) {
         self.actions = actions
         self.fetchMarkerUseCase = fetchMarkerUseCase
+        self.mainQueue = mainQueue
     }
     
     private func load() {
         
-//        markerLoadTask = fetchMarkerUseCase.execute(requestValue: .init(), completion: <#T##(Result<MapMarkers, Error>) -> Void#>)
+        markerLoadTask = fetchMarkerUseCase.execute(requestValue: .init(coordinate: ), completion: { [weak self] result in
+            self?.
+        })
         
     }
     
@@ -68,7 +73,7 @@ extension DefaultMapViewModel {
         actions.showCreatePost()
     }
     
-    func didRequestFetchCoordinate(){
+    func didRequestFetchMarker(){
         appendMaker()
         // 여기서 load 메소드를 실행한다.
     }

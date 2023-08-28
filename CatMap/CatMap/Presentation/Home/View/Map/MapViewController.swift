@@ -135,7 +135,7 @@ final class MapViewController: BaseMapViewController {
     private func fetchCurrentLocationCoordinate() {
         let currentRegion = map.region
         let span = currentRegion.span
-        viewModel.didRequestFetchCoordinate()
+        viewModel.didRequestFetchMarker()
     }
     
 }

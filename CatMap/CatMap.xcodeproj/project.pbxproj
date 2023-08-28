@@ -51,6 +51,7 @@
 		AE25E38D2A95E52500B131FA /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E38C2A95E52500B131FA /* Marker.swift */; };
 		AE25E38F2A98853100B131FA /* DefaultAddMarkerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E38E2A98853100B131FA /* DefaultAddMarkerUseCase.swift */; };
 		AE25E3912A9892EB00B131FA /* addMarkerRequestDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3902A9892EB00B131FA /* addMarkerRequestDTO+Mapping.swift */; };
+		AE25E3932A9C246800B131FA /* DispatchQueueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3922A9C246800B131FA /* DispatchQueueType.swift */; };
 		AE5EE7032A8CEDB70078A7CD /* DefaultMyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7022A8CEDB70078A7CD /* DefaultMyPageViewModel.swift */; };
 		AE5EE7052A8CF4D90078A7CD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7042A8CF4D90078A7CD /* LoginViewController.swift */; };
 		AE5EE7082A8CF6B60078A7CD /* DefaultLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7072A8CF6B60078A7CD /* DefaultLoginViewModel.swift */; };
@@ -105,6 +106,7 @@
 		AE25E38C2A95E52500B131FA /* Marker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
 		AE25E38E2A98853100B131FA /* DefaultAddMarkerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAddMarkerUseCase.swift; sourceTree = "<group>"; };
 		AE25E3902A9892EB00B131FA /* addMarkerRequestDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "addMarkerRequestDTO+Mapping.swift"; sourceTree = "<group>"; };
+		AE25E3922A9C246800B131FA /* DispatchQueueType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueueType.swift; sourceTree = "<group>"; };
 		AE5EE7022A8CEDB70078A7CD /* DefaultMyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMyPageViewModel.swift; sourceTree = "<group>"; };
 		AE5EE7042A8CF4D90078A7CD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AE5EE7072A8CF6B60078A7CD /* DefaultLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLoginViewModel.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				AE1581F02A81CFA500B79291 /* Alertable.swift */,
 				AE94CE262A887B00009F195E /* Observable.swift */,
 				AE25E3712A9100E800B131FA /* Cancellable.swift */,
+				AE25E3922A9C246800B131FA /* DispatchQueueType.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				AE25E3832A95E09700B131FA /* MarkersRequestDTO+Mapping.swift in Sources */,
 				AE1581D42A7F837300B79291 /* Coordinator.swift in Sources */,
 				AE16AD202A7E834600CB6B81 /* DataTransferService.swift in Sources */,
+				AE25E3932A9C246800B131FA /* DispatchQueueType.swift in Sources */,
 				AE1581EA2A80C0EA00B79291 /* MyPageViewController.swift in Sources */,
 				AE1581F52A82347E00B79291 /* PickerController.swift in Sources */,
 				AE1581DF2A80A80E00B79291 /* MapViewController.swift in Sources */,
