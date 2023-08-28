@@ -26,7 +26,7 @@ final class DefaultFetchMarkerUseCase: FetchMarkerUseCase {
     }
     
     func execute(requestValue: FetchMarkerUseCaseRequestValue, completion: @escaping (Result<MapMarkers, Error>) -> Void) -> Cancellable? {
-        return markerRepository.fetchMarkerList(query: requestValue.coordinate, completion: completion)
+        return markerRepository.fetchMarkerList(centerCoordinate: requestValue.centerCoordinate, distance: requestValue.distance, completion: completion)
     }
     
     
@@ -35,8 +35,8 @@ final class DefaultFetchMarkerUseCase: FetchMarkerUseCase {
 
 
 struct FetchMarkerUseCaseRequestValue {
-    let coordinate: Coordinate
     let distance: Double
+    let centerCoordinate: Coordinate
 }
 
 // 유저가 보고 있는 지도의 좌표

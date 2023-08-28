@@ -48,10 +48,10 @@ extension DefaultMarkerRepository: MarkerRepository {
     }
     
     
-    func fetchMarkerList(query: Coordinate, completion: @escaping (Result<MapMarkers, Error>) -> Void) -> Cancellable? {
+    func fetchMarkerList(centerCoordinate: Coordinate, distance: Double, completion: @escaping (Result<MapMarkers, Error>) -> Void) -> Cancellable? {
         
         
-        let requestDTO = MarkersRequestDTO(latitude: query.latitude, longitude: query.longitude)
+        let requestDTO = MarkersRequestDTO(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude, distance: distance)
         let task = RepositoryTask()
         
         let endpoint = APIEndpoints.getMarkers(with: requestDTO)

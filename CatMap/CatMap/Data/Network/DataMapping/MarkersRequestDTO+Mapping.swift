@@ -11,4 +11,5 @@ import Foundation
 struct MarkersRequestDTO: Encodable {
     let latitude: Double
     let longitude: Double
+    let distance: Double
 }

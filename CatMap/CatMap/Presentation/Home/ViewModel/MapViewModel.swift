@@ -54,7 +54,7 @@ final class DefaultMapViewModel: MapViewModel {
     
     private func load(distance: Double, centerCoordinate: Coordinate) {
         print(distance, centerCoordinate)
-        markerLoadTask = fetchMarkerUseCase.execute(requestValue: .init(coordinate: centerCoordinate, distance: distance), completion: { [weak self] result in
+        markerLoadTask = fetchMarkerUseCase.execute(requestValue: .init(distance: distance, centerCoordinate: centerCoordinate), completion: { [weak self] result in
             self?.mainQueue.async {
                 switch result {
                 case .success(let markers):
