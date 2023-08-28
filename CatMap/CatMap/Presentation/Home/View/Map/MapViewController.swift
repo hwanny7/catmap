@@ -19,6 +19,8 @@ import CoreLocation
 
 final class MapViewController: BaseMapViewController {
     
+    private var isActivate: Bool = true
+    
     private let floatingButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -62,9 +64,11 @@ final class MapViewController: BaseMapViewController {
         super.viewDidLoad()
         setupViews()
         bind(to: viewModel)
-        let currentRegion = map.region
-        let span = currentRegion.span
-        print("첫번째", currentRegion, span)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        fetchCurrentLocationCoordinate()
     }
     
     
@@ -133,9 +137,9 @@ final class MapViewController: BaseMapViewController {
     }
     
     private func fetchCurrentLocationCoordinate() {
-        let currentRegion = map.region
-        let span = currentRegion.span
-        viewModel.didRequestFetchMarker()
+        let latitudeDelta = map.region.span.latitudeDelta
+        let centerCoordinate = map.centerCoordinate
+        viewModel.didRequestFetchMarker(latitudeDelta: latitudeDelta, centerCoordinate: centerCoordinate)
     }
     
 }
@@ -172,7 +176,11 @@ extension MapViewController {
     
     override func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         super.locationManager(manager, didUpdateLocations: locations)
-        print("여기!")
+        
+        if viewModel.isFirstLocation {
+            fetchCurrentLocationCoordinate()
+        }
+        viewModel.deactivateFirstLocation()
     }
     
 }

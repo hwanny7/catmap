@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 
 
@@ -20,11 +21,13 @@ struct MapViewModelActions {
 
 protocol MapViewModelInput {
     func didTapFloatingButton()
-    func didRequestFetchMarker()
+    func didRequestFetchMarker(latitudeDelta: CLLocationDegrees, centerCoordinate: CLLocationCoordinate2D)
+    func deactivateFirstLocation()
 }
 
 protocol MapViewModelOutput {
     var markers: Observable<[Marker]> { get }
+    var isFirstLocation: Bool { get }
 }
 
 typealias MapViewModel = MapViewModelInput & MapViewModelOutput
@@ -36,6 +39,7 @@ final class DefaultMapViewModel: MapViewModel {
     private var markerLoadTask: Cancellable? { willSet { markerLoadTask?.cancel() } }
     
     let markers: Observable<[Marker]> = Observable([])
+    var isFirstLocation: Bool = true
     
     
     init(
@@ -50,13 +54,22 @@ final class DefaultMapViewModel: MapViewModel {
     
     private func load() {
         
-        markerLoadTask = fetchMarkerUseCase.execute(requestValue: .init(coordinate: ), completion: { [weak self] result in
-            self?.
-        })
+//        markerLoadTask = fetchMarkerUseCase.execute(requestValue: .init(coordinate: ), completion: { [weak self] result in
+//            self?.mainQueue.async {
+//                switch result {
+//                case .success(let markers):
+//                    self?.appendMarker()
+//                case .failure(let error):
+//                    self?.handle(error: error)
+////                    self?.loading.value = .none
+//                }
+//            }
+//
+//        })
         
     }
     
-    private func appendMaker() {
+    private func appendMarker() {
         let marker1 = Marker(id: 1, latitude: 36.29534255486295, longitude: 127.5687921843418)
         let marker2 = Marker(id: 1, latitude: 36.29524297601406, longitude: 127.56841295925204)
         markers.value = [marker1, marker2]
@@ -73,8 +86,13 @@ extension DefaultMapViewModel {
         actions.showCreatePost()
     }
     
-    func didRequestFetchMarker(){
-        appendMaker()
+    func didRequestFetchMarker(latitudeDelta: CLLocationDegrees, centerCoordinate: CLLocationCoordinate2D){
+        appendMarker()
         // 여기서 load 메소드를 실행한다.
     }
+    
+    func deactivateFirstLocation() {
+        isFirstLocation = false
+    }
+    
 }
