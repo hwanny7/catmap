@@ -52,20 +52,21 @@ final class DefaultMapViewModel: MapViewModel {
         self.mainQueue = mainQueue
     }
     
-    private func load() {
-        
-//        markerLoadTask = fetchMarkerUseCase.execute(requestValue: .init(coordinate: ), completion: { [weak self] result in
-//            self?.mainQueue.async {
-//                switch result {
-//                case .success(let markers):
-//                    self?.appendMarker()
-//                case .failure(let error):
+    private func load(distance: Double, centerCoordinate: Coordinate) {
+        print(distance, centerCoordinate)
+        markerLoadTask = fetchMarkerUseCase.execute(requestValue: .init(coordinate: centerCoordinate, distance: distance), completion: { [weak self] result in
+            self?.mainQueue.async {
+                switch result {
+                case .success(let markers):
+                    self?.appendMarker()
+                case .failure(let error):
+                    print(error)
 //                    self?.handle(error: error)
-////                    self?.loading.value = .none
-//                }
-//            }
-//
-//        })
+//                    self?.loading.value = .none
+                }
+            }
+
+        })
         
     }
     
@@ -87,8 +88,8 @@ extension DefaultMapViewModel {
     }
     
     func didRequestFetchMarker(latitudeDelta: CLLocationDegrees, centerCoordinate: CLLocationCoordinate2D){
-        appendMarker()
-        // 여기서 load 메소드를 실행한다.
+        let distance = latitudeDelta * 111
+        load(distance: distance, centerCoordinate: .init(coordinate: centerCoordinate))
     }
     
     func deactivateFirstLocation() {

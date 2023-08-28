@@ -36,6 +36,7 @@ final class DefaultFetchMarkerUseCase: FetchMarkerUseCase {
 
 struct FetchMarkerUseCaseRequestValue {
     let coordinate: Coordinate
+    let distance: Double
 }
 
 // 유저가 보고 있는 지도의 좌표
