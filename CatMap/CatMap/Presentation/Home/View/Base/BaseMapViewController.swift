@@ -174,7 +174,7 @@ extension BaseMapViewController: CLLocationManagerDelegate {
          case .denied, .restricted:
              print("사용자가 위치 설정에 동의하지 않았습니다.")
          case .notDetermined:
-                 print("위치 설정 권한이 아직 결정되지 않았습니다.")
+             print("위치 설정 권한이 아직 결정되지 않았습니다.")
          default:
              print("권한 설정 X")
          }

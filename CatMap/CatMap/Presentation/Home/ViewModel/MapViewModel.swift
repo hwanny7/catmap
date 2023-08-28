@@ -20,7 +20,7 @@ struct MapViewModelActions {
 
 protocol MapViewModelInput {
     func didTapFloatingButton()
-    func didRefreshButtonTapped()
+    func didRequestFetchCoordinate()
 }
 
 protocol MapViewModelOutput {
@@ -32,6 +32,7 @@ typealias MapViewModel = MapViewModelInput & MapViewModelOutput
 final class DefaultMapViewModel: MapViewModel {
     private let actions: MapViewModelActions
     private let fetchMarkerUseCase : FetchMarkerUseCase
+    private var markerLoadTask: Cancellable? { willSet { markerLoadTask?.cancel() } }
     
     let markers: Observable<[Marker]> = Observable([])
     
@@ -67,7 +68,7 @@ extension DefaultMapViewModel {
         actions.showCreatePost()
     }
     
-    func didRefreshButtonTapped(){
+    func didRequestFetchCoordinate(){
         appendMaker()
         // 여기서 load 메소드를 실행한다.
     }

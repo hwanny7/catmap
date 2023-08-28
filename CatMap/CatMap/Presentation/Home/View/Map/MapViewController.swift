@@ -62,13 +62,14 @@ final class MapViewController: BaseMapViewController {
         super.viewDidLoad()
         setupViews()
         bind(to: viewModel)
+        let currentRegion = map.region
+        let span = currentRegion.span
+        print("첫번째", currentRegion, span)
     }
     
     
     private func bind(to viewModel: MapViewModel) {
-        viewModel.markers.observe(on: self) { [weak self] in
-            self?.addCustomPin($0)
-        }
+        viewModel.markers.observe(on: self) { [weak self] in self?.addCustomPin($0) }
     }
 
     
@@ -102,6 +103,9 @@ final class MapViewController: BaseMapViewController {
     }
 
     private func addCustomPin(_ markers: [Marker]) {
+        map.removeAnnotations(map.annotations)
+        // 맵에 이미 등록돼 있던 annotation 제거
+        
         for marker in markers {
             let pin = MKPointAnnotation()
             let coordinate = CLLocationCoordinate2D(latitude: marker.latitude, longitude: marker.longitude)
@@ -110,6 +114,7 @@ final class MapViewController: BaseMapViewController {
             // array로 추가하는 방법도 있음
         }
     }
+    
     
     override func setupSearchBarConstraint() {
         super.setupSearchBarConstraint()
@@ -124,9 +129,13 @@ final class MapViewController: BaseMapViewController {
     }
     
     @objc private func refreshButtonTapped() {
+        fetchCurrentLocationCoordinate()
+    }
+    
+    private func fetchCurrentLocationCoordinate() {
         let currentRegion = map.region
         let span = currentRegion.span
-        viewModel.didRefreshButtonTapped()
+        viewModel.didRequestFetchCoordinate()
     }
     
 }
@@ -157,5 +166,15 @@ extension MapViewController: MKMapViewDelegate {
     // mapView func은 addCustomPin을 커스텀해서 이쁜 View로 보여준다.
 }
 
+// MARK: - location manager override
+
+extension MapViewController {
+    
+    override func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        super.locationManager(manager, didUpdateLocations: locations)
+        print("여기!")
+    }
+    
+}
 
 
