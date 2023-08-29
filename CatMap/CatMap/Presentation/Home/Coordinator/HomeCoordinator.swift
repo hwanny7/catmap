@@ -50,7 +50,7 @@ final class HomeCoordinator: Coordinator {
     }
     
     private func showCreatePost() {
-        let actions = PostViewModelActions(showMap: showMap, dismissMap: dismissMap)
+        let actions = PostViewModelActions(showMap: showMap, dismissMap: dismissMap, showDetail: showDetail)
         let postVC = homeDIContainer.makeCreatePostViewController(actions: actions)
 //        navigationController.view.layer.add(animationFromBottomToTop, forKey: nil)
         postVC.hidesBottomBarWhenPushed = true

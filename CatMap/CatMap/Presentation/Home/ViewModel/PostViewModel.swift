@@ -10,6 +10,7 @@ import UIKit
 struct PostViewModelActions {
     let showMap: (@escaping (Coordinate) -> Void) -> Void
     let dismissMap: () -> Void
+    let showDetail: () -> Void
 }
 
 protocol postViewModelInput {
