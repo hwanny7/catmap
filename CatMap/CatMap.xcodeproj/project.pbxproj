@@ -52,6 +52,8 @@
 		AE25E38F2A98853100B131FA /* DefaultAddMarkerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E38E2A98853100B131FA /* DefaultAddMarkerUseCase.swift */; };
 		AE25E3912A9892EB00B131FA /* addMarkerRequestDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3902A9892EB00B131FA /* addMarkerRequestDTO+Mapping.swift */; };
 		AE25E3932A9C246800B131FA /* DispatchQueueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3922A9C246800B131FA /* DispatchQueueType.swift */; };
+		AE25E3962A9DE13E00B131FA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3952A9DE13E00B131FA /* DetailViewController.swift */; };
+		AE25E3982A9DE3F400B131FA /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3972A9DE3F400B131FA /* DetailViewModel.swift */; };
 		AE5EE7032A8CEDB70078A7CD /* DefaultMyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7022A8CEDB70078A7CD /* DefaultMyPageViewModel.swift */; };
 		AE5EE7052A8CF4D90078A7CD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7042A8CF4D90078A7CD /* LoginViewController.swift */; };
 		AE5EE7082A8CF6B60078A7CD /* DefaultLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7072A8CF6B60078A7CD /* DefaultLoginViewModel.swift */; };
@@ -107,6 +109,8 @@
 		AE25E38E2A98853100B131FA /* DefaultAddMarkerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAddMarkerUseCase.swift; sourceTree = "<group>"; };
 		AE25E3902A9892EB00B131FA /* addMarkerRequestDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "addMarkerRequestDTO+Mapping.swift"; sourceTree = "<group>"; };
 		AE25E3922A9C246800B131FA /* DispatchQueueType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueueType.swift; sourceTree = "<group>"; };
+		AE25E3952A9DE13E00B131FA /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		AE25E3972A9DE3F400B131FA /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		AE5EE7022A8CEDB70078A7CD /* DefaultMyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMyPageViewModel.swift; sourceTree = "<group>"; };
 		AE5EE7042A8CF4D90078A7CD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AE5EE7072A8CF6B60078A7CD /* DefaultLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLoginViewModel.swift; sourceTree = "<group>"; };
@@ -143,6 +147,7 @@
 		AE1581DD2A80A7CA00B79291 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AE25E3942A9DE0FB00B131FA /* Detail */,
 				AE25E36A2A90EEE400B131FA /* Base */,
 				AE94CE292A88C314009F195E /* Map */,
 				AE94CE282A88C2F6009F195E /* Post */,
@@ -183,6 +188,7 @@
 				AE1581EE2A81A5DF00B79291 /* MapViewModel.swift */,
 				AE1581FA2A82836A00B79291 /* PostViewModel.swift */,
 				AE18FD642A8B0FEE007251A4 /* CoordinateViewModel.swift */,
+				AE25E3972A9DE3F400B131FA /* DetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -351,6 +357,14 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		AE25E3942A9DE0FB00B131FA /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				AE25E3952A9DE13E00B131FA /* DetailViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		AE5EE7012A8CED580078A7CD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -506,6 +520,7 @@
 				AE1581EA2A80C0EA00B79291 /* MyPageViewController.swift in Sources */,
 				AE1581F52A82347E00B79291 /* PickerController.swift in Sources */,
 				AE1581DF2A80A80E00B79291 /* MapViewController.swift in Sources */,
+				AE25E3982A9DE3F400B131FA /* DetailViewModel.swift in Sources */,
 				AE1581DA2A7FDF8500B79291 /* StoryboardInstantiable.swift in Sources */,
 				AE25E3742A91059F00B131FA /* Endpoint.swift in Sources */,
 				AE18FD652A8B0FEE007251A4 /* CoordinateViewModel.swift in Sources */,
@@ -513,6 +528,7 @@
 				AE1581E62A80C01D00B79291 /* ProfileDIContainer.swift in Sources */,
 				AE1581EF2A81A5DF00B79291 /* MapViewModel.swift in Sources */,
 				AE94CE2C2A899056009F195E /* TextFieldWithLabelStackView.swift in Sources */,
+				AE25E3962A9DE13E00B131FA /* DetailViewController.swift in Sources */,
 				AE16AD1B2A7E804E00CB6B81 /* AppCoordinator.swift in Sources */,
 				AE5EE7052A8CF4D90078A7CD /* LoginViewController.swift in Sources */,
 				AE25E38B2A95E27300B131FA /* MarkersResponseDTO+Mapping.swift in Sources */,

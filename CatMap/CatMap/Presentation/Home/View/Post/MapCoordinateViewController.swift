@@ -10,13 +10,6 @@ import MapKit
 import CoreLocation
 
 final class MapCoordinateViewController: BaseMapViewController {
-
-    private var viewModel: CoordinateViewModel
-    
-    init(with viewModel: CoordinateViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
     
     private var textLabel: UILabel = {
         let Label = UILabel()
@@ -29,9 +22,19 @@ final class MapCoordinateViewController: BaseMapViewController {
         return Label
     }()
     
+    
+
+    private var viewModel: CoordinateViewModel
+    
+    init(with viewModel: CoordinateViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
