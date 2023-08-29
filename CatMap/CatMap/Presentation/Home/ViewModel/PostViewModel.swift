@@ -88,13 +88,14 @@ final class DefaultPostViewModel: PostViewModel {
     }
     
     private func submitForm() {
+        actions.showDetail()
 //        self.loading.value = loading
-        guard let coordinate = coordinate else { return }
-        addMarkerTask = addMarkerUseCase.execute(
-            requestValue: .init(content: content, images: images, coordinate: coordinate)
-        ) { [weak self] result in
+//        guard let coordinate = coordinate else { return }
+//        addMarkerTask = addMarkerUseCase.execute(
+//            requestValue: .init(content: content, images: images, coordinate: coordinate)
+//        ) { [weak self] result in
 //            self?.actions 다음페이지로 이동하는 액션 실행
-        }
+//        }
     }
     
 }

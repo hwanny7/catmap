@@ -38,7 +38,7 @@ final class HomeCoordinator: Coordinator {
     func start() {
         setupNavigationBar()
         let actions = MapViewModelActions(showCreatePost: showCreatePost)
-        let mapVC = homeDIContainer.makeGoodgleMapViewController(actions: actions)
+        let mapVC = homeDIContainer.makeMapViewController(actions: actions)
         navigationController.pushViewController(mapVC, animated: false)
     }
     
@@ -65,6 +65,8 @@ final class HomeCoordinator: Coordinator {
     
     private func showDetail() {
         let detailVC = homeDIContainer.makeDetailViewController()
+        navigationController.popToRootViewController(animated: false)
+        detailVC.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(detailVC, animated: true)
     }
     

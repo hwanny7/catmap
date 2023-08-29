@@ -30,7 +30,7 @@ extension HomeDIContainer {
 // MARK: - Make Controllers
 
 extension HomeDIContainer {
-    func makeGoodgleMapViewController(actions: MapViewModelActions) -> MapViewController {
+    func makeMapViewController(actions: MapViewModelActions) -> MapViewController {
         MapViewController(with: makeMapViewModel(actions: actions))
     }
     
