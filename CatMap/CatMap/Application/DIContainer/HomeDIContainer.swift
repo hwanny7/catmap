@@ -42,8 +42,8 @@ extension HomeDIContainer {
         MapCoordinateViewController(with: makeMapCoordinateViewModel(action: action))
     }
     
-    func makeDetailViewController() -> DetailViewController {
-        DetailViewController(with: makeDetailViewModel())
+    func makeDetailViewController(detail: Detail?) -> DetailViewController {
+        DetailViewController(with: makeDetailViewModel(wtih: detail))
     }
     
 }
@@ -63,8 +63,8 @@ extension HomeDIContainer {
         DefaultCoordinateViewModel(didSelectCoordinate: action)
     }
     
-    func makeDetailViewModel() -> DetailViewModel {
-        DefaultDetailViewModel()
+    func makeDetailViewModel(wtih detail: Detail?) -> DetailViewModel {
+        DefaultDetailViewModel(detail: detail)
     }
 }
 
