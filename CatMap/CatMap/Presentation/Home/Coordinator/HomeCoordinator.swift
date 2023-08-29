@@ -38,7 +38,7 @@ final class HomeCoordinator: Coordinator {
     func start() {
         setupNavigationBar()
         let actions = MapViewModelActions(showCreatePost: showCreatePost)
-        let mapVC = homeDIContainer.makeGoodgleMapViewController(actions: actions)
+        let mapVC = homeDIContainer.makeMapViewController(actions: actions)
         navigationController.pushViewController(mapVC, animated: false)
     }
     
@@ -50,17 +50,24 @@ final class HomeCoordinator: Coordinator {
     }
     
     private func showCreatePost() {
-        let actions = PostViewModelActions(showMap: showMap, dismissMap: dismissMap)
-        let postVC = homeDIContainer.makeCreatePostViewViewController(actions: actions)
+        let actions = PostViewModelActions(showMap: showMap, dismissMap: dismissMap, showDetail: showDetail)
+        let postVC = homeDIContainer.makeCreatePostViewController(actions: actions)
 //        navigationController.view.layer.add(animationFromBottomToTop, forKey: nil)
         postVC.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(postVC, animated: true)
     }
     
     private func showMap(didSelect: @escaping (Coordinate) -> Void) {
-        let MapVC = homeDIContainer.createMapCoordinateViewController(action: didSelect)
+        let mapVC = homeDIContainer.createMapCoordinateViewController(action: didSelect)
 //        navigationController.view.layer.add(animationFromBottomToTop, forKey: nil)
-        navigationController.pushViewController(MapVC, animated: true)
+        navigationController.pushViewController(mapVC, animated: true)
+    }
+    
+    private func showDetail() {
+        let detailVC = homeDIContainer.makeDetailViewController()
+        navigationController.popToRootViewController(animated: false)
+        detailVC.hidesBottomBarWhenPushed = true
+        navigationController.pushViewController(detailVC, animated: true)
     }
     
     private func dismissMap() {

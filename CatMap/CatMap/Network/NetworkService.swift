@@ -21,18 +21,8 @@ protocol NetworkCancellable {
 
 extension URLSessionTask: NetworkCancellable { }
 
-protocol NetworkService {
-    typealias CompletionHandler = (Result<Data?, NetworkError>) -> Void
-    
-    func request(endpoint: Requestable, completion: @escaping CompletionHandler) -> NetworkCancellable?
-}
+// 실제로 데이터 요청을 보내는 Manager
 
-protocol NetworkSessionManager {
-    typealias CompletionHandler = (Data?, URLResponse?, Error?) -> Void
-    
-    func request(_ request: URLRequest,
-                 completion: @escaping CompletionHandler) -> NetworkCancellable
-}
 
 protocol NetworkErrorLogger {
     func log(request: URLRequest)
@@ -41,6 +31,32 @@ protocol NetworkErrorLogger {
 }
 
 // MARK: - Implementation
+
+
+protocol NetworkService {
+    typealias CompletionHandler = (Result<Data?, NetworkError>) -> Void
+    
+    func request(endpoint: Requestable, completion: @escaping CompletionHandler) -> NetworkCancellable?
+}
+
+
+extension DefaultNetworkService: NetworkService {
+    
+    func request(
+        endpoint: Requestable,
+        completion: @escaping CompletionHandler
+    ) -> NetworkCancellable? {
+        do {
+            let urlRequest = try endpoint.urlRequest(with: config)
+            return request(request: urlRequest, completion: completion)
+        } catch {
+            completion(.failure(.urlGeneration))
+            return nil
+        }
+    }
+    // request 1 -> request 2 -> SessionManager
+    // 여기서 endpoint를 urlRequest로 변경한 다음에 실제 request를 실행한다.
+}
 
 final class DefaultNetworkService {
     
@@ -80,10 +96,13 @@ final class DefaultNetworkService {
                 completion(.success(data))
             }
         }
+        // api response를 다루는 곳
+        
     
         logger.log(request: request)
 
         return sessionDataTask
+        // cancelable한 Task를 반환
     }
     
     private func resolve(error: Error) -> NetworkError {
@@ -96,27 +115,18 @@ final class DefaultNetworkService {
     }
 }
 
-extension DefaultNetworkService: NetworkService {
-    
-    func request(
-        endpoint: Requestable,
-        completion: @escaping CompletionHandler
-    ) -> NetworkCancellable? {
-        do {
-            let urlRequest = try endpoint.urlRequest(with: config)
-            return request(request: urlRequest, completion: completion)
-        } catch {
-            completion(.failure(.urlGeneration))
-            return nil
-        }
-    }
-    // 위의 endpoint를 urlRequest로 변경한 후 request를 호출한다.
-}
 
 // MARK: - Default Network Session Manager
 // Note: If authorization is needed NetworkSessionManager can be implemented by using,
 // for example, Alamofire SessionManager with its RequestAdapter and RequestRetrier.
 // And it can be injected into NetworkService instead of default one.
+
+protocol NetworkSessionManager {
+    typealias CompletionHandler = (Data?, URLResponse?, Error?) -> Void
+    
+    func request(_ request: URLRequest,
+                 completion: @escaping CompletionHandler) -> NetworkCancellable
+}
 
 final class DefaultNetworkSessionManager: NetworkSessionManager {
     func request(
@@ -149,12 +159,12 @@ final class DefaultNetworkErrorLogger: NetworkErrorLogger {
     func log(responseData data: Data?, response: URLResponse?) {
         guard let data = data else { return }
         if let dataDict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-            printIfDebug("responseData: \(String(describing: dataDict))")
+//            printIfDebug("responseData: \(String(describing: dataDict))")
         }
     }
 
     func log(error: Error) {
-        printIfDebug("\(error)")
+//        printIfDebug("\(error)")
     }
 }
 

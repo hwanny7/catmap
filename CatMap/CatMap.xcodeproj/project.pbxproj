@@ -36,15 +36,29 @@
 		AE18FD652A8B0FEE007251A4 /* CoordinateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18FD642A8B0FEE007251A4 /* CoordinateViewModel.swift */; };
 		AE18FD6A2A8BB84B007251A4 /* BaseMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18FD692A8BB84B007251A4 /* BaseMapViewController.swift */; };
 		AE25E36C2A90EF1F00B131FA /* BaseMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E36B2A90EF1F00B131FA /* BaseMapViewModel.swift */; };
-		AE25E36E2A90F9C100B131FA /* FetchMarkerCoordinatesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E36D2A90F9C100B131FA /* FetchMarkerCoordinatesUseCase.swift */; };
+		AE25E36E2A90F9C100B131FA /* DefaultFetchMarkerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E36D2A90F9C100B131FA /* DefaultFetchMarkerUseCase.swift */; };
 		AE25E3722A9100E800B131FA /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3712A9100E800B131FA /* Cancellable.swift */; };
 		AE25E3742A91059F00B131FA /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3732A91059F00B131FA /* Endpoint.swift */; };
 		AE25E3762A91085E00B131FA /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3752A91085E00B131FA /* NetworkConfig.swift */; };
 		AE25E3782A9109AA00B131FA /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3772A9109AA00B131FA /* NetworkService.swift */; };
+		AE25E37A2A941D8000B131FA /* AppConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3792A941D8000B131FA /* AppConfigurations.swift */; };
+		AE25E37E2A94F24400B131FA /* DefaultMarkerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E37D2A94F24400B131FA /* DefaultMarkerRepository.swift */; };
+		AE25E3802A957D8600B131FA /* MarkerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E37F2A957D8600B131FA /* MarkerRepository.swift */; };
+		AE25E3832A95E09700B131FA /* MarkersRequestDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3822A95E09700B131FA /* MarkersRequestDTO+Mapping.swift */; };
+		AE25E3862A95E1A300B131FA /* RepositoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3852A95E1A300B131FA /* RepositoryTask.swift */; };
+		AE25E3892A95E1E700B131FA /* APIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3882A95E1E700B131FA /* APIEndpoints.swift */; };
+		AE25E38B2A95E27300B131FA /* MarkersResponseDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E38A2A95E27300B131FA /* MarkersResponseDTO+Mapping.swift */; };
+		AE25E38D2A95E52500B131FA /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E38C2A95E52500B131FA /* Marker.swift */; };
+		AE25E38F2A98853100B131FA /* DefaultAddMarkerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E38E2A98853100B131FA /* DefaultAddMarkerUseCase.swift */; };
+		AE25E3912A9892EB00B131FA /* addMarkerRequestDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3902A9892EB00B131FA /* addMarkerRequestDTO+Mapping.swift */; };
+		AE25E3932A9C246800B131FA /* DispatchQueueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3922A9C246800B131FA /* DispatchQueueType.swift */; };
+		AE25E3962A9DE13E00B131FA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3952A9DE13E00B131FA /* DetailViewController.swift */; };
+		AE25E3982A9DE3F400B131FA /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3972A9DE3F400B131FA /* DetailViewModel.swift */; };
+		AE25E39A2A9E1A8600B131FA /* addMarkerResponseDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3992A9E1A8600B131FA /* addMarkerResponseDTO+Mapping.swift */; };
+		AE25E39C2A9E1E4800B131FA /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E39B2A9E1E4800B131FA /* Detail.swift */; };
 		AE5EE7032A8CEDB70078A7CD /* DefaultMyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7022A8CEDB70078A7CD /* DefaultMyPageViewModel.swift */; };
 		AE5EE7052A8CF4D90078A7CD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7042A8CF4D90078A7CD /* LoginViewController.swift */; };
 		AE5EE7082A8CF6B60078A7CD /* DefaultLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7072A8CF6B60078A7CD /* DefaultLoginViewModel.swift */; };
-		AE94CE252A8857E2009F195E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE94CE242A8857E2009F195E /* Post.swift */; };
 		AE94CE272A887B00009F195E /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE94CE262A887B00009F195E /* Observable.swift */; };
 		AE94CE2C2A899056009F195E /* TextFieldWithLabelStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE94CE2B2A899056009F195E /* TextFieldWithLabelStackView.swift */; };
 		AED3ABEC2A85C70D00585683 /* ImageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED3ABEB2A85C70D00585683 /* ImageCollectionView.swift */; };
@@ -81,15 +95,29 @@
 		AE18FD642A8B0FEE007251A4 /* CoordinateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateViewModel.swift; sourceTree = "<group>"; };
 		AE18FD692A8BB84B007251A4 /* BaseMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMapViewController.swift; sourceTree = "<group>"; };
 		AE25E36B2A90EF1F00B131FA /* BaseMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMapViewModel.swift; sourceTree = "<group>"; };
-		AE25E36D2A90F9C100B131FA /* FetchMarkerCoordinatesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMarkerCoordinatesUseCase.swift; sourceTree = "<group>"; };
+		AE25E36D2A90F9C100B131FA /* DefaultFetchMarkerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFetchMarkerUseCase.swift; sourceTree = "<group>"; };
 		AE25E3712A9100E800B131FA /* Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
 		AE25E3732A91059F00B131FA /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		AE25E3752A91085E00B131FA /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		AE25E3772A9109AA00B131FA /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		AE25E3792A941D8000B131FA /* AppConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurations.swift; sourceTree = "<group>"; };
+		AE25E37D2A94F24400B131FA /* DefaultMarkerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMarkerRepository.swift; sourceTree = "<group>"; };
+		AE25E37F2A957D8600B131FA /* MarkerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerRepository.swift; sourceTree = "<group>"; };
+		AE25E3822A95E09700B131FA /* MarkersRequestDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MarkersRequestDTO+Mapping.swift"; sourceTree = "<group>"; };
+		AE25E3852A95E1A300B131FA /* RepositoryTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTask.swift; sourceTree = "<group>"; };
+		AE25E3882A95E1E700B131FA /* APIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoints.swift; sourceTree = "<group>"; };
+		AE25E38A2A95E27300B131FA /* MarkersResponseDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MarkersResponseDTO+Mapping.swift"; sourceTree = "<group>"; };
+		AE25E38C2A95E52500B131FA /* Marker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
+		AE25E38E2A98853100B131FA /* DefaultAddMarkerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAddMarkerUseCase.swift; sourceTree = "<group>"; };
+		AE25E3902A9892EB00B131FA /* addMarkerRequestDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "addMarkerRequestDTO+Mapping.swift"; sourceTree = "<group>"; };
+		AE25E3922A9C246800B131FA /* DispatchQueueType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueueType.swift; sourceTree = "<group>"; };
+		AE25E3952A9DE13E00B131FA /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		AE25E3972A9DE3F400B131FA /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		AE25E3992A9E1A8600B131FA /* addMarkerResponseDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "addMarkerResponseDTO+Mapping.swift"; sourceTree = "<group>"; };
+		AE25E39B2A9E1E4800B131FA /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		AE5EE7022A8CEDB70078A7CD /* DefaultMyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMyPageViewModel.swift; sourceTree = "<group>"; };
 		AE5EE7042A8CF4D90078A7CD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AE5EE7072A8CF6B60078A7CD /* DefaultLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLoginViewModel.swift; sourceTree = "<group>"; };
-		AE94CE242A8857E2009F195E /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		AE94CE262A887B00009F195E /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		AE94CE2B2A899056009F195E /* TextFieldWithLabelStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithLabelStackView.swift; sourceTree = "<group>"; };
 		AED3ABEB2A85C70D00585683 /* ImageCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionView.swift; sourceTree = "<group>"; };
@@ -115,6 +143,7 @@
 				AE1581F02A81CFA500B79291 /* Alertable.swift */,
 				AE94CE262A887B00009F195E /* Observable.swift */,
 				AE25E3712A9100E800B131FA /* Cancellable.swift */,
+				AE25E3922A9C246800B131FA /* DispatchQueueType.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -122,6 +151,7 @@
 		AE1581DD2A80A7CA00B79291 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AE25E3942A9DE0FB00B131FA /* Detail */,
 				AE25E36A2A90EEE400B131FA /* Base */,
 				AE94CE292A88C314009F195E /* Map */,
 				AE94CE282A88C2F6009F195E /* Post */,
@@ -162,6 +192,7 @@
 				AE1581EE2A81A5DF00B79291 /* MapViewModel.swift */,
 				AE1581FA2A82836A00B79291 /* PostViewModel.swift */,
 				AE18FD642A8B0FEE007251A4 /* CoordinateViewModel.swift */,
+				AE25E3972A9DE3F400B131FA /* DetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -188,6 +219,7 @@
 				AE16AD152A7E7A4C00CB6B81 /* Application */,
 				AE16AD212A7E8B2200CB6B81 /* Presentation */,
 				AE94CE202A885765009F195E /* Domain */,
+				AE25E37B2A944A4100B131FA /* Data */,
 				AE16AD1E2A7E82EB00CB6B81 /* Network */,
 				AE1581D22A7F833700B79291 /* Common */,
 				AE16AD162A7E7A6700CB6B81 /* Resources */,
@@ -201,6 +233,7 @@
 				AE16AD012A7E37AA00CB6B81 /* AppDelegate.swift */,
 				AE16AD032A7E37AA00CB6B81 /* SceneDelegate.swift */,
 				AE16AD182A7E7FA700CB6B81 /* AppAppearance.swift */,
+				AE25E3792A941D8000B131FA /* AppConfigurations.swift */,
 				AE16AD1A2A7E804E00CB6B81 /* AppCoordinator.swift */,
 				AE1581DB2A80670500B79291 /* TabCoordinator.swift */,
 				AE16AD172A7E7F4800CB6B81 /* DIContainer */,
@@ -278,8 +311,63 @@
 		AE25E36F2A90FCFD00B131FA /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				AE25E37F2A957D8600B131FA /* MarkerRepository.swift */,
 			);
 			path = Repositories;
+			sourceTree = "<group>";
+		};
+		AE25E37B2A944A4100B131FA /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				AE25E3872A95E1C900B131FA /* Network */,
+				AE25E37C2A944A5E00B131FA /* Repositories */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		AE25E37C2A944A5E00B131FA /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				AE25E37D2A94F24400B131FA /* DefaultMarkerRepository.swift */,
+				AE25E3842A95E19100B131FA /* Utils */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		AE25E3812A95E06F00B131FA /* DataMapping */ = {
+			isa = PBXGroup;
+			children = (
+				AE25E3822A95E09700B131FA /* MarkersRequestDTO+Mapping.swift */,
+				AE25E38A2A95E27300B131FA /* MarkersResponseDTO+Mapping.swift */,
+				AE25E3902A9892EB00B131FA /* addMarkerRequestDTO+Mapping.swift */,
+				AE25E3992A9E1A8600B131FA /* addMarkerResponseDTO+Mapping.swift */,
+			);
+			path = DataMapping;
+			sourceTree = "<group>";
+		};
+		AE25E3842A95E19100B131FA /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				AE25E3852A95E1A300B131FA /* RepositoryTask.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		AE25E3872A95E1C900B131FA /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				AE25E3882A95E1E700B131FA /* APIEndpoints.swift */,
+				AE25E3812A95E06F00B131FA /* DataMapping */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		AE25E3942A9DE0FB00B131FA /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				AE25E3952A9DE13E00B131FA /* DetailViewController.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		AE5EE7012A8CED580078A7CD /* ViewModel */ = {
@@ -304,8 +392,9 @@
 		AE94CE212A885783009F195E /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				AE94CE242A8857E2009F195E /* Post.swift */,
 				AE18FD602A8AFB7D007251A4 /* Coordinate.swift */,
+				AE25E38C2A95E52500B131FA /* Marker.swift */,
+				AE25E39B2A9E1E4800B131FA /* Detail.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -313,7 +402,8 @@
 		AE94CE222A885794009F195E /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
-				AE25E36D2A90F9C100B131FA /* FetchMarkerCoordinatesUseCase.swift */,
+				AE25E36D2A90F9C100B131FA /* DefaultFetchMarkerUseCase.swift */,
+				AE25E38E2A98853100B131FA /* DefaultAddMarkerUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -425,13 +515,19 @@
 			files = (
 				AE25E3722A9100E800B131FA /* Cancellable.swift in Sources */,
 				AE5EE7082A8CF6B60078A7CD /* DefaultLoginViewModel.swift in Sources */,
+				AE25E38F2A98853100B131FA /* DefaultAddMarkerUseCase.swift in Sources */,
 				AE18FD5F2A8A70C4007251A4 /* CustomButton.swift in Sources */,
-				AE25E36E2A90F9C100B131FA /* FetchMarkerCoordinatesUseCase.swift in Sources */,
+				AE25E3892A95E1E700B131FA /* APIEndpoints.swift in Sources */,
+				AE25E36E2A90F9C100B131FA /* DefaultFetchMarkerUseCase.swift in Sources */,
+				AE25E3832A95E09700B131FA /* MarkersRequestDTO+Mapping.swift in Sources */,
 				AE1581D42A7F837300B79291 /* Coordinator.swift in Sources */,
 				AE16AD202A7E834600CB6B81 /* DataTransferService.swift in Sources */,
+				AE25E3932A9C246800B131FA /* DispatchQueueType.swift in Sources */,
 				AE1581EA2A80C0EA00B79291 /* MyPageViewController.swift in Sources */,
 				AE1581F52A82347E00B79291 /* PickerController.swift in Sources */,
 				AE1581DF2A80A80E00B79291 /* MapViewController.swift in Sources */,
+				AE25E39A2A9E1A8600B131FA /* addMarkerResponseDTO+Mapping.swift in Sources */,
+				AE25E3982A9DE3F400B131FA /* DetailViewModel.swift in Sources */,
 				AE1581DA2A7FDF8500B79291 /* StoryboardInstantiable.swift in Sources */,
 				AE25E3742A91059F00B131FA /* Endpoint.swift in Sources */,
 				AE18FD652A8B0FEE007251A4 /* CoordinateViewModel.swift in Sources */,
@@ -439,17 +535,23 @@
 				AE1581E62A80C01D00B79291 /* ProfileDIContainer.swift in Sources */,
 				AE1581EF2A81A5DF00B79291 /* MapViewModel.swift in Sources */,
 				AE94CE2C2A899056009F195E /* TextFieldWithLabelStackView.swift in Sources */,
+				AE25E3962A9DE13E00B131FA /* DetailViewController.swift in Sources */,
 				AE16AD1B2A7E804E00CB6B81 /* AppCoordinator.swift in Sources */,
 				AE5EE7052A8CF4D90078A7CD /* LoginViewController.swift in Sources */,
+				AE25E38B2A95E27300B131FA /* MarkersResponseDTO+Mapping.swift in Sources */,
 				AE1581F72A826A2700B79291 /* CreatePostViewController.swift in Sources */,
 				AE25E36C2A90EF1F00B131FA /* BaseMapViewModel.swift in Sources */,
 				AE18FD6A2A8BB84B007251A4 /* BaseMapViewController.swift in Sources */,
 				AE16AD192A7E7FA700CB6B81 /* AppAppearance.swift in Sources */,
 				AE18FD612A8AFB7D007251A4 /* Coordinate.swift in Sources */,
 				AE5EE7032A8CEDB70078A7CD /* DefaultMyPageViewModel.swift in Sources */,
-				AE94CE252A8857E2009F195E /* Post.swift in Sources */,
+				AE25E3802A957D8600B131FA /* MarkerRepository.swift in Sources */,
+				AE25E37A2A941D8000B131FA /* AppConfigurations.swift in Sources */,
 				AE1581E82A80C05B00B79291 /* ProfileCoordinator.swift in Sources */,
+				AE25E3862A95E1A300B131FA /* RepositoryTask.swift in Sources */,
+				AE25E37E2A94F24400B131FA /* DefaultMarkerRepository.swift in Sources */,
 				AE16AD1D2A7E80EE00CB6B81 /* AppDIContainer.swift in Sources */,
+				AE25E39C2A9E1E4800B131FA /* Detail.swift in Sources */,
 				AE94CE272A887B00009F195E /* Observable.swift in Sources */,
 				AE1581FB2A82836A00B79291 /* PostViewModel.swift in Sources */,
 				AED3ABEC2A85C70D00585683 /* ImageCollectionView.swift in Sources */,
@@ -457,8 +559,10 @@
 				AE1581DC2A80670500B79291 /* TabCoordinator.swift in Sources */,
 				AE16AD272A7E8B9200CB6B81 /* HomeDIContainer.swift in Sources */,
 				AE16AD022A7E37AA00CB6B81 /* AppDelegate.swift in Sources */,
+				AE25E3912A9892EB00B131FA /* addMarkerRequestDTO+Mapping.swift in Sources */,
 				AE25E3782A9109AA00B131FA /* NetworkService.swift in Sources */,
 				AE25E3762A91085E00B131FA /* NetworkConfig.swift in Sources */,
+				AE25E38D2A95E52500B131FA /* Marker.swift in Sources */,
 				AE16AD042A7E37AA00CB6B81 /* SceneDelegate.swift in Sources */,
 				AE18FD632A8B0EAC007251A4 /* MapCoordinateViewController.swift in Sources */,
 			);

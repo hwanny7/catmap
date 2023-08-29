@@ -30,10 +30,9 @@ class BaseMapViewController: UIViewController, Alertable {
 //    }
     
     
-    private let compassButton: UIButton = {
+    let compassButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "location"), for: .normal)
-        button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tintColor = .systemIndigo
         button.backgroundColor = .white
@@ -63,6 +62,7 @@ class BaseMapViewController: UIViewController, Alertable {
     }
     
     func setupViews() {
+        
         view.backgroundColor = .white
         map.translatesAutoresizingMaskIntoConstraints = false
         map.showsUserLocation = true
@@ -174,7 +174,7 @@ extension BaseMapViewController: CLLocationManagerDelegate {
          case .denied, .restricted:
              print("사용자가 위치 설정에 동의하지 않았습니다.")
          case .notDetermined:
-                 print("위치 설정 권한이 아직 결정되지 않았습니다.")
+             print("위치 설정 권한이 아직 결정되지 않았습니다.")
          default:
              print("권한 설정 X")
          }

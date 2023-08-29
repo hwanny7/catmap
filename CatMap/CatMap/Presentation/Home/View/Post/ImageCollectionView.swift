@@ -108,7 +108,7 @@ final class ImageCollectionView: UICollectionView, UICollectionViewDelegate, UIC
 
 extension ImageCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.imageList.count
+        return viewModel.images.count
     }
 
     
@@ -127,7 +127,7 @@ extension ImageCollectionView: UICollectionViewDataSource {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleToFill
-        let image = viewModel.imageList[indexPath.row]
+        let image = viewModel.images[indexPath.row]
         imageView.image = image
         
         // X 버튼 생성
@@ -198,8 +198,8 @@ extension ImageCollectionView: UICollectionViewDataSource {
 
     
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let item = viewModel.imageList.remove(at: sourceIndexPath.row)
-        viewModel.imageList.insert(item, at: destinationIndexPath.row)
+        let item = viewModel.images.remove(at: sourceIndexPath.row)
+        viewModel.images.insert(item, at: destinationIndexPath.row)
     }
 }
 

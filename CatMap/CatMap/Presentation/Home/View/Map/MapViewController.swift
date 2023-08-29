@@ -19,7 +19,9 @@ import CoreLocation
 
 final class MapViewController: BaseMapViewController {
     
-    let floatingButton: UIButton = {
+    private var isActivate: Bool = true
+    
+    private let floatingButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.masksToBounds = true
@@ -34,14 +36,20 @@ final class MapViewController: BaseMapViewController {
         return button
     }()
     
+    private let refreshButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .systemIndigo
+        button.tintColor = .white
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let refreshImage = UIImage(systemName: "arrow.clockwise")
+        button.setImage(refreshImage, for: .normal)
+        return button
+    }()
+    
+    
+    
     private var viewModel: MapViewModel
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupViews()
-    }
-    
-
     init(with viewModel: MapViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -51,17 +59,34 @@ final class MapViewController: BaseMapViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupViews()
+        bind(to: viewModel)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        fetchCurrentLocationCoordinate()
+    }
+    
+    
+    private func bind(to viewModel: MapViewModel) {
+        viewModel.markers.observe(on: self) { [weak self] in self?.addCustomPin($0) }
+    }
+
+    
     override func setupViews() {
         super.setupViews()
         map.delegate = self
-
-//        addCustomPin()
-//        사용자 위치 확인했을 때 Pin 가져와서 수행하기
     }
     
     override func addSubViews() {
         floatingButton.addTarget(self, action: #selector(didTapFloatingButton), for: .touchUpInside)
+        refreshButton.addTarget(self, action: #selector(refreshButtonTapped), for: .touchUpInside)
         map.addSubview(floatingButton)
+        map.addSubview(refreshButton)
         
         NSLayoutConstraint.activate([
             map.topAnchor.constraint(equalTo: view.topAnchor),
@@ -73,16 +98,27 @@ final class MapViewController: BaseMapViewController {
             floatingButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -24),
             floatingButton.widthAnchor.constraint(equalToConstant: 60),
             floatingButton.heightAnchor.constraint(equalToConstant: 60),
+            
+            refreshButton.topAnchor.constraint(equalTo: compassButton.bottomAnchor),
+            refreshButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            refreshButton.widthAnchor.constraint(equalTo: compassButton.widthAnchor),
+            refreshButton.heightAnchor.constraint(equalTo: compassButton.heightAnchor),
         ])
     }
 
-//    private func addCustomPin() {
-//        let pin = MKPointAnnotation()
-//        pin.coordinate = coordinate
-//        pin.title = "Bug"
-//        pin.subtitle = "Go and catch them all"
-//        map.addAnnotation(pin)
-//    }
+    private func addCustomPin(_ markers: [Marker]) {
+        map.removeAnnotations(map.annotations)
+        // 맵에 이미 등록돼 있던 annotation 제거
+        
+        for marker in markers {
+            let pin = MKPointAnnotation()
+            let coordinate = CLLocationCoordinate2D(latitude: marker.latitude, longitude: marker.longitude)
+            pin.coordinate = coordinate
+            map.addAnnotation(pin)
+            // array로 추가하는 방법도 있음
+        }
+    }
+    
     
     override func setupSearchBarConstraint() {
         super.setupSearchBarConstraint()
@@ -94,6 +130,16 @@ final class MapViewController: BaseMapViewController {
     
     @objc private func didTapFloatingButton() {
         viewModel.didTapFloatingButton()
+    }
+    
+    @objc private func refreshButtonTapped() {
+        fetchCurrentLocationCoordinate()
+    }
+    
+    private func fetchCurrentLocationCoordinate() {
+        let latitudeDelta = map.region.span.latitudeDelta
+        let centerCoordinate = map.centerCoordinate
+        viewModel.didRequestFetchMarker(latitudeDelta: latitudeDelta, centerCoordinate: centerCoordinate)
     }
     
 }
@@ -115,7 +161,7 @@ extension MapViewController: MKMapViewDelegate {
         } else {
             annotationView?.annotation = annotation
         }
-        
+
         annotationView?.image = UIImage(systemName: "house")
 
         return annotationView
@@ -124,5 +170,19 @@ extension MapViewController: MKMapViewDelegate {
     // mapView func은 addCustomPin을 커스텀해서 이쁜 View로 보여준다.
 }
 
+// MARK: - location manager override
+
+extension MapViewController {
+    
+    override func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        super.locationManager(manager, didUpdateLocations: locations)
+        
+        if viewModel.isFirstLocation {
+            fetchCurrentLocationCoordinate()
+        }
+        viewModel.deactivateFirstLocation()
+    }
+    
+}
 
 

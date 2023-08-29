@@ -28,3 +28,5 @@ struct ApiDataNetworkConfig: NetworkConfigurable {
         self.queryParameters = queryParameters
     }
 }
+
+// 위의 config를 app DI에서 다른 DI에 주입

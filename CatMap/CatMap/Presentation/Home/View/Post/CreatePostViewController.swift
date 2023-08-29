@@ -26,6 +26,7 @@ final class CreatePostViewController: UIViewController, Alertable {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        bind(to: viewModel)
     }
     
     
@@ -43,7 +44,7 @@ final class CreatePostViewController: UIViewController, Alertable {
     
         
         let imageCollectionView = ImageCollectionView(parentViewController: self, viewModel: viewModel)
-        let descriptionTextField = TextFieldWithLabelStackView(title: "내용", placeholderText: "게시글 내용을 작성해 주세요.", textType: .view)
+        let descriptionTextField = TextFieldWithLabelStackView(title: "내용", placeholderText: "게시글 내용을 작성해 주세요.", textType: .view, updateContent: didChange(content:))
         let locationButton = TextFieldWithLabelStackView(title: "장소", placeholderText: "위치 추가", textType: .field)
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCoordinateButton))
         locationButton.addGestureRecognizer(tap)
@@ -52,6 +53,7 @@ final class CreatePostViewController: UIViewController, Alertable {
         bottomButton.translatesAutoresizingMaskIntoConstraints = false
         bottomButton.setTitle("등록", for: .normal)
         bottomButton.backgroundColor = .blue
+        bottomButton.addTarget(self, action: #selector(didTapRegisterButton), for: .touchUpInside)
         
         
         view.addSubview(scrollView)
@@ -84,10 +86,32 @@ final class CreatePostViewController: UIViewController, Alertable {
         ])
     }
     
+    private func bind(to viewModel: PostViewModel) {
+        viewModel.isValidated.observe(on: self) { [weak self] in
+            self?.showAlert(for: $0)
+        }
+    }
+    
     @objc private func didTapCoordinateButton() {
         IQKeyboardManager.shared.resignFirstResponder()
         viewModel.didTapLocationButton()
     }
+    
+    @objc private func didTapRegisterButton() {
+        viewModel.didTapRegisterButton()
+    }
+    
+    private func didChange(content: String) {
+        viewModel.didUpdate(content: content)
+    }
+    
+    private func showAlert(for validation: ValidationError?) {
+        guard let validation = validation else { return }
+        self.showAlert(message: validation.rawValue, cancelButtonTitle: "확인")
+        
+        
+    }
+    
 }
 
 
