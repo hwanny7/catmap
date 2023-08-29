@@ -27,7 +27,7 @@ extension DefaultMarkerRepository: MarkerRepository {
     
     func addMarker(
         body: AddMarkerUseCaseRequestValue,
-        completion: @escaping (Result<Void, Error>) -> Void
+        completion: @escaping (Result<Detail, Error>) -> Void
     ) -> Cancellable? {
 
         let requestDTO = addMarkerRequestDTO(latitude: body.coordinate.latitude, longitude: body.coordinate.longitude, images: body.images, content: body.content)
@@ -37,8 +37,8 @@ extension DefaultMarkerRepository: MarkerRepository {
         
         task.networkTask = self.dataTransferService.request(with: endpoint, on: backgroundQueue, completion: { result in
             switch result {
-            case .success():
-                completion(.success(()))
+            case .success(let responseDTO):
+                completion(.success(responseDTO.toDomain()))
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -48,7 +48,9 @@ extension DefaultMarkerRepository: MarkerRepository {
     }
     
     
-    func fetchMarkerList(centerCoordinate: Coordinate, distance: Double, completion: @escaping (Result<MapMarkers, Error>) -> Void) -> Cancellable? {
+    func fetchMarkerList(
+        centerCoordinate: Coordinate, distance: Double, completion: @escaping (Result<MapMarkers, Error>) -> Void
+    ) -> Cancellable? {
         
         
         let requestDTO = MarkersRequestDTO(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude, distance: distance)

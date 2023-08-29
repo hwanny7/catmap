@@ -10,7 +10,7 @@ import UIKit
 protocol AddMarkerUseCase {
     func execute(
         requestValue: AddMarkerUseCaseRequestValue,
-        completion: @escaping (Result<Void, Error>) -> Void
+        completion: @escaping (Result<Detail, Error>) -> Void
     ) -> Cancellable?
     // Coordinate에 id 값 추가
 }
@@ -27,7 +27,7 @@ final class DefaultAddMarkerUseCase: AddMarkerUseCase {
     
     func execute(
         requestValue: AddMarkerUseCaseRequestValue,
-        completion: @escaping (Result<Void, Error>) -> Void
+        completion: @escaping (Result<Detail, Error>) -> Void
     ) -> Cancellable? {
         return markerRepository.addMarker(body: requestValue) { result in
             completion(result)

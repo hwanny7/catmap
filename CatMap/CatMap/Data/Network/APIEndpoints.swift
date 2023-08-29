@@ -19,7 +19,7 @@ struct APIEndpoints {
     }
     
     
-    static func addMarkers(from addMarkerRequestDTO: MultipartFormDataConvertible) -> Endpoint<Void> {
+    static func addMarkers(from addMarkerRequestDTO: MultipartFormDataConvertible) -> Endpoint<addMarkerResponseDTO> {
 
         return Endpoint(
             path: "",

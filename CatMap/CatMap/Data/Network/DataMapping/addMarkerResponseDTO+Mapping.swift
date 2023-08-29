@@ -20,5 +20,7 @@ struct addMarkerResponseDTO: Decodable {
 }
 
 extension addMarkerResponseDTO {
-    func toDomain() -> 
+    func toDomain() -> Detail {
+        return .init(content: content, images: images)
+    }
 }
