@@ -31,15 +31,19 @@ extension HomeDIContainer {
 
 extension HomeDIContainer {
     func makeGoodgleMapViewController(actions: MapViewModelActions) -> MapViewController {
-        MapViewController(with: makeMapViewController(actions: actions))
+        MapViewController(with: makeMapViewModel(actions: actions))
     }
     
-    func makeCreatePostViewViewController(actions: PostViewModelActions) -> CreatePostViewController {
-        CreatePostViewController(with: makeCreatePostViewController(actions: actions))
+    func makeCreatePostViewController(actions: PostViewModelActions) -> CreatePostViewController {
+        CreatePostViewController(with: makePostViewModel(actions: actions))
     }
     
     func createMapCoordinateViewController(action: @escaping didSelectCoordinateAction) -> MapCoordinateViewController {
-        MapCoordinateViewController(with: makeMapCoordinateViewController(action: action))
+        MapCoordinateViewController(with: makeMapCoordinateViewModel(action: action))
+    }
+    
+    func makeDetailViewController() -> DetailViewController {
+        DetailViewController(with: makeDetailViewModel())
     }
     
 }
@@ -47,16 +51,20 @@ extension HomeDIContainer {
 // MARK: - Make ViewModel
 
 extension HomeDIContainer {
-    func makeMapViewController(actions: MapViewModelActions) -> MapViewModel {
+    func makeMapViewModel(actions: MapViewModelActions) -> MapViewModel {
         DefaultMapViewModel(actions: actions, fetchMarkerUseCase: makeFetchMarkerUseCase())
     }
     
-    func makeCreatePostViewController(actions: PostViewModelActions) -> PostViewModel {
+    func makePostViewModel(actions: PostViewModelActions) -> PostViewModel {
         DefaultPostViewModel(actions: actions, addMarkerUseCase: makeAddMarkerUseCase())
     }
     
-    func makeMapCoordinateViewController(action: @escaping didSelectCoordinateAction) -> CoordinateViewModel {
+    func makeMapCoordinateViewModel(action: @escaping didSelectCoordinateAction) -> CoordinateViewModel {
         DefaultCoordinateViewModel(didSelectCoordinate: action)
+    }
+    
+    func makeDetailViewModel() -> DetailViewModel {
+        DefaultDetailViewModel()
     }
 }
 

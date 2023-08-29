@@ -20,7 +20,8 @@ protocol DetailViewModelOutput {
 typealias DetailViewModel = DetailViewModelInput & DetailViewModelOutput
 
 final class DefaultDetailViewModel: DetailViewModel {
-
+    
+    
     
     init(
         
