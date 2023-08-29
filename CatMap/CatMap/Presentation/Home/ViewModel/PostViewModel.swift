@@ -10,7 +10,7 @@ import UIKit
 struct PostViewModelActions {
     let showMap: (@escaping (Coordinate) -> Void) -> Void
     let dismissMap: () -> Void
-    let showDetail: () -> Void
+    let showDetail: (Detail) -> Void
 }
 
 protocol postViewModelInput {
@@ -88,7 +88,9 @@ final class DefaultPostViewModel: PostViewModel {
     }
     
     private func submitForm() {
-        actions.showDetail()
+        let detail = Detail(id: 1, content: "안녕하세요", images: ["이미지입니다."])
+        actions.showDetail(detail)
+        // UseCase에서 detail을 받아서 showDetail로 넘겨주기
 //        self.loading.value = loading
 //        guard let coordinate = coordinate else { return }
 //        addMarkerTask = addMarkerUseCase.execute(
