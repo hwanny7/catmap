@@ -54,6 +54,8 @@
 		AE25E3932A9C246800B131FA /* DispatchQueueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3922A9C246800B131FA /* DispatchQueueType.swift */; };
 		AE25E3962A9DE13E00B131FA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3952A9DE13E00B131FA /* DetailViewController.swift */; };
 		AE25E3982A9DE3F400B131FA /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3972A9DE3F400B131FA /* DetailViewModel.swift */; };
+		AE25E39A2A9E1A8600B131FA /* addMarkerResponseDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3992A9E1A8600B131FA /* addMarkerResponseDTO+Mapping.swift */; };
+		AE25E39C2A9E1E4800B131FA /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E39B2A9E1E4800B131FA /* Detail.swift */; };
 		AE5EE7032A8CEDB70078A7CD /* DefaultMyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7022A8CEDB70078A7CD /* DefaultMyPageViewModel.swift */; };
 		AE5EE7052A8CF4D90078A7CD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7042A8CF4D90078A7CD /* LoginViewController.swift */; };
 		AE5EE7082A8CF6B60078A7CD /* DefaultLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7072A8CF6B60078A7CD /* DefaultLoginViewModel.swift */; };
@@ -111,6 +113,8 @@
 		AE25E3922A9C246800B131FA /* DispatchQueueType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueueType.swift; sourceTree = "<group>"; };
 		AE25E3952A9DE13E00B131FA /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		AE25E3972A9DE3F400B131FA /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		AE25E3992A9E1A8600B131FA /* addMarkerResponseDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "addMarkerResponseDTO+Mapping.swift"; sourceTree = "<group>"; };
+		AE25E39B2A9E1E4800B131FA /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		AE5EE7022A8CEDB70078A7CD /* DefaultMyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMyPageViewModel.swift; sourceTree = "<group>"; };
 		AE5EE7042A8CF4D90078A7CD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AE5EE7072A8CF6B60078A7CD /* DefaultLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLoginViewModel.swift; sourceTree = "<group>"; };
@@ -336,6 +340,7 @@
 				AE25E3822A95E09700B131FA /* MarkersRequestDTO+Mapping.swift */,
 				AE25E38A2A95E27300B131FA /* MarkersResponseDTO+Mapping.swift */,
 				AE25E3902A9892EB00B131FA /* addMarkerRequestDTO+Mapping.swift */,
+				AE25E3992A9E1A8600B131FA /* addMarkerResponseDTO+Mapping.swift */,
 			);
 			path = DataMapping;
 			sourceTree = "<group>";
@@ -389,6 +394,7 @@
 			children = (
 				AE18FD602A8AFB7D007251A4 /* Coordinate.swift */,
 				AE25E38C2A95E52500B131FA /* Marker.swift */,
+				AE25E39B2A9E1E4800B131FA /* Detail.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -520,6 +526,7 @@
 				AE1581EA2A80C0EA00B79291 /* MyPageViewController.swift in Sources */,
 				AE1581F52A82347E00B79291 /* PickerController.swift in Sources */,
 				AE1581DF2A80A80E00B79291 /* MapViewController.swift in Sources */,
+				AE25E39A2A9E1A8600B131FA /* addMarkerResponseDTO+Mapping.swift in Sources */,
 				AE25E3982A9DE3F400B131FA /* DetailViewModel.swift in Sources */,
 				AE1581DA2A7FDF8500B79291 /* StoryboardInstantiable.swift in Sources */,
 				AE25E3742A91059F00B131FA /* Endpoint.swift in Sources */,
@@ -544,6 +551,7 @@
 				AE25E3862A95E1A300B131FA /* RepositoryTask.swift in Sources */,
 				AE25E37E2A94F24400B131FA /* DefaultMarkerRepository.swift in Sources */,
 				AE16AD1D2A7E80EE00CB6B81 /* AppDIContainer.swift in Sources */,
+				AE25E39C2A9E1E4800B131FA /* Detail.swift in Sources */,
 				AE94CE272A887B00009F195E /* Observable.swift in Sources */,
 				AE1581FB2A82836A00B79291 /* PostViewModel.swift in Sources */,
 				AED3ABEC2A85C70D00585683 /* ImageCollectionView.swift in Sources */,
