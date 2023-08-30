@@ -57,6 +57,7 @@
 		AE25E39A2A9E1A8600B131FA /* addMarkerResponseDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E3992A9E1A8600B131FA /* addMarkerResponseDTO+Mapping.swift */; };
 		AE25E39C2A9E1E4800B131FA /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E39B2A9E1E4800B131FA /* Detail.swift */; };
 		AE25E39E2A9EC02300B131FA /* ImagesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E39D2A9EC02300B131FA /* ImagesRepository.swift */; };
+		AE25E3A02A9EC0A800B131FA /* DefaultImagesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25E39F2A9EC0A800B131FA /* DefaultImagesRepository.swift */; };
 		AE5EE7032A8CEDB70078A7CD /* DefaultMyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7022A8CEDB70078A7CD /* DefaultMyPageViewModel.swift */; };
 		AE5EE7052A8CF4D90078A7CD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7042A8CF4D90078A7CD /* LoginViewController.swift */; };
 		AE5EE7082A8CF6B60078A7CD /* DefaultLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7072A8CF6B60078A7CD /* DefaultLoginViewModel.swift */; };
@@ -117,6 +118,7 @@
 		AE25E3992A9E1A8600B131FA /* addMarkerResponseDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "addMarkerResponseDTO+Mapping.swift"; sourceTree = "<group>"; };
 		AE25E39B2A9E1E4800B131FA /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		AE25E39D2A9EC02300B131FA /* ImagesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesRepository.swift; sourceTree = "<group>"; };
+		AE25E39F2A9EC0A800B131FA /* DefaultImagesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultImagesRepository.swift; sourceTree = "<group>"; };
 		AE5EE7022A8CEDB70078A7CD /* DefaultMyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMyPageViewModel.swift; sourceTree = "<group>"; };
 		AE5EE7042A8CF4D90078A7CD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AE5EE7072A8CF6B60078A7CD /* DefaultLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLoginViewModel.swift; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				AE25E37D2A94F24400B131FA /* DefaultMarkerRepository.swift */,
+				AE25E39F2A9EC0A800B131FA /* DefaultImagesRepository.swift */,
 				AE25E3842A95E19100B131FA /* Utils */,
 			);
 			path = Repositories;
@@ -569,6 +572,7 @@
 				AE25E38D2A95E52500B131FA /* Marker.swift in Sources */,
 				AE16AD042A7E37AA00CB6B81 /* SceneDelegate.swift in Sources */,
 				AE18FD632A8B0EAC007251A4 /* MapCoordinateViewController.swift in Sources */,
+				AE25E3A02A9EC0A800B131FA /* DefaultImagesRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
