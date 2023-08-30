@@ -9,12 +9,12 @@ import Foundation
 
 struct APIEndpoints {
     
-    static func getMarkers(with MarkersRequestDTO: MarkersRequestDTO) -> Endpoint<MarkersResponseDTO> {
+    static func getMarkers(with markersRequestDTO: MarkersRequestDTO) -> Endpoint<MarkersResponseDTO> {
 
         return Endpoint(
             path: "",
             method: .get,
-            queryParametersEncodable: MarkersRequestDTO
+            queryParametersEncodable: markersRequestDTO
         )
     }
     
@@ -28,14 +28,22 @@ struct APIEndpoints {
         )
     }
     
-    static func getMoviePoster(path: String) -> Endpoint<Data> {
+    static func getImage(path: String) -> Endpoint<Data> {
 
-        
         return Endpoint(
             path: path,
             isFullPath: true,
             method: .get,
             responseDecoder: RawDataResponseDecoder()
+        )
+    }
+    
+    static func getDetail(with detailRequestDTO: DetailRequestDTO) -> Endpoint<DetailResponseDTO> {
+
+        return Endpoint(
+            path: "",
+            method: .get,
+            queryParametersEncodable: detailRequestDTO
         )
     }
 

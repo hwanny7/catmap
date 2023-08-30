@@ -28,7 +28,7 @@ extension DefaultImageRepository: ImageRepository {
         completion: @escaping (Result<Data, Error>) -> Void
     ) -> Cancellable? {
         
-        let endpoint = APIEndpoints.getMoviePoster(path: imagePath)
+        let endpoint = APIEndpoints.getImage(path: imagePath)
         let task = RepositoryTask()
         task.networkTask = dataTransferService.request(
             with: endpoint,
