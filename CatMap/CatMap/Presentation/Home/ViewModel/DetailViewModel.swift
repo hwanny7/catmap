@@ -23,6 +23,7 @@ typealias DetailViewModel = DetailViewModelInput & DetailViewModelOutput
 final class DefaultDetailViewModel: DetailViewModel {
     
     private let imageRepository: ImageRepository
+    private let fetchDetailUseCase: FetchDetailUseCase
     
     private let id: Int
     private var imagesPath = [String]()
@@ -32,10 +33,12 @@ final class DefaultDetailViewModel: DetailViewModel {
     
     init(
         id: Int,
-        imageRepository: ImageRepository
+        imageRepository: ImageRepository,
+        fetchDetailUseCase: FetchDetailUseCase
     ) {
         self.id = id
         self.imageRepository = imageRepository
+        self.fetchDetailUseCase = fetchDetailUseCase
     }
     
     private func load() {

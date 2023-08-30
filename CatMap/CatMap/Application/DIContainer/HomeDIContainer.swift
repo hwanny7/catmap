@@ -64,7 +64,7 @@ extension HomeDIContainer {
     }
     
     func makeDetailViewModel(id: Int) -> DetailViewModel {
-        DefaultDetailViewModel(id: id, imageRepository: makeImageRepository())
+        DefaultDetailViewModel(id: id, imageRepository: makeImageRepository(), fetchDetailUseCase: makeFetchDetailUseCase())
     }
 }
 
@@ -79,9 +79,9 @@ extension HomeDIContainer {
         DefaultAddMarkerUseCase(markerRepository: makeMarkerRepository())
     }
     
-//    func makeFetchDetailUseCase() -> FetchDetailUseCase {
-//        DefaultFetchDetailUseCase(detailRepository: makeDetailRepository())
-//    }
+    func makeFetchDetailUseCase() -> FetchDetailUseCase {
+        DefaultFetchDetailUseCase(detailRepository: makeDetailRepository())
+    }
 }
 
 
@@ -95,4 +95,9 @@ extension HomeDIContainer {
     func makeImageRepository() -> ImageRepository {
         DefaultImageRepository(dataTransferService: apiDataTransferService)
     }
+    
+    func makeDetailRepository() -> DetailRepository {
+        DefaultDetailRepository(dataTransferService: apiDataTransferService)
+    }
+    
 }
