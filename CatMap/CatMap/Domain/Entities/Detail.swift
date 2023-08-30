@@ -10,5 +10,5 @@ import Foundation
 struct Detail {
     let id: Int
     let content: String
-    let images: [String]
+    let imagePaths: [String]
 }

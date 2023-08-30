@@ -9,20 +9,20 @@ import Foundation
 
 
 struct addMarkerResponseDTO: Decodable {
-    private enum CodingKeys: CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case id
         case content
-        case images
+        case imagePaths = "images"
     }
     
     let id: Int
     let content: String
-    let images: [String]
+    let imagePaths: [String]
     
 }
 
 extension addMarkerResponseDTO {
     func toDomain() -> Detail {
-        return .init(id: id, content: content, images: images)
+        return .init(id: id, content: content, imagePaths: imagePaths)
     }
 }
