@@ -78,6 +78,10 @@ extension HomeDIContainer {
     func makeAddMarkerUseCase() -> AddMarkerUseCase {
         DefaultAddMarkerUseCase(markerRepository: makeMarkerRepository())
     }
+    
+//    func makeFetchDetailUseCase() -> FetchDetailUseCase {
+//        DefaultFetchDetailUseCase(detailRepository: makeDetailRepository())
+//    }
 }
 
 
