@@ -64,7 +64,7 @@ extension HomeDIContainer {
     }
     
     func makeDetailViewModel(id: Int) -> DetailViewModel {
-        DefaultDetailViewModel(id: id)
+        DefaultDetailViewModel(id: id, imageRepository: makeImageRepository())
     }
 }
 
@@ -86,5 +86,9 @@ extension HomeDIContainer {
 extension HomeDIContainer {
     func makeMarkerRepository() -> MarkerRepository {
         DefaultMarkerRepository(dataTransferService: apiDataTransferService)
+    }
+    
+    func makeImageRepository() -> ImageRepository {
+        DefaultImageRepository(dataTransferService: apiDataTransferService)
     }
 }

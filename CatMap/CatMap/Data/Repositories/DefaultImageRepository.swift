@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class DefaultPosterImagesRepository {
+final class DefaultImageRepository {
     
     private let dataTransferService: DataTransferService
     private let backgroundQueue: DataTransferDispatchQueue
@@ -21,7 +21,7 @@ final class DefaultPosterImagesRepository {
     }
 }
 
-extension DefaultPosterImagesRepository: PosterImagesRepository {
+extension DefaultImageRepository: ImageRepository {
     
     func fetchImage(
         with imagePath: String,

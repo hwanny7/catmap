@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol PosterImagesRepository {
+protocol ImageRepository {
     func fetchImage(
         with imagePath: String,
         completion: @escaping (Result<Data, Error>) -> Void

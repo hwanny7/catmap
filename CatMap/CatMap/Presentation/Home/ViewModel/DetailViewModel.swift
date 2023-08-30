@@ -10,7 +10,7 @@ import Foundation
 
 
 protocol DetailViewModelInput {
-    
+    func viewDidLoad()
 }
 
 protocol DetailViewModelOutput {
@@ -22,6 +22,8 @@ typealias DetailViewModel = DetailViewModelInput & DetailViewModelOutput
 
 final class DefaultDetailViewModel: DetailViewModel {
     
+    private let imageRepository: ImageRepository
+    
     private let id: Int
     private var imagesPath = [String]()
 
@@ -29,14 +31,29 @@ final class DefaultDetailViewModel: DetailViewModel {
     let images: Observable<[Data?]> = Observable([])
     
     init(
-        id: Int
+        id: Int,
+        imageRepository: ImageRepository
     ) {
         self.id = id
+        self.imageRepository = imageRepository
     }
+    
+    private func load() {
+        
+    }
+    
 }
 
 // MARK: - Input methods
 
-extension DefaultCoordinateViewModel {
+extension DefaultDetailViewModel {
     
+}
+
+// MARK: - Ouput methods
+
+extension DefaultDetailViewModel {
+    func viewDidLoad() {
+        
+    }
 }
