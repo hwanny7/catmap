@@ -15,6 +15,7 @@ protocol DetailViewModelInput {
 
 protocol DetailViewModelOutput {
     var images: Observable<[Data?]> { get }
+    var content: Observable<String> { get }
 }
 
 typealias DetailViewModel = DetailViewModelInput & DetailViewModelOutput
@@ -22,6 +23,9 @@ typealias DetailViewModel = DetailViewModelInput & DetailViewModelOutput
 final class DefaultDetailViewModel: DetailViewModel {
     
     private let id: Int
+    private var imagesPath = [String]()
+
+    let content: Observable<String> = Observable("")
     let images: Observable<[Data?]> = Observable([])
     
     init(
