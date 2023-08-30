@@ -23,6 +23,7 @@ final class DefaultDetailViewModel: DetailViewModel {
     
     private let detail: Detail?
     
+    
     init(
         detail: Detail?
     ) {
