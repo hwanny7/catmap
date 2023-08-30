@@ -63,8 +63,8 @@ final class HomeCoordinator: Coordinator {
         navigationController.pushViewController(mapVC, animated: true)
     }
     
-    private func showDetail(_ detail: Detail? = nil) {
-        let detailVC = homeDIContainer.makeDetailViewController(detail: detail)
+    private func showDetail(with id: Int) {
+        let detailVC = homeDIContainer.makeDetailViewController(id: id)
         navigationController.popToRootViewController(animated: false)
         detailVC.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(detailVC, animated: true)

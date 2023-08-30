@@ -12,3 +12,7 @@ struct Detail {
     let content: String
     let imagePaths: [String]
 }
+
+struct DetailId {
+    let id: Int
+}

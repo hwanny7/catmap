@@ -21,13 +21,13 @@ typealias DetailViewModel = DetailViewModelInput & DetailViewModelOutput
 
 final class DefaultDetailViewModel: DetailViewModel {
     
-    private let detail: Detail?
+    private let id: Int
     let images: Observable<[Data?]> = Observable([])
     
     init(
-        detail: Detail?
+        id: Int
     ) {
-        self.detail = detail
+        self.id = id
     }
 }
 

@@ -27,7 +27,7 @@ extension DefaultMarkerRepository: MarkerRepository {
     
     func addMarker(
         body: AddMarkerUseCaseRequestValue,
-        completion: @escaping (Result<Detail, Error>) -> Void
+        completion: @escaping (Result<DetailId, Error>) -> Void
     ) -> Cancellable? {
 
         let requestDTO = addMarkerRequestDTO(latitude: body.coordinate.latitude, longitude: body.coordinate.longitude, images: body.images, content: body.content)
