@@ -32,6 +32,7 @@ final class LoginViewController: UITableViewController {
         view.backgroundColor = .white
         let appleLoginButton = ASAuthorizationAppleIDButton()
         appleLoginButton.translatesAutoresizingMaskIntoConstraints = false
+        appleLoginButton.addTarget(self, action: #selector(didTapAppleLoginButton), for: .touchUpInside)
         
         view.addSubview(appleLoginButton)
         NSLayoutConstraint.activate([
@@ -46,8 +47,25 @@ final class LoginViewController: UITableViewController {
         let provider = ASAuthorizationAppleIDProvider()
         let request = provider.createRequest()
         request.requestedScopes = [.fullName, .email]
+        
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        
+        controller.delegate = self
+        controller.presentationContextProvider = self
+        
+        controller.performRequests()
+        
     }
+}
+
+extension LoginViewController: ASAuthorizationControllerDelegate {
     
-    // MARK: - Table view data source
+}
+
+extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        
+    }
 
 }
+
