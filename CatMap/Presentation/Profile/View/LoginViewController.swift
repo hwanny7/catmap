@@ -46,8 +46,8 @@ final class LoginViewController: UITableViewController {
     @objc func didTapAppleLoginButton() {
         let provider = ASAuthorizationAppleIDProvider()
         let request = provider.createRequest()
-        request.requestedScopes = [.fullName, .email]
-        
+//        request.requestedScopes = [.fullName, .email]
+//
         let controller = ASAuthorizationController(authorizationRequests: [request])
         
         controller.delegate = self
@@ -62,16 +62,10 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         
-        switch authorization.credential {
-        case let credentials as ASAuthorizationAppleIDCredential:
-            
-            let userIdentifier = credentials.user
-            print(userIdentifier)
-            break
+        guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential, let identityToken = appleIDCredential.identityToken else { return }
         
-        default: break
-        // case에 auto login을 handling 하는 것도 있음
-        }
+        print(identityToken)
+        
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
