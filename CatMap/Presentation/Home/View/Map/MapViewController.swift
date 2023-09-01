@@ -68,7 +68,10 @@ final class MapViewController: BaseMapViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        print("여기 실행!")
+        
         fetchCurrentLocationCoordinate()
+        // DidAppear 여러 번 실행되는 거 막아야함 (뒤로 가기로 돌아왔을 때도 갱신되고 있음)
     }
     
     

@@ -62,6 +62,16 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         
+        switch authorization.credential {
+        case let credentials as ASAuthorizationAppleIDCredential:
+            
+            let userIdentifier = credentials.user
+            print(userIdentifier)
+            break
+        
+        default: break
+        // case에 auto login을 handling 하는 것도 있음
+        }
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
