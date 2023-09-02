@@ -26,7 +26,7 @@ final class DefaultLoginUseCase: LoginUseCase {
     }
     
     func execute(requestValue: LoginUseCaseRequestValue, completion: @escaping (Result<UserDetail, Error>) -> Void) -> Cancellable? {
-        return authRepository.login(with token: LoginUseCaseRequestValue.identityToken) { result in
+        return authRepository.login(with: LoginUseCaseRequestValue.identityToken) { result in
             
         }
     }

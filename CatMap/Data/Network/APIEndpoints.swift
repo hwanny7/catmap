@@ -46,12 +46,12 @@ struct APIEndpoints {
             queryParametersEncodable: detailRequestDTO
         )
     }
-//
-//    static func sendIdentity(identityToken: Data) -> Endpoint<TokenResponseDTO> {
-//
-//        return Endpoint(path: "", method: .post, bodyParametersEncodable: identityToken)
-//
-//    }
+
+    static func login(with identityToken: Data) -> Endpoint<TokenResponseDTO> {
+
+        return Endpoint(path: "", method: .post, bodyParametersEncodable: identityToken)
+
+    }
 
     
 }
