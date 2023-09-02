@@ -25,19 +25,23 @@ extension DefaultAuthRepository: AuthRepository {
     
     func login(
         with identityToken: Data,
-        completion: @escaping (Result<UserDetail, Error>) -> Void
+        completion: @escaping (Result<User, Error>) -> Void
     ) -> Cancellable? {
         
-        let endpoint = APIEndpoints.getImage(path: imagePath)
+        let endpoint = APIEndpoints.login(with: identityToken)
         let task = RepositoryTask()
         
         task.networkTask = dataTransferService.request(
             with: endpoint,
             on: backgroundQueue
-        ) { (result: Result<Data, DataTransferError>) in
-
-            let result = result.mapError { $0 as Error }
-            completion(result)
+        ) { result in
+            switch result {
+            case .success(let responseDTO):
+                completion(.success(responseDTO.toDomain()))
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
         return task
     }
+}
