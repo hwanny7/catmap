@@ -200,6 +200,7 @@ class RawDataResponseDecoder: ResponseDecoder {
     func decode<T: Decodable>(_ data: Data) throws -> T {
         if T.self is Data.Type, let data = data as? T {
             return data
+        // response 타입이 data로 예정되어 있는지 확인 후, 해당 타입을 타입 캐스팅한다. (근데 data를 data로 타입 캐스팅 하는 게 무슨 의미가 있는거지?)
         } else {
             let context = DecodingError.Context(
                 codingPath: [CodingKeys.default],

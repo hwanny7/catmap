@@ -68,6 +68,7 @@
 		AE5EE7082A8CF6B60078A7CD /* DefaultLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EE7072A8CF6B60078A7CD /* DefaultLoginViewModel.swift */; };
 		AE94CE272A887B00009F195E /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE94CE262A887B00009F195E /* Observable.swift */; };
 		AE94CE2C2A899056009F195E /* TextFieldWithLabelStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE94CE2B2A899056009F195E /* TextFieldWithLabelStackView.swift */; };
+		AECC102F2AA34BDF006B55C6 /* DefaultLoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECC102E2AA34BDF006B55C6 /* DefaultLoginUseCase.swift */; };
 		AED3ABEC2A85C70D00585683 /* ImageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED3ABEB2A85C70D00585683 /* ImageCollectionView.swift */; };
 /* End PBXBuildFile section */
 
@@ -135,6 +136,7 @@
 		AE5EE7072A8CF6B60078A7CD /* DefaultLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLoginViewModel.swift; sourceTree = "<group>"; };
 		AE94CE262A887B00009F195E /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		AE94CE2B2A899056009F195E /* TextFieldWithLabelStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithLabelStackView.swift; sourceTree = "<group>"; };
+		AECC102E2AA34BDF006B55C6 /* DefaultLoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLoginUseCase.swift; sourceTree = "<group>"; };
 		AED3ABEB2A85C70D00585683 /* ImageCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -435,6 +437,7 @@
 				AE25E36D2A90F9C100B131FA /* DefaultFetchMarkerUseCase.swift */,
 				AE25E38E2A98853100B131FA /* DefaultAddMarkerUseCase.swift */,
 				AE25E3A12A9EDE2E00B131FA /* DefaultFetchDetailUseCase.swift */,
+				AECC102E2AA34BDF006B55C6 /* DefaultLoginUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				AE25E3892A95E1E700B131FA /* APIEndpoints.swift in Sources */,
 				AE25E36E2A90F9C100B131FA /* DefaultFetchMarkerUseCase.swift in Sources */,
 				AE25E3832A95E09700B131FA /* MarkersRequestDTO+Mapping.swift in Sources */,
+				AECC102F2AA34BDF006B55C6 /* DefaultLoginUseCase.swift in Sources */,
 				AE1581D42A7F837300B79291 /* Coordinator.swift in Sources */,
 				AE16AD202A7E834600CB6B81 /* DataTransferService.swift in Sources */,
 				AE25E3932A9C246800B131FA /* DispatchQueueType.swift in Sources */,
