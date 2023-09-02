@@ -17,7 +17,7 @@ struct LoginResponseDTO: Decodable {
     let nickname: String
 }
 
-extension DetailResponseDTO {
+extension LoginResponseDTO {
     func toDomain() -> User {
         return .init(accessToken: accessToken, nickname: nickname)
     }

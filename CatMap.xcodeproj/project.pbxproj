@@ -72,6 +72,7 @@
 		AECC10312AA34D7F006B55C6 /* DefaultAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECC10302AA34D7F006B55C6 /* DefaultAuthRepository.swift */; };
 		AECC10332AA34E33006B55C6 /* LoginResponseDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECC10322AA34E33006B55C6 /* LoginResponseDTO+Mapping.swift */; };
 		AECC10352AA34EA0006B55C6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECC10342AA34EA0006B55C6 /* User.swift */; };
+		AECC10372AA34F85006B55C6 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECC10362AA34F85006B55C6 /* AuthRepository.swift */; };
 		AED3ABEC2A85C70D00585683 /* ImageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED3ABEB2A85C70D00585683 /* ImageCollectionView.swift */; };
 /* End PBXBuildFile section */
 
@@ -143,6 +144,7 @@
 		AECC10302AA34D7F006B55C6 /* DefaultAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthRepository.swift; sourceTree = "<group>"; };
 		AECC10322AA34E33006B55C6 /* LoginResponseDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginResponseDTO+Mapping.swift"; sourceTree = "<group>"; };
 		AECC10342AA34EA0006B55C6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		AECC10362AA34F85006B55C6 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		AED3ABEB2A85C70D00585683 /* ImageCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -339,6 +341,7 @@
 				AE25E37F2A957D8600B131FA /* MarkerRepository.swift */,
 				AE25E39D2A9EC02300B131FA /* ImageRepository.swift */,
 				AE25E3A32A9EDEA100B131FA /* DetailRepository.swift */,
+				AECC10362AA34F85006B55C6 /* AuthRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AECC10312AA34D7F006B55C6 /* DefaultAuthRepository.swift in Sources */,
+				AECC10372AA34F85006B55C6 /* AuthRepository.swift in Sources */,
 				AE25E3722A9100E800B131FA /* Cancellable.swift in Sources */,
 				AE5EE7082A8CF6B60078A7CD /* DefaultLoginViewModel.swift in Sources */,
 				AE25E38F2A98853100B131FA /* DefaultAddMarkerUseCase.swift in Sources */,
