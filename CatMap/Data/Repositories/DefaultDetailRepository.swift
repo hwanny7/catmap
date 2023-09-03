@@ -9,7 +9,6 @@ import Foundation
 
 
 final class DefaultDetailRepository {
-    
     private let dataTransferService: DataTransferService
     private let backgroundQueue: DataTransferDispatchQueue
     
@@ -20,11 +19,9 @@ final class DefaultDetailRepository {
         self.dataTransferService = dataTransferService
         self.backgroundQueue = backgroundQueue
     }
-
 }
 
 extension DefaultDetailRepository: DetailRepository {
-    
     func fetchDetail(
         id: Int, completion: @escaping (Result<Detail, Error>) -> Void
     ) -> Cancellable? {
@@ -45,7 +42,4 @@ extension DefaultDetailRepository: DetailRepository {
         })
         return task
     }
-    
-    
-    
 }
