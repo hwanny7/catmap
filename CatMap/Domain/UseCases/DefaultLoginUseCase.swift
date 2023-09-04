@@ -27,8 +27,15 @@ final class DefaultLoginUseCase: LoginUseCase {
     
     func execute(requestValue: LoginUseCaseRequestValue, completion: @escaping (Result<Void, Error>) -> Void) -> Cancellable? {
         return authRepository.login(with: requestValue.identityToken) { result in
-            print(result)
-            // 여기서 유저 정보를 default에 저장한 다음에 View Model에 성공 여부를 알려준다.
+            switch result {
+            case .success(let user):
+                let userDefaults = UserDefaults.standard
+                userDefaults.set(user.nickname, forKey: "nickname")
+                userDefaults.set(user.accessToken, forKey: "accessToken")
+                userDefaults.set(true, forKey: "isLogin")
+            case .failure(let error):
+                print(error)
+            }
         }
     }
     
