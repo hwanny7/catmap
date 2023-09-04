@@ -32,8 +32,6 @@ final class ProfileCoordinator: Coordinator {
     
     func showMyPage() {
         let MyPageVC = profileDIContainer.makeMyPageViewController()
-        navigationController.popToRootViewController(animated: false)
-//        detailVC.hidesBottomBarWhenPushed = true
-        navigationController.pushViewController(MyPageVC, animated: true)
+        navigationController.setViewControllers([MyPageVC], animated: true)
     }
 }

@@ -36,14 +36,15 @@ final class DefaultLoginViewModel: LoginViewModel {
     }
     
     private func didTryLogin(identityToken: Data){
-        loginTask = loginUseCase.execute(requestValue: .init(identityToken: identityToken)) { result in
-            switch result {
-            case .success():
-                print("성공 계정 페이지를 보여준다.")
-            case .failure(let error):
-                print("로그인 중 에러 발생: \(error)")
-            }
-        }
+        actions.showMyPage()
+//        loginTask = loginUseCase.execute(requestValue: .init(identityToken: identityToken)) { result in
+//            switch result {
+//            case .success():
+//                self.actions.showMyPage()
+//            case .failure(let error):
+//                print("로그인 중 에러 발생: \(error)")
+//            }
+//        }
     }
     
 }
