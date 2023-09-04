@@ -27,7 +27,6 @@ extension DefaultAuthRepository: AuthRepository {
         with identityToken: Data,
         completion: @escaping (Result<User, Error>) -> Void
     ) -> Cancellable? {
-        
         let endpoint = APIEndpoints.login(with: identityToken)
         let task = RepositoryTask()
         
