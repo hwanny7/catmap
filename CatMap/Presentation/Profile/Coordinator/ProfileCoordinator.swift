@@ -25,6 +25,7 @@ final class ProfileCoordinator: Coordinator {
     }
     
     func start() {
+        // default 값에 따라서 LoginVC 보여줄지, ProfileVC 보여줄지 결정하기
         let actions = LoginViewModelActions(showMyPage: showMyPage)
         let LoginVC = profileDIContainer.makeLoginViewController(actions: actions)
         navigationController.pushViewController(LoginVC, animated: false)
