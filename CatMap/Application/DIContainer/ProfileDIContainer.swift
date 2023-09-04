@@ -48,7 +48,27 @@ extension ProfileDIContainer {
     }
     
     func makeLoginViewModel() -> LoginViewModel {
-        DefaultLoginViewModel()
+        DefaultLoginViewModel(loginUseCase: makeLoginUseCase())
+    }
+    
+}
+
+// MARK: - Make usecase
+
+extension ProfileDIContainer {
+    
+    func makeLoginUseCase() -> LoginUseCase {
+        DefaultLoginUseCase(authRepository: makeAuthRepository())
+    }
+    
+}
+
+// MARK: - Make repository
+
+extension ProfileDIContainer {
+    
+    func makeAuthRepository() -> AuthRepository {
+        DefaultAuthRepository(dataTransferService: apiDataTransferService)
     }
     
 }
