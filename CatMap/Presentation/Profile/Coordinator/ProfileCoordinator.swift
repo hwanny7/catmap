@@ -25,7 +25,15 @@ final class ProfileCoordinator: Coordinator {
     }
     
     func start() {
-        let LoginVC = profileDIContainer.makeLoginViewController()
+        let actions = LoginViewModelActions(showMyPage: showMyPage)
+        let LoginVC = profileDIContainer.makeLoginViewController(actions: actions)
         navigationController.pushViewController(LoginVC, animated: false)
+    }
+    
+    func showMyPage() {
+        let MyPageVC = profileDIContainer.makeMyPageViewController()
+        navigationController.popToRootViewController(animated: false)
+//        detailVC.hidesBottomBarWhenPushed = true
+        navigationController.pushViewController(MyPageVC, animated: true)
     }
 }

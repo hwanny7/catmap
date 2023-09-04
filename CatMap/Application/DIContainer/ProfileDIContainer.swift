@@ -34,8 +34,8 @@ extension ProfileDIContainer {
         return MyPageViewController(with: makeMyPageViewModel())
     }
     
-    func makeLoginViewController() -> LoginViewController {
-        return LoginViewController(with: makeLoginViewModel())
+    func makeLoginViewController(actions: LoginViewModelActions) -> LoginViewController {
+        return LoginViewController(with: makeLoginViewModel(actions: actions))
     }
 }
 
@@ -47,8 +47,8 @@ extension ProfileDIContainer {
         DefaultMyPageViewModel()
     }
     
-    func makeLoginViewModel() -> LoginViewModel {
-        DefaultLoginViewModel(loginUseCase: makeLoginUseCase())
+    func makeLoginViewModel(actions: LoginViewModelActions) -> LoginViewModel {
+        DefaultLoginViewModel(loginUseCase: makeLoginUseCase(), actions: actions)
     }
     
 }

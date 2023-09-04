@@ -9,7 +9,7 @@
 import Foundation
 
 struct LoginViewModelActions {
-    
+    let showMyPage: () -> Void
 }
 
 
@@ -27,13 +27,16 @@ typealias LoginViewModel = LoginViewModelInput & LoginViewModelOutput
 final class DefaultLoginViewModel: LoginViewModel {
     
     private let loginUseCase: LoginUseCase
+    private let actions: LoginViewModelActions
+    private var loginTask: Cancellable? { willSet { loginTask?.cancel() } }
     
-    init(loginUseCase: LoginUseCase) {
+    init(loginUseCase: LoginUseCase, actions: LoginViewModelActions) {
         self.loginUseCase = loginUseCase
+        self.actions = actions
     }
     
     private func didTryLogin(identityToken: Data){
-        loginUseCase.execute(requestValue: .init(identityToken: identityToken)) { result in
+        loginTask = loginUseCase.execute(requestValue: .init(identityToken: identityToken)) { result in
             switch result {
             case .success():
                 print("성공 계정 페이지를 보여준다.")

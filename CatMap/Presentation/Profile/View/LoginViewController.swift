@@ -62,7 +62,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         
         guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential, let identityToken = appleIDCredential.identityToken else { return }
         
-        print(identityToken)
+        viewModel.didLogIn(identityToken: identityToken)
         
     }
     
