@@ -62,6 +62,7 @@ final class MyPageViewController: UIViewController {
         view.backgroundColor = .gray
         
         let scrollView = UIScrollView()
+        scrollView.backgroundColor = .blue
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         
@@ -95,10 +96,19 @@ final class MyPageViewController: UIViewController {
         view.addSubview(scrollView)
         
         NSLayoutConstraint.activate([
-            wrapperStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            wrapperStackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            wrapperStackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            wrapperStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            wrapperStackView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            wrapperStackView.leadingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.leadingAnchor),
+            wrapperStackView.trailingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.trailingAnchor),
+            wrapperStackView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
+            
+            
+//            wrapperStackView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
+//            wrapperStackView.heightAnchor.constraint(equalTo: scrollView.frameLayoutGuide.heightAnchor),
 
             profileImageView.widthAnchor.constraint(equalToConstant: 80),
             profileImageView.heightAnchor.constraint(equalToConstant: 80),
@@ -107,6 +117,7 @@ final class MyPageViewController: UIViewController {
             MyPageTableView.bottomAnchor.constraint(equalTo: wrapperStackView.bottomAnchor),
             MyPageTableView.leadingAnchor.constraint(equalTo: wrapperStackView.leadingAnchor),
             MyPageTableView.trailingAnchor.constraint(equalTo: wrapperStackView.trailingAnchor),
+            MyPageTableView.heightAnchor.constraint(equalToConstant: 2000)
         ])
         
     }
