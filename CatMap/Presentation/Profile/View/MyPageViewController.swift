@@ -23,8 +23,9 @@ final class MyPageViewController: UIViewController {
     
     private let MyPageTableView: UITableView = {
         let tableView = UITableView()
-        tableView.delegate = self
-        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.isScrollEnabled = false
         return tableView
     }()
     
@@ -58,43 +59,75 @@ final class MyPageViewController: UIViewController {
     }
     
     func setupViews() {
-        view.backgroundColor = .green
+        view.backgroundColor = .gray
+        
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        
+        let wrapperStackView = UIStackView()
+        wrapperStackView.axis = .vertical
+        wrapperStackView.alignment = .center
+        wrapperStackView.distribution = .fill
+        wrapperStackView.spacing = 16
+        wrapperStackView.translatesAutoresizingMaskIntoConstraints = false
+        
         
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .center
-        stackView.distribution = .equalCentering
+        stackView.distribution = .fillEqually
         stackView.spacing = 16
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         stackView.addArrangedSubview(profileImageView)
         stackView.addArrangedSubview(nicknameLabel)
-        view.addSubview(stackView)
+        
+        MyPageTableView.delegate = self
+        MyPageTableView.dataSource = self
+//        MyPageTableView.rowHeight = UITableView.automaticDimension
+//        MyPageTableView.estimatedRowHeight = 100
+        
+        wrapperStackView.addArrangedSubview(stackView)
+        wrapperStackView.addArrangedSubview(MyPageTableView)
+        scrollView.addSubview(wrapperStackView)
+        view.addSubview(scrollView)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            
+            wrapperStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            wrapperStackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            wrapperStackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            wrapperStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+
             profileImageView.widthAnchor.constraint(equalToConstant: 80),
             profileImageView.heightAnchor.constraint(equalToConstant: 80),
+            
+            MyPageTableView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
+            MyPageTableView.bottomAnchor.constraint(equalTo: wrapperStackView.bottomAnchor),
+            MyPageTableView.leadingAnchor.constraint(equalTo: wrapperStackView.leadingAnchor),
+            MyPageTableView.trailingAnchor.constraint(equalTo: wrapperStackView.trailingAnchor),
         ])
         
     }
 }
 
 extension MyPageViewController: UITableViewDelegate {
-    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 50.0
+//    }
 }
 
 
 extension MyPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+        return 200
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = "로그아웃"
+        return cell
     }
     
     
