@@ -36,6 +36,10 @@ final class DefaultLoginViewModel: LoginViewModel {
     }
     
     private func didTryLogin(identityToken: Data){
+        let userDefaults = UserDefaults.standard
+        userDefaults.set("승환", forKey: "nickname")
+        userDefaults.set("0421084210", forKey: "accessToken")
+        userDefaults.set(true, forKey: "isLogin")
         actions.showMyPage()
 //        loginTask = loginUseCase.execute(requestValue: .init(identityToken: identityToken)) { result in
 //            switch result {
