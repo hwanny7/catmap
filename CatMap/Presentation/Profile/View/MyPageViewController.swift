@@ -65,8 +65,6 @@ final class MyPageViewController: UIViewController {
         scrollView.backgroundColor = .blue
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
-        
-        
         let wrapperStackView = UIStackView()
         wrapperStackView.axis = .vertical
         wrapperStackView.alignment = .center
@@ -87,8 +85,6 @@ final class MyPageViewController: UIViewController {
         
         MyPageTableView.delegate = self
         MyPageTableView.dataSource = self
-//        MyPageTableView.rowHeight = UITableView.automaticDimension
-//        MyPageTableView.estimatedRowHeight = 100
         
         wrapperStackView.addArrangedSubview(stackView)
         wrapperStackView.addArrangedSubview(MyPageTableView)
@@ -102,31 +98,26 @@ final class MyPageViewController: UIViewController {
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             wrapperStackView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
-            wrapperStackView.leadingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.leadingAnchor),
-            wrapperStackView.trailingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.trailingAnchor),
             wrapperStackView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
+            wrapperStackView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
+            wrapperStackView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
+            wrapperStackView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
+//            wrapperStackView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
             
-            
-//            wrapperStackView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
-//            wrapperStackView.heightAnchor.constraint(equalTo: scrollView.frameLayoutGuide.heightAnchor),
-
             profileImageView.widthAnchor.constraint(equalToConstant: 80),
             profileImageView.heightAnchor.constraint(equalToConstant: 80),
             
-            MyPageTableView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
+            MyPageTableView.topAnchor.constraint(equalTo: stackView.bottomAnchor),
             MyPageTableView.bottomAnchor.constraint(equalTo: wrapperStackView.bottomAnchor),
             MyPageTableView.leadingAnchor.constraint(equalTo: wrapperStackView.leadingAnchor),
             MyPageTableView.trailingAnchor.constraint(equalTo: wrapperStackView.trailingAnchor),
-            MyPageTableView.heightAnchor.constraint(equalToConstant: 2000)
         ])
         
     }
 }
 
 extension MyPageViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 50.0
-//    }
+
 }
 
 

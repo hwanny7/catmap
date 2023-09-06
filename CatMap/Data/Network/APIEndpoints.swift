@@ -49,7 +49,7 @@ struct APIEndpoints {
 
     static func login(with identityToken: Data) -> Endpoint<LoginResponseDTO> {
 
-        return Endpoint(path: "", method: .post, bodyParametersEncodable: identityToken)
+        return Endpoint(path: "users/save", method: .post, bodyParametersEncodable: identityToken)
 
     }
 
