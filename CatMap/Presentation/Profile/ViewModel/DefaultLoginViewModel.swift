@@ -41,7 +41,7 @@ final class DefaultLoginViewModel: LoginViewModel {
 //        userDefaults.set("0421084210", forKey: "accessToken")
 //        userDefaults.set(true, forKey: "isLogin")
 //        actions.showMyPage()
-        loginTask = loginUseCase.execute(requestValue: .init(identityToken: identityToken)) { result in
+        loginTask = loginUseCase.execute(requestValue: .init(identityToken: identityToken, authorizationCode: authorizationCode)) { result in
             switch result {
             case .success():
                 self.actions.showMyPage()

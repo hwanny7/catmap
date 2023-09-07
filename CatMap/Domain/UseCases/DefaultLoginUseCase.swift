@@ -46,4 +46,5 @@ final class DefaultLoginUseCase: LoginUseCase {
 
 struct LoginUseCaseRequestValue {
     let identityToken: Data
+    let authorizationCode: Data
 }
