@@ -60,9 +60,8 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         
-        guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential, let identityToken = appleIDCredential.identityToken else { return }
-        
-        viewModel.didLogIn(identityToken: identityToken)
+        guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential, let identityToken = appleIDCredential.identityToken, let authorizationCode = appleIDCredential.authorizationCode else { return }
+        viewModel.didLogIn(identityToken: identityToken, authorizationCode: authorizationCode)
         
     }
     

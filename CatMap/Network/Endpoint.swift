@@ -154,7 +154,10 @@ extension Requestable {
     private func encodeBody(bodyParameters: [String: Any], bodyEncoding: BodyEncoding) -> Data? {
         switch bodyEncoding {
         case .jsonSerializationData:
-            return try? JSONSerialization.data(withJSONObject: bodyParameters)
+            let data = try? JSONSerialization.data(withJSONObject: bodyParameters)
+            print("data입니다", data, type(of: data))
+            return data
+//            return try? JSONSerialization.data(withJSONObject: bodyParameters)
             // 딕셔너리를 Json 형태로 변경
         case .stringEncodingAscii:
             return bodyParameters.queryString.data(
@@ -178,7 +181,11 @@ private extension Dictionary {
 private extension Encodable {
     func toDictionary() throws -> [String: Any]? {
         let data = try JSONEncoder().encode(self)
-        let jsonData = try JSONSerialization.jsonObject(with: data)
+        if let why = String(data: data, encoding: .utf8) {
+            print(why)
+        }
+        let jsonData = try? JSONSerialization.jsonObject(with: data)
+        print(jsonData, "jsonData입니당!!")
         return jsonData as? [String : Any]
     }
     // query 또는 body ParemtersEncodable DTO를 data 타입으로 변환 후 다시 딕셔너리로 변경했다가 왜 다시 데이터로 변경하는건지 모르겠음. 이 부분을 생략해도 될 것 같은데

@@ -14,7 +14,7 @@ struct LoginViewModelActions {
 
 
 protocol LoginViewModelInput {
-    func didLogIn(identityToken: Data)
+    func didLogIn(identityToken: Data, authorizationCode: Data)
 }
 
 protocol LoginViewModelOutput {
@@ -35,20 +35,20 @@ final class DefaultLoginViewModel: LoginViewModel {
         self.actions = actions
     }
     
-    private func didTryLogin(identityToken: Data){
-        let userDefaults = UserDefaults.standard
-        userDefaults.set("승환", forKey: "nickname")
-        userDefaults.set("0421084210", forKey: "accessToken")
-        userDefaults.set(true, forKey: "isLogin")
-        actions.showMyPage()
-//        loginTask = loginUseCase.execute(requestValue: .init(identityToken: identityToken)) { result in
-//            switch result {
-//            case .success():
-//                self.actions.showMyPage()
-//            case .failure(let error):
-//                print("로그인 중 에러 발생: \(error)")
-//            }
-//        }
+    private func didTryLogin(identityToken: Data, authorizationCode: Data){
+//        let userDefaults = UserDefaults.standard
+//        userDefaults.set("승환", forKey: "nickname")
+//        userDefaults.set("0421084210", forKey: "accessToken")
+//        userDefaults.set(true, forKey: "isLogin")
+//        actions.showMyPage()
+        loginTask = loginUseCase.execute(requestValue: .init(identityToken: identityToken)) { result in
+            switch result {
+            case .success():
+                self.actions.showMyPage()
+            case .failure(let error):
+                print("로그인 중 에러 발생: \(error)")
+            }
+        }
     }
     
 }
@@ -56,8 +56,8 @@ final class DefaultLoginViewModel: LoginViewModel {
 // MARK: - Input
 
 extension DefaultLoginViewModel {
-    func didLogIn(identityToken: Data) {
-        didTryLogin(identityToken: identityToken)
+    func didLogIn(identityToken: Data, authorizationCode: Data) {
+        didTryLogin(identityToken: identityToken, authorizationCode: authorizationCode)
     }
 }
 
