@@ -9,7 +9,7 @@ import Foundation
 
 struct LoginResponseDTO: Decodable {
     private enum CodingKeys: String, CodingKey {
-        case accessToken = "access_token"
+        case accessToken
         case nickname
     }
     

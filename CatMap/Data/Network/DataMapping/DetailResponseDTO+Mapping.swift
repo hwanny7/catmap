@@ -10,7 +10,7 @@ import Foundation
 struct DetailResponseDTO: Decodable {
     private enum CodingKeys: String, CodingKey {
         case content
-        case imagePaths = "image_paths"
+        case imagePaths
     }
     
     let content: String
