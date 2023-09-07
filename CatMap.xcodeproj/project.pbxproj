@@ -73,6 +73,7 @@
 		AECC10332AA34E33006B55C6 /* LoginResponseDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECC10322AA34E33006B55C6 /* LoginResponseDTO+Mapping.swift */; };
 		AECC10352AA34EA0006B55C6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECC10342AA34EA0006B55C6 /* User.swift */; };
 		AECC10372AA34F85006B55C6 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECC10362AA34F85006B55C6 /* AuthRepository.swift */; };
+		AECC105B2AA9EF12006B55C6 /* LoginRequestDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECC105A2AA9EF12006B55C6 /* LoginRequestDTO+Mapping.swift */; };
 		AED3ABEC2A85C70D00585683 /* ImageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED3ABEB2A85C70D00585683 /* ImageCollectionView.swift */; };
 /* End PBXBuildFile section */
 
@@ -145,6 +146,7 @@
 		AECC10322AA34E33006B55C6 /* LoginResponseDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginResponseDTO+Mapping.swift"; sourceTree = "<group>"; };
 		AECC10342AA34EA0006B55C6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AECC10362AA34F85006B55C6 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
+		AECC105A2AA9EF12006B55C6 /* LoginRequestDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginRequestDTO+Mapping.swift"; sourceTree = "<group>"; };
 		AED3ABEB2A85C70D00585683 /* ImageCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -376,6 +378,7 @@
 				AE25E3992A9E1A8600B131FA /* AddMarkerResponseDTO+Mapping.swift */,
 				AE25E3A72A9EE48900B131FA /* DetailRequestDTO+Mapping.swift */,
 				AE25E3A92A9EE4BC00B131FA /* DetailResponseDTO+Mapping.swift */,
+				AECC105A2AA9EF12006B55C6 /* LoginRequestDTO+Mapping.swift */,
 				AECC10322AA34E33006B55C6 /* LoginResponseDTO+Mapping.swift */,
 			);
 			path = DataMapping;
@@ -573,6 +576,7 @@
 				AE16AD202A7E834600CB6B81 /* DataTransferService.swift in Sources */,
 				AE25E3932A9C246800B131FA /* DispatchQueueType.swift in Sources */,
 				AE25E39E2A9EC02300B131FA /* ImageRepository.swift in Sources */,
+				AECC105B2AA9EF12006B55C6 /* LoginRequestDTO+Mapping.swift in Sources */,
 				AECC10332AA34E33006B55C6 /* LoginResponseDTO+Mapping.swift in Sources */,
 				AE1581EA2A80C0EA00B79291 /* MyPageViewController.swift in Sources */,
 				AE1581F52A82347E00B79291 /* PickerController.swift in Sources */,

@@ -47,9 +47,9 @@ struct APIEndpoints {
         )
     }
 
-    static func login(with identityToken: Data) -> Endpoint<LoginResponseDTO> {
+    static func login(with loginRequestDTO: LoginRequestDTO) -> Endpoint<LoginResponseDTO> {
 
-        return Endpoint(path: "users/save", method: .post, bodyParametersEncodable: identityToken)
+        return Endpoint(path: "users/save", method: .post, bodyParametersEncodable: loginRequestDTO)
 
     }
 
