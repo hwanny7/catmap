@@ -96,6 +96,9 @@ extension DefaultDataTransferService: DataTransferService {
         networkService.request(endpoint: endpoint) { result in
             switch result {
             case .success(let data):
+//                if let data = data, let stringData = String(data: data, encoding: .utf8) {
+//                    print("stringData입니다!", stringData)
+//                }
                 let result: Result<T, DataTransferError> = self.decode(
                     data: data,
                     decoder: endpoint.responseDecoder

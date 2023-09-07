@@ -28,7 +28,7 @@ extension DefaultAuthRepository: AuthRepository {
         authorizationCode: Data,
         completion: @escaping (Result<User, Error>) -> Void
     ) -> Cancellable? {
-        let endpoint = APIEndpoints.login(with: identityToken)
+        let endpoint = APIEndpoints.login(with: .init(identityToken: identityToken, authorizationCode: authorizationCode))
         let task = RepositoryTask()
         
         task.networkTask = dataTransferService.request(
