@@ -81,7 +81,7 @@ final class DefaultNetworkService {
         
         let sessionDataTask = sessionManager.request(request) { data, response, requestError in
             if let data = data, let stringData = String(data: data, encoding: .utf8) {
-                print("stringData입니다!", stringData)
+                print("stringData입니다!!!!!!", stringData)
             }
             if let requestError = requestError {
                 var error: NetworkError
