@@ -155,10 +155,7 @@ extension Requestable {
     private func encodeBody(bodyParameters: [String: Any], bodyEncoding: BodyEncoding) -> Data? {
         switch bodyEncoding {
         case .jsonSerializationData:
-            let data = try? JSONSerialization.data(withJSONObject: bodyParameters)
-            print("data입니다", data, type(of: data))
-            return data
-//            return try? JSONSerialization.data(withJSONObject: bodyParameters)
+            return try? JSONSerialization.data(withJSONObject: bodyParameters)
             // 딕셔너리를 Json 형태로 변경
         case .stringEncodingAscii:
             return bodyParameters.queryString.data(
