@@ -8,6 +8,6 @@
 import Foundation
 
 struct LoginRequestDTO: Encodable {
-    let identityToken: Data
-    let authorizationCode: Data
+    let identityToken: String
+    let authorizationCode: String
 }

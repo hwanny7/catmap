@@ -10,8 +10,8 @@ import Foundation
 protocol AuthRepository {
     @discardableResult
     func login(
-        identityToken: Data,
-        authorizationCode: Data,
+        identityToken: String,
+        authorizationCode: String,
         completion: @escaping (Result<User,Error>) -> Void
     ) -> Cancellable?
 }

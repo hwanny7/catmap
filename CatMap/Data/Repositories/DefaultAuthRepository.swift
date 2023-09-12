@@ -24,8 +24,8 @@ final class DefaultAuthRepository {
 extension DefaultAuthRepository: AuthRepository {
     
     func login(
-        identityToken: Data,
-        authorizationCode: Data,
+        identityToken: String,
+        authorizationCode: String,
         completion: @escaping (Result<User, Error>) -> Void
     ) -> Cancellable? {
         let endpoint = APIEndpoints.login(with: .init(identityToken: identityToken, authorizationCode: authorizationCode))

@@ -133,12 +133,12 @@ extension Requestable {
         headerParameters.forEach { allHeaders.updateValue($1, forKey: $0) }
         // config header는 필요없을 듯 하다.
         
-        
         let bodyParameters = try bodyParametersEncodable?.toDictionary() ?? self.bodyParameters
         if !bodyParameters.isEmpty {
             urlRequest.httpBody = encodeBody(bodyParameters: bodyParameters, bodyEncoding: bodyEncoding)
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         }
+        
         
         if let bodyParametersConvertible = bodyParametersConvertible {
             let formData = bodyParametersConvertible.encode(request: &urlRequest)
@@ -178,8 +178,6 @@ private extension Dictionary {
 
 private extension Encodable {
     func toDictionary() throws -> [String: Any]? {
-        let encoder = JSONEncoder()
-        encoder.keyEncodingStrategy = .convertToSnakeCase
         let data = try JSONEncoder().encode(self)
         let jsonData = try JSONSerialization.jsonObject(with: data)
         return jsonData as? [String : Any]

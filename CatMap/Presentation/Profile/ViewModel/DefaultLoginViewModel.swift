@@ -41,6 +41,8 @@ final class DefaultLoginViewModel: LoginViewModel {
 //        userDefaults.set("0421084210", forKey: "accessToken")
 //        userDefaults.set(true, forKey: "isLogin")
 //        actions.showMyPage()
+        guard let identityToken = String(data: identityToken, encoding: .utf8), let authorizationCode = String(data: authorizationCode, encoding: .utf8) else { return }
+
         loginTask = loginUseCase.execute(requestValue: .init(identityToken: identityToken, authorizationCode: authorizationCode)) { result in
             switch result {
             case .success():
