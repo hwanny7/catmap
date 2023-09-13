@@ -32,9 +32,11 @@ final class DefaultLoginUseCase: LoginUseCase {
                 let userDefaults = UserDefaults.standard
                 userDefaults.set(user.nickname, forKey: "nickname")
                 userDefaults.set(user.accessToken, forKey: "accessToken")
+                userDefaults.set(user.refreshToken, forKey: "refreshToken")
                 userDefaults.set(true, forKey: "isLogin")
+                completion(.success(()))
             case .failure(let error):
-                print(error)
+                completion(.failure(error))
             }
         }
     }

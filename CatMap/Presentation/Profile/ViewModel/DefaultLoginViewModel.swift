@@ -28,31 +28,29 @@ final class DefaultLoginViewModel: LoginViewModel {
     
     private let loginUseCase: LoginUseCase
     private let actions: LoginViewModelActions
+    private let mainQueue: DispatchQueueType
     private var loginTask: Cancellable? { willSet { loginTask?.cancel() } }
     
-    init(loginUseCase: LoginUseCase, actions: LoginViewModelActions) {
+    init(loginUseCase: LoginUseCase, actions: LoginViewModelActions, mainQueue: DispatchQueueType = DispatchQueue.main) {
         self.loginUseCase = loginUseCase
         self.actions = actions
+        self.mainQueue = mainQueue
     }
     
     private func didTryLogin(identityToken: Data, authorizationCode: Data){
-//        let userDefaults = UserDefaults.standard
-//        userDefaults.set("승환", forKey: "nickname")
-//        userDefaults.set("0421084210", forKey: "accessToken")
-//        userDefaults.set(true, forKey: "isLogin")
-//        actions.showMyPage()
         guard let identityToken = String(data: identityToken, encoding: .utf8), let authorizationCode = String(data: authorizationCode, encoding: .utf8) else { return }
 
-        loginTask = loginUseCase.execute(requestValue: .init(identityToken: identityToken, authorizationCode: authorizationCode)) { result in
-            switch result {
-            case .success():
-                self.actions.showMyPage()
-            case .failure(let error):
-                print("로그인 중 에러 발생: \(error)")
+        loginTask = loginUseCase.execute(requestValue: .init(identityToken: identityToken, authorizationCode: authorizationCode)) { [weak self] result in
+            self?.mainQueue.async {
+                switch result {
+                case .success():
+                    self?.actions.showMyPage()
+                case .failure(let error):
+                    print("Login Error: \(error)")
+                }
             }
         }
     }
-    
 }
 
 // MARK: - Input
