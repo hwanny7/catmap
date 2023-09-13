@@ -11,4 +11,5 @@ import Foundation
 struct User {
     let accessToken: String
     let nickname: String
+    let refreshToken: String
 }
