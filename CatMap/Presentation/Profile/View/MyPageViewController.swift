@@ -26,6 +26,7 @@ final class MyPageViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.isScrollEnabled = false
+        tableView.rowHeight = 50.0
         return tableView
     }()
     
@@ -67,9 +68,8 @@ final class MyPageViewController: UIViewController {
         
         let wrapperStackView = UIStackView()
         wrapperStackView.axis = .vertical
-        wrapperStackView.alignment = .center
+        wrapperStackView.alignment = .leading
         wrapperStackView.distribution = .fill
-        wrapperStackView.spacing = 16
         wrapperStackView.translatesAutoresizingMaskIntoConstraints = false
         
         
@@ -77,7 +77,6 @@ final class MyPageViewController: UIViewController {
         stackView.axis = .horizontal
         stackView.alignment = .center
         stackView.distribution = .fillEqually
-        stackView.spacing = 16
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
         stackView.addArrangedSubview(profileImageView)
@@ -102,15 +101,15 @@ final class MyPageViewController: UIViewController {
             wrapperStackView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
             wrapperStackView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
             wrapperStackView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
-//            wrapperStackView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
             
             profileImageView.widthAnchor.constraint(equalToConstant: 80),
             profileImageView.heightAnchor.constraint(equalToConstant: 80),
             
             MyPageTableView.topAnchor.constraint(equalTo: stackView.bottomAnchor),
             MyPageTableView.bottomAnchor.constraint(equalTo: wrapperStackView.bottomAnchor),
-            MyPageTableView.leadingAnchor.constraint(equalTo: wrapperStackView.leadingAnchor),
-            MyPageTableView.trailingAnchor.constraint(equalTo: wrapperStackView.trailingAnchor),
+            MyPageTableView.leadingAnchor.constraint(equalTo: wrapperStackView.leadingAnchor, constant: 16),
+            MyPageTableView.trailingAnchor.constraint(equalTo: wrapperStackView.trailingAnchor, constant: -16),
+            MyPageTableView.heightAnchor.constraint(equalToConstant: 12 * 50),
         ])
         
     }
@@ -123,7 +122,7 @@ extension MyPageViewController: UITableViewDelegate {
 
 extension MyPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 200
+        return 12
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

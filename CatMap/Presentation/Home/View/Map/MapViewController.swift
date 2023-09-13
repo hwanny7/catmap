@@ -165,7 +165,7 @@ extension MapViewController: MKMapViewDelegate {
             annotationView?.annotation = annotation
         }
 
-        annotationView?.image = UIImage(systemName: "house")
+        annotationView?.image = UIImage(named: "CatMarker1")
 
         return annotationView
     }
