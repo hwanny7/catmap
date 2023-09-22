@@ -10,9 +10,9 @@ import CoreLocation
 
 
 
-
 struct MapViewModelActions {
     let showCreatePost: () -> Void
+    let showDetail: (Int) -> Void
 }
 
 
@@ -54,6 +54,7 @@ final class DefaultMapViewModel: MapViewModel {
     
     private func load(distance: Double, centerCoordinate: Coordinate) {
         print(distance, centerCoordinate)
+        appendMarker()
         markerLoadTask = fetchMarkerUseCase.execute(requestValue: .init(distance: distance, centerCoordinate: centerCoordinate), completion: { [weak self] result in
             self?.mainQueue.async {
                 switch result {
@@ -72,8 +73,12 @@ final class DefaultMapViewModel: MapViewModel {
     
     private func appendMarker() {
         let marker1 = Marker(id: 1, latitude: 36.29534255486295, longitude: 127.5687921843418)
-        let marker2 = Marker(id: 1, latitude: 36.29524297601406, longitude: 127.56841295925204)
-        markers.value = [marker1, marker2]
+        let marker2 = Marker(id: 2, latitude: 36.296111378080916, longitude: 127.56914565764805)
+        let marker3 = Marker(id: 3, latitude: 36.296323459233655, longitude: 127.56813413430666)
+        let marker4 = Marker(id: 4, latitude: 36.29517650673096, longitude: 127.56959807847188)
+        let marker5 = Marker(id: 5, latitude: 36.29575955373106, longitude: 127.57064042185205)
+        let marker6 = Marker(id: 6, latitude: 36.2953347377883, longitude: 127.56759260817795)
+        markers.value = [marker1, marker2, marker3, marker4, marker5, marker6]
         // load 함수가 이 메소드를 실행한다.
         
     }

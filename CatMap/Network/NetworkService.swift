@@ -80,7 +80,9 @@ final class DefaultNetworkService {
     ) -> NetworkCancellable {
         
         let sessionDataTask = sessionManager.request(request) { data, response, requestError in
-            
+            if let data = data, let stringData = String(data: data, encoding: .utf8) {
+                print("stringData입니다!!!!!!", stringData)
+            }
             if let requestError = requestError {
                 var error: NetworkError
                 if let response = response as? HTTPURLResponse {
@@ -145,7 +147,7 @@ final class DefaultNetworkErrorLogger: NetworkErrorLogger {
     init() { }
 
     func log(request: URLRequest) {
-        print("-------------")
+        print("----------")
         print("request: \(request.url!)")
         print("headers: \(request.allHTTPHeaderFields!)")
         print("method: \(request.httpMethod!)")

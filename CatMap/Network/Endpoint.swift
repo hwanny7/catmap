@@ -133,11 +133,12 @@ extension Requestable {
         headerParameters.forEach { allHeaders.updateValue($1, forKey: $0) }
         // config header는 필요없을 듯 하다.
         
-        
         let bodyParameters = try bodyParametersEncodable?.toDictionary() ?? self.bodyParameters
         if !bodyParameters.isEmpty {
             urlRequest.httpBody = encodeBody(bodyParameters: bodyParameters, bodyEncoding: bodyEncoding)
+            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         }
+        
         
         if let bodyParametersConvertible = bodyParametersConvertible {
             let formData = bodyParametersConvertible.encode(request: &urlRequest)
@@ -181,7 +182,7 @@ private extension Encodable {
         let jsonData = try JSONSerialization.jsonObject(with: data)
         return jsonData as? [String : Any]
     }
-    // query 또는 body ParemtersEncodable DTO를 딕셔너리로 변경
+    // query 또는 body ParemtersEncodable DTO를 data 타입으로 변환 후 다시 딕셔너리로 변경했다가 왜 다시 데이터로 변경하는건지 모르겠음. 이 부분을 생략해도 될 것 같은데
 }
 
 private extension Data {

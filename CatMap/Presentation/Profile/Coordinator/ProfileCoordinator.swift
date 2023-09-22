@@ -25,7 +25,20 @@ final class ProfileCoordinator: Coordinator {
     }
     
     func start() {
-        let LoginVC = profileDIContainer.makeLoginViewController()
-        navigationController.pushViewController(LoginVC, animated: false)
+        var vc: UIViewController
+        let isLogin = UserDefaults.standard.bool(forKey: "isLogin")
+
+        if isLogin {
+            vc = profileDIContainer.makeMyPageViewController()
+        } else {
+            let actions = LoginViewModelActions(showMyPage: showMyPage)
+            vc = profileDIContainer.makeLoginViewController(actions: actions)
+        }
+        navigationController.pushViewController(vc, animated: false)
+    }
+    
+    func showMyPage() {
+        let MyPageVC = profileDIContainer.makeMyPageViewController()
+        navigationController.setViewControllers([MyPageVC], animated: true)
     }
 }

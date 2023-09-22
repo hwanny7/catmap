@@ -47,5 +47,11 @@ struct APIEndpoints {
         )
     }
 
+    static func login(with loginRequestDTO: LoginRequestDTO) -> Endpoint<LoginResponseDTO> {
+
+        return Endpoint(path: "users/save", method: .post, bodyParametersEncodable: loginRequestDTO)
+
+    }
+
     
 }
