@@ -175,10 +175,10 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         // Annotation이 선택되었을 때 호출되는 메서드입니다.
-        if let annotation = view.annotation {
+        if let annotation = view.annotation, let CustomAnnotation = annotation as? CustomAnnotation {
             // 선택된 Annotation에 대한 작업을 수행할 수 있습니다.
             // 예를 들어, 선택된 Annotation의 정보를 표시하거나 다른 동작을 수행할 수 있습니다.
-            print("Annotation 선택됨: \(annotation.coordinate)")
+            print("Annotation 선택됨: \(CustomAnnotation.id)")
         }
     }
 }

@@ -10,9 +10,9 @@ import CoreLocation
 
 
 
-
 struct MapViewModelActions {
     let showCreatePost: () -> Void
+    let showDetail: (Int) -> Void
 }
 
 

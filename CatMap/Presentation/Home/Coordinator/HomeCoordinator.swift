@@ -37,7 +37,7 @@ final class HomeCoordinator: Coordinator {
     
     func start() {
         setupNavigationBar()
-        let actions = MapViewModelActions(showCreatePost: showCreatePost)
+        let actions = MapViewModelActions(showCreatePost: showCreatePost, showDetail: showDetail)
         let mapVC = homeDIContainer.makeMapViewController(actions: actions)
         navigationController.pushViewController(mapVC, animated: false)
     }
