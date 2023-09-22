@@ -114,9 +114,9 @@ final class MapViewController: BaseMapViewController {
         // 맵에 이미 등록돼 있던 annotation 제거
         
         for marker in markers {
-            let pin = MKPointAnnotation()
             let coordinate = CLLocationCoordinate2D(latitude: marker.latitude, longitude: marker.longitude)
-            pin.coordinate = coordinate
+            let id = marker.id
+            let pin = CustomAnnotation(coordinate: coordinate, id: id)
             map.addAnnotation(pin)
             // array로 추가하는 방법도 있음
         }
@@ -152,7 +152,9 @@ final class MapViewController: BaseMapViewController {
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard !(annotation is MKUserLocation) else { return nil }
-        // User의 위치 표시 마커는 변경하지 않는다. 원하면 변경하는 것도 가능할 듯?
+        // User의 위치는 변경하면 안 됨
+        
+        
 
         var annotationView = map.dequeueReusableAnnotationView(withIdentifier: "custom")
         // tableView처럼 캐시를 사용해서 메모리를 효율적으로 사용한다.
@@ -160,6 +162,7 @@ extension MapViewController: MKMapViewDelegate {
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "custom")
             annotationView?.canShowCallout = true
+            // title 같은 추가 정보를 보여줄건지
 //            annotationView?.rightCalloutAccessoryView => 더 자세한 페이지 보여주는 거인 듯
         } else {
             annotationView?.annotation = annotation
@@ -195,4 +198,16 @@ extension MapViewController {
     
 }
 
-
+class CustomAnnotation: NSObject, MKAnnotation {
+    let id: Int
+    let coordinate: CLLocationCoordinate2D
+    let title: String?
+    
+    
+    init(coordinate: CLLocationCoordinate2D, id: Int, title: String? = nil) {
+        self.coordinate = coordinate
+        self.id = id
+        self.title = title
+    }
+    
+}
