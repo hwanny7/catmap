@@ -170,7 +170,14 @@ extension MapViewController: MKMapViewDelegate {
         return annotationView
     }
     
-    // mapView func은 addCustomPin을 커스텀해서 이쁜 View로 보여준다.
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        // Annotation이 선택되었을 때 호출되는 메서드입니다.
+        if let annotation = view.annotation {
+            // 선택된 Annotation에 대한 작업을 수행할 수 있습니다.
+            // 예를 들어, 선택된 Annotation의 정보를 표시하거나 다른 동작을 수행할 수 있습니다.
+            print("Annotation 선택됨: \(annotation.coordinate)")
+        }
+    }
 }
 
 // MARK: - location manager override
